@@ -17,7 +17,6 @@ public class BeautifulDays {
                 ++beautifulDays;
             }
         }
-
         System.out.print(beautifulDays);
     }
 
@@ -26,7 +25,6 @@ public class BeautifulDays {
         for(reverse = 0; n != 0; n /= 10) {
             reverse = 10 * reverse + n % 10;
         }
-
         return reverse;
     }
 
