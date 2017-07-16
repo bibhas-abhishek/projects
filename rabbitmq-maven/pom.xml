@@ -10,6 +10,8 @@
         <module>rabbitmq-consumer</module>
         <module>emit-log</module>
         <module>receive-log</module>
+        <module>emitlog-direct</module>
+        <module>receivelogs-direct</module>
     </modules>
     <packaging>pom</packaging>
 
