@@ -12,6 +12,8 @@
         <module>receive-log</module>
         <module>emitlog-direct</module>
         <module>receivelogs-direct</module>
+        <module>emitlog-topic</module>
+        <module>receivelogs-topic</module>
     </modules>
     <packaging>pom</packaging>
 
