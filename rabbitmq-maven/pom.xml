@@ -8,6 +8,8 @@
     <modules>
         <module>rabbitmq-producer</module>
         <module>rabbitmq-consumer</module>
+        <module>emit-log</module>
+        <module>receive-log</module>
     </modules>
     <packaging>pom</packaging>
 
