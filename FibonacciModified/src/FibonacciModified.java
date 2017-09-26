@@ -29,7 +29,6 @@ public class FibonacciModified {
                     (modifiedFastFib(memo, n - 1).multiply(modifiedFastFib(memo, n - 1)));
             return memo[n];
         }
-
     }
 
 }
