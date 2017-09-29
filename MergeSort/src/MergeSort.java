@@ -1,4 +1,5 @@
 class MergeSort {
+
     public static void main(String[] args) {
         int myArray[] = {10, 5, 7, 8, 1, 2, 6, 3, 4, 9};
         int temp[] = new int[myArray.length];
@@ -38,4 +39,5 @@ class MergeSort {
         System.arraycopy(myArray, right, temp, index, rightEnd - right + 1);
         System.arraycopy(temp, leftStart, myArray, leftStart, rightEnd - leftStart + 1);
     }
+
 }
