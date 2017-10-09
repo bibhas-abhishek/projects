@@ -5,10 +5,9 @@ import java.util.List;
  * Bibhas Abhishek
  * [bibhas_01@hotmail.com]
  * 09 Oct 2017
- * https://github.com/bibhas-abhishek/projects/tree/master/GetAllSubsets2
- * Get all subsets of a string: Combinatorics
+ * https://github.com/bibhas-abhishek/projects/tree/master/PowerSets
  */
-public class GetAllSubsets2 {
+public class PowerSets {
 
     public static void main(String[] args) {
         List<String> set = new ArrayList<>();
