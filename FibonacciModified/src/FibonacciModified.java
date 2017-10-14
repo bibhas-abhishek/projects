@@ -1,6 +1,13 @@
 import java.math.BigInteger;
 import java.util.Scanner;
 
+/**
+ * Bibhas Abhishek
+ * [bibhas_01@hotmail.com]
+ * 14 Oct 2017
+ * https://github.com/bibhas-abhishek/projects/tree/master/FibonacciModified
+ * https://www.hackerrank.com/challenges/fibonacci-modified/problem
+ */
 public class FibonacciModified {
 
     public static void main(String[] args) {
