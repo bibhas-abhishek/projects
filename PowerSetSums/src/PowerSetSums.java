@@ -18,10 +18,7 @@ public class PowerSetSums {
             return;
         }
 
-        //include arr[l]
         subsetSums(arr, l + 1, r, sum + arr[l]);
-
-        //exclude arr[l]
         subsetSums(arr, l + 1, r, sum);
     }
 

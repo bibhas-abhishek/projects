@@ -9,18 +9,11 @@ import java.util.*;
 public class TestBed {
 
     public static void main(String[] args) {
-        int[] array = new int[]{1, 2};
-        subsetSums(array, 0, array.length - 1, 0);
-    }
+        System.out.println(new Object() {
+        }.getClass().getEnclosingMethod().getName());
 
-    private static void subsetSums(int arr[], int l, int r, int sum) {
-        if (l > r) {
-            System.out.print(sum + " ");
-            return;
-        }
-
-        subsetSums(arr, l + 1, r, sum + arr[l]);
-        subsetSums(arr, l + 1, r, sum);
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
     }
 
 }
