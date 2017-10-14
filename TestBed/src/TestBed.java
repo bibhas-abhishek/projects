@@ -1,5 +1,7 @@
 import java.util.*;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  * Bibhas Abhishek
  * [bibhas_01@hotmail.com]
@@ -9,11 +11,7 @@ import java.util.*;
 public class TestBed {
 
     public static void main(String[] args) {
-        System.out.println(new Object() {
-        }.getClass().getEnclosingMethod().getName());
 
-        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-        System.out.println(stackTrace[1].getMethodName());
     }
 
 }
