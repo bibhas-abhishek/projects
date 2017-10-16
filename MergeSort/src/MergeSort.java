@@ -1,4 +1,10 @@
-class MergeSort {
+/**
+ * Bibhas Abhishek
+ * [bibhas_01@hotmail.com]
+ * 16 Oct 2017
+ * https://github.com/bibhas-abhishek/projects/tree/master/MergeSort
+ */
+public class MergeSort {
 
     public static void main(String[] args) {
         int myArray[] = {10, 5, 7, 8, 1, 2, 6, 3, 4, 9};
