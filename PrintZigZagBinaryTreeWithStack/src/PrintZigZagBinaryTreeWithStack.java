@@ -1,6 +1,13 @@
 import java.util.Stack;
 
+/**
+ * Bibhas Abhishek
+ * [bibhas_01@hotmail.com]
+ * 16 Oct 2017
+ * https://github.com/bibhas-abhishek/projects/tree/master/PrintZigZagBinaryTreeWithStack
+ */
 public class PrintZigZagBinaryTreeWithStack {
+
     private static class Node {
 
         int data;

@@ -1,6 +1,12 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * Bibhas Abhishek
+ * [bibhas_01@hotmail.com]
+ * 16 Oct 2017
+ * https://github.com/bibhas-abhishek/projects/tree/master/PrintRightViewBinaryTree
+ */
 public class PrintRightViewBinaryTree {
 
     private static class Node {
@@ -23,8 +29,8 @@ public class PrintRightViewBinaryTree {
         root.right = new Node(3);
         root.left.left = new Node(7);
         root.left.right = new Node(8);
-        root.right.right = new Node(15);
         root.right.left = new Node(12);
+        root.right.right = new Node(15);
         root.right.right.left = new Node(14);
         printRightView(root);
     }
@@ -38,12 +44,9 @@ public class PrintRightViewBinaryTree {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 Node temp = queue.poll();
-
-                // Print if the right most element at the level
                 if (i == 0)
                     System.out.print(temp.data + " ");
 
-                // Add right most node first
                 if (temp.right != null)
                     queue.add(temp.right);
                 if (temp.left != null)

@@ -1,3 +1,9 @@
+/**
+ * Bibhas Abhishek
+ * [bibhas_01@hotmail.com]
+ * 16 Oct 2017
+ * https://github.com/bibhas-abhishek/projects/tree/master/RecursiveLevelOrderTraversal
+ */
 public class RecursiveLevelOrderTraversal {
 
     private static class Node {
@@ -20,9 +26,8 @@ public class RecursiveLevelOrderTraversal {
         root.right = new Node(3);
         root.left.left = new Node(7);
         root.left.right = new Node(8);
-        root.right.right = new Node(15);
         root.right.left = new Node(12);
-        root.right.right.left = new Node(14);
+        root.right.right = new Node(15);
         printLevelOrder(root);
     }
 
