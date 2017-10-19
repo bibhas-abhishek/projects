@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Bibhas Abhishek
  * [bibhas_01@hotmail.com]
@@ -10,19 +12,17 @@ public class MergeSort {
         int myArray[] = {10, 5, 7, 8, 1, 2, 6, 3, 4, 9};
         int temp[] = new int[myArray.length];
         mergeSort(myArray, temp, 0, myArray.length - 1);
-        for (int myArrayElement : myArray) {
-            System.out.print(myArrayElement + " ");
-        }
+        Arrays.stream(myArray).mapToObj(myArrayElement -> myArrayElement + " ").forEach(System.out::print);
     }
 
-    private static void mergeSort(int[] myArray, int[] temp, int leftStart, int rightEnd) {
-        if (leftStart >= rightEnd)
+    private static void mergeSort(int[] myArray, int[] temp, int start, int end) {
+        if (start >= end)
             return;
 
-        int median = (leftStart + rightEnd) / 2;
+        int median = (start + end) / 2;
         mergeSort(myArray, temp, 0, median);
-        mergeSort(myArray, temp, median + 1, rightEnd);
-        mergeHalves(myArray, temp, leftStart, rightEnd);
+        mergeSort(myArray, temp, median + 1, end);
+        mergeHalves(myArray, temp, start, end);
     }
 
     private static void mergeHalves(int[] myArray, int[] temp, int leftStart, int rightEnd) {
