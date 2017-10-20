@@ -39,7 +39,7 @@ public class KLargestBST {
         KLargest(root.right, i);
         Node.count++;
         if (Node.count == i) {
-            System.out.print(root.data + " ");
+            System.out.print(root.data);
             return;
         }
         KLargest(root.left, i);
