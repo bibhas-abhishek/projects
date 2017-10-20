@@ -4,10 +4,10 @@ import java.util.Scanner;
  * Bibhas Abhishek
  * [bibhas_01@hotmail.com]
  * 20 Oct 2017
- * https://github.com/bibhas-abhishek/projects/tree/master/SherlockandArray
+ * https://github.com/bibhas-abhishek/projects/tree/master/SherlockAndArray
  * https://www.hackerrank.com/challenges/sherlock-and-array/problem
  */
-public class SherlockandArray {
+public class SherlockAndArray {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
