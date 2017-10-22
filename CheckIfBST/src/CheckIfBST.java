@@ -1,4 +1,10 @@
-public class checkBST {
+/**
+ * Bibhas Abhishek
+ * [bibhas_01@hotmail.com]
+ * 22 Oct 2017
+ * https://github.com/bibhas-abhishek/projects/tree/master/CheckIfBST
+ */
+public class CheckIfBST {
 
     private class Node {
         int data;
