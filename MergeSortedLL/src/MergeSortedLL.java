@@ -62,7 +62,7 @@ public class MergeSortedLL {
         if (headB == null)
             return headA;
 
-        if (headA.data < headB.data) {
+        if (headA.data <= headB.data) {
             headA.next = mergeLists(headA.next, headB);
             return headA;
         } else {
