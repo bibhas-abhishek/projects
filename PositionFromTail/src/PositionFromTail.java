@@ -1,4 +1,10 @@
-public class KReverseLinkedList {
+/**
+ * Bibhas Abhishek
+ * bibhas_01@hotmail.com
+ * 23 Dec 2017
+ **/
+
+public class PositionFromTail {
 
     private static class Node {
 
@@ -21,8 +27,26 @@ public class KReverseLinkedList {
         head = insert(head, 5);
         head = insert(head, 6);
         printList(head);
-        head = reverse(head);
-        printList(head);
+        System.out.print(getNode(head, length(head), 1, 3).data);
+    }
+
+    private static Node getNode(Node head, int length, int nodeCount, int positionFromTail) {
+        if (head == null)
+            return null;
+        Node res = getNode(head.next, length, nodeCount + 1, positionFromTail);
+        if (length - nodeCount == positionFromTail)
+            return head;
+        return res;
+    }
+
+    private static int length(Node head) {
+        int length = 0;
+        while (head != null) {
+            length++;
+            head = head.next;
+        }
+
+        return length;
     }
 
     private static void printList(Node head) {
@@ -47,35 +71,5 @@ public class KReverseLinkedList {
         return head;
     }
 
-    private static Node reverse(Node head) {
-        Node currentNode = head;
-        Node prevNode = null;
-        Node nextNode = null;
-        while (currentNode != null) {
-            nextNode = currentNode.next;
-            currentNode.next = prevNode;
-            prevNode = currentNode;
-            currentNode = nextNode;
-        }
-        head = prevNode;
-        return head;
-    }
-
-    private static Node KReverse(Node head, int k) {
-        Node currentNode = head;
-        Node prevNode = null;
-        Node nextNode = null;
-        int count = k;
-        while (currentNode != null && count > 0) {
-            nextNode = currentNode.next;
-            currentNode.next = prevNode;
-            prevNode = currentNode;
-            currentNode = nextNode;
-            count--;
-        }
-        if (nextNode != null)
-            head.next = KReverse(nextNode, k);
-        return prevNode;
-    }
-
 }
+
