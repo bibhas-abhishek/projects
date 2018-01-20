@@ -38,6 +38,7 @@ public class PrintRightViewBinaryTree {
     private static void printRightView(Node root) {
         if (root == null)
             return;
+
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
@@ -49,6 +50,7 @@ public class PrintRightViewBinaryTree {
 
                 if (temp.right != null)
                     queue.add(temp.right);
+
                 if (temp.left != null)
                     queue.add(temp.left);
             }

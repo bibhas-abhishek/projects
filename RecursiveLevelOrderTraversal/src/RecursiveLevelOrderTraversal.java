@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Bibhas Abhishek
  * [bibhas_01@hotmail.com]
@@ -29,6 +32,8 @@ public class RecursiveLevelOrderTraversal {
         root.right.left = new Node(12);
         root.right.right = new Node(15);
         printLevelOrder(root);
+        System.out.println();
+        printLevelOrderWithQueue(root);
     }
 
     private static void printLevelOrder(Node root) {
@@ -45,6 +50,19 @@ public class RecursiveLevelOrderTraversal {
         else {
             printLevel(root.left, level - 1);
             printLevel(root.right, level - 1);
+        }
+    }
+
+    private static void printLevelOrderWithQueue(Node root) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            System.out.print(queue.peek().data + " ");
+            Node temp = queue.poll();
+            if (temp.left != null)
+                queue.add(temp.left);
+            if (temp.right != null)
+                queue.add(temp.right);
         }
     }
 
