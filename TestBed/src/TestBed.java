@@ -9,12 +9,7 @@ import java.util.*;
 public class TestBed {
 
     public static void main(String[] args) {
-        System.out.print(lengthOfLastWord("a "));
-    }
 
-    private static int lengthOfLastWord(String s) {
-        s = s.trim();
-        return s.length() - s.lastIndexOf(" ") - 1;
     }
 
 }
