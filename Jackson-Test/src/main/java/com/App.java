@@ -1,13 +1,15 @@
+/**
+ * Bibhas Abhishek
+ * bibhas_01@hotmail.com
+ * 17 Feb 2018
+ * https://github.com/bibhas-abhishek/projects/tree/master/Jackson-Test/
+ **/
 package com;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args ) throws IOException {
@@ -44,8 +46,8 @@ public class App
                 "\t]\n" +
                 "}";
 
-        PendingChallanList pendingChallanList = objectMapper.readValue(jsonArray, PendingChallanList.class);
-        System.out.print(pendingChallanList.getPendingChallanList().toString());
+        HydPendingChallanList hydPendingChallanList = objectMapper.readValue(jsonArray, HydPendingChallanList.class);
+        System.out.print(hydPendingChallanList.getHydPendingChallanList().toString());
     }
 
 }

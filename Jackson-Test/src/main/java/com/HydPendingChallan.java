@@ -8,7 +8,7 @@ package com;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class PendingChallan {
+public class HydPendingChallan {
 
     @JsonProperty("CHALLAN_NO")
     private String challanNo;
