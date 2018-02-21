@@ -9,7 +9,7 @@
 public class CompareVersionNumbers {
 
     public static void main(String[] args) {
-        System.out.print(compare("1.1", "1.0"));
+        System.out.print(compareVersion("1.1", "1.0"));
     }
 
     private static int compareVersion(String version1, String version2) {
