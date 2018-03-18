@@ -18,26 +18,32 @@ public class HibernateTest {
 
     @Transactional
     public static void main(String[] args) {
-        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Instructor.class).
+
+        try (SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Instructor.class).
                 addAnnotatedClass(InstructorDetail.class).buildSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
-        try {
+             Session session = sessionFactory.getCurrentSession()) {
             /*Instructor instructor = new Instructor("Anand", "MadarNigam", "madar@hotmail.com");
             InstructorDetail instructorDetail = new InstructorDetail("youtube.com/madar", "haramipanti");
             instructor.setInstructorDetail(instructorDetail);*/
 
-            session.beginTransaction();
+            /*session.beginTransaction();
             Instructor instructor = session.get(Instructor.class, 2);
             if (instructor != null)
-                session.delete(instructor);
+                session.delete(instructor);*/
 
             /*System.out.print(session.createQuery("from Student s where s.id = 2").getResultList());
             int studentId = 2;
             session.get(Student.class, studentId).setFirstName("Cheeku");
-            session.getTransaction().commit();*/
+            */
+
+            session.beginTransaction();
+            InstructorDetail instructorDetail = session.get(InstructorDetail.class, 1);
+            System.out.println("Instructor Detail: " + instructorDetail);
+            System.out.println("Instructor: " + instructorDetail.getInstructor());
+
             session.getTransaction().commit();
-        } finally {
-            session.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

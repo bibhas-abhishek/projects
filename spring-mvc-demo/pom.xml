@@ -8,6 +8,8 @@
     <name>spring-mvc-demo Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
         <jstl.version>1.2</jstl.version>
         <servletapi.version>2.5</servletapi.version>
         <spring.version>5.0.4.RELEASE</spring.version>
