@@ -11,6 +11,9 @@
         <jstl.version>1.2</jstl.version>
         <servletapi.version>2.5</servletapi.version>
         <spring.version>5.0.4.RELEASE</spring.version>
+        <hibernate.validator.version>6.0.8.Final</hibernate.validator.version>
+        <hibernate.core.version>5.2.8.Final</hibernate.core.version>
+        <mysql.connector.java.version>6.0.6</mysql.connector.java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -38,7 +41,19 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>6.0.8.Final</version>
+            <version>${hibernate.validator.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.core.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.connector.java.version}</version>
         </dependency>
     </dependencies>
     <build>
@@ -47,10 +62,10 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
-            <configuration>
-                <url>http://localhost:8080/manager/text</url>
-                <server>TomcatServer</server>
-            </configuration>
+                <configuration>
+                    <url>http://localhost:8080/manager/text</url>
+                    <server>TomcatServer</server>
+                </configuration>
             </plugin>
         </plugins>
         <finalName>spring-mvc-demo</finalName>

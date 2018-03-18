@@ -9,5 +9,9 @@
     <h2>Customer Confirmation</h2>
     <hr/>
     The student name is: ${customer.firstName} ${customer.lastName}
+    <br/>
+    Free Passes: ${customer.freePasses}
+    <br/>
+    Course Code: ${customer.courseCode}
 </body>
 </html>

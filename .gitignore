@@ -106,6 +106,7 @@ fabric.properties
 .idea/
 
 target/
+
 ### Maven template
 pom.xml.tag
 pom.xml.releaseBackup
