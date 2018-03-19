@@ -1,9 +1,3 @@
-/**
- * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
- * 18 Mar 2018
- **/
-
 package com.hibernate.entity;
 
 import javax.persistence.*;

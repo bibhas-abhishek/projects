@@ -15,19 +15,22 @@ import org.hibernate.cfg.Configuration;
 
 import javax.transaction.Transactional;
 
-public class HibernateTest {
+public class HibernateCourseTest {
 
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public static void main(String[] args) {
 
         try (SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Instructor.class).
                 addAnnotatedClass(InstructorDetail.class).addAnnotatedClass(Course.class).buildSessionFactory();
              Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            Instructor instructor = new Instructor("John", "Doe", "johndoe@hotmail.com");
-            InstructorDetail instructorDetail = new InstructorDetail("youtube.com/john-doe", "singing");
-            instructor.setInstructorDetail(instructorDetail);
-            session.save(instructor);
+            Instructor instructor = session.get(Instructor.class, 6);
+            Course course1 = new Course("Course1");
+            instructor.addCourse(course1);
+            Course course2 = new Course("Course2");
+            instructor.addCourse(course2);
+            session.save(course1);
+            session.save(course2);
             session.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();
