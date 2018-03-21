@@ -24,10 +24,10 @@ public class HibernateCourseTest {
                 addAnnotatedClass(InstructorDetail.class).addAnnotatedClass(Course.class).buildSessionFactory();
              Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            Instructor instructor = session.get(Instructor.class, 6);
-            Course course1 = new Course("Course1");
+            Instructor instructor = session.get(Instructor.class, 1);
+            Course course1 = new Course("Coding");
             instructor.addCourse(course1);
-            Course course2 = new Course("Course2");
+            Course course2 = new Course("Gaming");
             instructor.addCourse(course2);
             session.save(course1);
             session.save(course2);

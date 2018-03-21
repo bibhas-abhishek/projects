@@ -90,8 +90,8 @@ public class Instructor {
     public void addCourse(Course tempCourse) {
         if (courses == null)
             courses = new ArrayList<>();
-        courses.add(tempCourse);
         tempCourse.setInstructor(this);
+        courses.add(tempCourse);
     }
 
     @Override
