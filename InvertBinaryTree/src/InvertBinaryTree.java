@@ -13,7 +13,7 @@ public class InvertBinaryTree {
         Node left;
         Node right;
 
-        public Node(int data) {
+        Node(int data) {
             this.data = data;
             this.left = null;
             this.right = null;
@@ -31,9 +31,8 @@ public class InvertBinaryTree {
         root.right.right = new Node(7);
         inorderDFS(root);
         System.out.println();
-        invert(root);
+        root = invert(root);
         inorderDFS(root);
-
     }
 
     private static void inorderDFS(Node root) {
