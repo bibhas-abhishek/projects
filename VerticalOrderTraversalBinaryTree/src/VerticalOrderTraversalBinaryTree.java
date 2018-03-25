@@ -37,6 +37,7 @@ public class VerticalOrderTraversalBinaryTree {
         root.right.left.right = new Node(8);
         root.right.right.right = new Node(9);
         printVerticalOrder(root);
+        System.out.println();
     }
 
     private static void printVerticalOrder(Node root) {

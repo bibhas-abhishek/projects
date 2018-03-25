@@ -21,7 +21,7 @@ public class KReverseLinkedList {
         head = insert(head, 5);
         head = insert(head, 6);
         printList(head);
-        head = reverse(head);
+        head = KReverse(head, 3);
         printList(head);
     }
 
