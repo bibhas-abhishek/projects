@@ -5,7 +5,6 @@
  * https://leetcode.com/problems/add-two-numbers/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/AddLinkedLists1
  **/
-
 public class AddLinkedLists1 {
 
     private static class Node {
@@ -33,15 +32,15 @@ public class AddLinkedLists1 {
 
     public static void main(String[] args) {
         Node head1 = null;
-        head1 = insert(head1, 5);
-        /*head1 = insert(head1, 4);
-        head1 = insert(head1, 3);*/
+        head1 = insertAtTail(head1, 5);
+        head1 = insertAtTail(head1, 4);
+        head1 = insertAtTail(head1, 3);
         printList(head1);
 
         Node head2 = null;
-        head2 = insert(head2, 5);
-        /*head2 = insert(head2, 6);
-        head2 = insert(head2, 4);*/
+        head2 = insertAtTail(head2, 5);
+        head2 = insertAtTail(head2, 6);
+        head2 = insertAtTail(head2, 4);
         printList(head2);
 
         Node head3 = addTwoNumbers(head1, head2);
@@ -57,7 +56,7 @@ public class AddLinkedLists1 {
         System.out.println();
     }
 
-    private static Node insert(Node head, int data) {
+    private static Node insertAtTail(Node head, int data) {
         if (head == null)
             head = new Node(data);
         else {
@@ -65,6 +64,18 @@ public class AddLinkedLists1 {
             while (temp.next != null)
                 temp = temp.next;
             temp.next = new Node(data);
+        }
+
+        return head;
+    }
+
+    private static Node insertAtHead(Node head, int data) {
+        Node temp = new Node(data);
+        if (head == null)
+            head = temp;
+        else {
+            temp.next = head;
+            head = temp;
         }
 
         return head;
