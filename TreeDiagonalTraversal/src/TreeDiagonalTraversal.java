@@ -3,10 +3,11 @@ import java.util.*;
 /**
  * Bibhas Abhishek
  * [bibhas_01@hotmail.com]
- * 03 Oct 2017
- * https://github.com/bibhas-abhishek/projects/tree/master/TestBed
- */
-public class TestBed {
+ * 01 Apr 2018
+ * https://github.com/bibhas-abhishek/projects/tree/master/TreeDiagonalTraversal
+ **/
+
+public class TreeDiagonalTraversal {
 
     private static class Node {
 

@@ -5,7 +5,6 @@
  * https://leetcode.com/problems/diameter-of-binary-tree/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/TreeDiameter
  **/
-
 public class TreeDiameter {
 
     private static class Node {
