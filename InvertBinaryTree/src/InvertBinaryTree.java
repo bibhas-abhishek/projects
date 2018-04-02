@@ -4,7 +4,6 @@
  * 25 Dec 2017
  * https://github.com/bibhas-abhishek/projects/tree/master/InvertBinaryTree/
  **/
-
 public class InvertBinaryTree {
 
     private static class Node {
