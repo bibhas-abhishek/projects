@@ -39,7 +39,7 @@ public class LeastCommonAncestor {
             return root;
         boolean isV1Left = covers(root.left, v1);
         boolean isV2left = covers(root.left, v2);
-        if (isV1Left ^ isV2left)
+        if (isV1Left != isV2left)
             return root;
         else {
             return isV1Left ? LCAUtil(root.left, v1, v2) : LCAUtil(root.right, v1, v2);

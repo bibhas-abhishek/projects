@@ -9,41 +9,39 @@ import java.util.Arrays;
 public class MergeSort {
 
     public static void main(String[] args) {
-        int myArray[] = {10, 5, 7, 8, 1, 2, 6, 3, 4, 9};
-        int temp[] = new int[myArray.length];
-        mergeSort(myArray, temp, 0, myArray.length - 1);
-        Arrays.stream(myArray).mapToObj(myArrayElement -> myArrayElement + " ").forEach(System.out::print);
+        int array[] = {10, 5, 7, 8, 1, 2, 6, 3, 4, 9};
+        int temp[] = new int[array.length];
+        mergeSort(array, temp, 0, array.length - 1);
+        Arrays.stream(array).mapToObj(myArrayElement -> myArrayElement + " ").forEach(System.out::print);
     }
 
-    private static void mergeSort(int[] myArray, int[] temp, int start, int end) {
-        if (start >= end)
+    private static void mergeSort(int[] array, int[] temp, int start, int end) {
+        if (end <= start)
             return;
 
-        int median = (start + end) / 2;
-        mergeSort(myArray, temp, 0, median);
-        mergeSort(myArray, temp, median + 1, end);
-        mergeHalves(myArray, temp, start, end);
+        int mid = (start + end) / 2;
+        mergeSort(array, temp, start, mid);
+        mergeSort(array, temp, mid + 1, end);
+        merge(array, temp, start, end);
     }
 
-    private static void mergeHalves(int[] myArray, int[] temp, int leftStart, int rightEnd) {
-        int leftEnd = (rightEnd + leftStart) / 2;
+    private static void merge(int[] array, int[] temp, int leftStart, int rightEnd) {
+        int leftEnd = (leftStart + rightEnd) / 2;
         int rightStart = leftEnd + 1;
-
-        int left = leftStart;
-        int right = rightStart;
+        int l = leftStart;
+        int r = rightStart;
         int index = leftStart;
 
-        while (left <= leftEnd && right <= rightEnd) {
-            if (myArray[left] <= myArray[right])
-                temp[index++] = myArray[left++];
+        while (l <= leftEnd && r <= rightEnd) {
+            if (array[l] <= array[r])
+                temp[index++] = array[l++];
             else
-                temp[index++] = myArray[right++];
-
+                temp[index++] = array[r++];
         }
 
-        System.arraycopy(myArray, left, temp, index, leftEnd - left + 1);
-        System.arraycopy(myArray, right, temp, index, rightEnd - right + 1);
-        System.arraycopy(temp, leftStart, myArray, leftStart, rightEnd - leftStart + 1);
+        System.arraycopy(array, l, temp, index, leftEnd - l + 1); // copy remaining left array elements
+        System.arraycopy(array, r, temp, index, rightEnd - r + 1); // copy remaining right array elements
+        System.arraycopy(temp, leftStart, array, leftStart, rightEnd - leftStart + 1); // copy temp back to main array
     }
 
 }

@@ -31,11 +31,11 @@ public class LongestCommonSubsequence {
         }
 
         printLCSMatrix(lcs);
-        printLCSSequence(lcs, s1, s2);
+        printLCSequence(lcs, s1, s2);
         return lcs[row - 1][col - 1];
     }
 
-    private static void printLCSSequence(int[][] lcs, String s1, String s2) {
+    private static void printLCSequence(int[][] lcs, String s1, String s2) {
         int row = lcs.length - 1;
         int col = lcs[0].length - 1;
         Stack<Character> stack = new Stack<>();
