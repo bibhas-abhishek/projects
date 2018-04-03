@@ -1,5 +1,3 @@
-import java.util.*;
-
 /**
  * Bibhas Abhishek
  * [bibhas_01@hotmail.com]
@@ -8,58 +6,91 @@ import java.util.*;
  */
 public class TestBed {
 
-    private static class Node {
+    private static class TreeNode {
 
-        int data;
-        Node left;
-        Node right;
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-        Node(int data) {
-            this.data = data;
+        TreeNode(int val) {
+            this.val = val;
             this.left = null;
             this.right = null;
         }
 
     }
 
+    private static int countMaxLevel = 0;
+
     public static void main(String[] args) {
-        Node root = new Node(1);
-        root.left = new Node(2);
-        root.right = new Node(3);
-        root.left.left = new Node(4);
-        root.left.right = new Node(5);
-        root.right.left = new Node(6);
-        root.right.right = new Node(7);
-        printDiagonalTree(root);
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.left = new TreeNode(6);
+        /*
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+        System.out.println(getHeight(root));
+        System.out.println(countNodes(root));
+        */
+        System.out.print(countNodes(root));
     }
 
-    private static void printDiagonalTree(Node root) {
-        Map<Integer, List<Integer>> map = new TreeMap<>(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o2.compareTo(o1);
-            }
-        });
-        map = diagonalMapUtil(root, 0, map);
-        for (Map.Entry<Integer, List<Integer>> entry : map.entrySet())
-            System.out.println(entry.getValue());
-    }
-
-    private static Map<Integer, List<Integer>> diagonalMapUtil(Node root, int hd, Map<Integer, List<Integer>> map) {
+    /*
+    private static int getHeight(TreeNode root) {
         if (root == null)
-            return map;
+            return -1;
+        else
+            return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+    }
 
-        List<Integer> list = map.get(hd);
-        if (list == null) {
-            list = new ArrayList<>();
-            list.add(root.data);
-        } else
-            list.add(root.data);
-        map.put(hd, list);
+    private static void findNodeCountAtLevel(TreeNode root, int level) {
+        if (root == null)
+            return;
 
-        diagonalMapUtil(root.right, hd, map);
-        diagonalMapUtil(root.left, hd - 1, map);
-        return map;
+        if (level == 0)
+            countMaxLevel++;
+        else {
+            findNodeCountAtLevel(root.left, level - 1);
+            findNodeCountAtLevel(root.right, level - 1);
+        }
+    }
+
+    private static int countNodes(TreeNode root) {
+        if (root == null)
+            return -1;
+        int getHeight = getHeight(root);
+        int countMaxMinus1 = 0;
+        if (getHeight == 0)
+            return 1;
+
+        for (int i = 0; i < getHeight; i++)
+            countMaxMinus1 += (1 << i);
+
+        findNodeCountAtLevel(root, getHeight);
+        return countMaxMinus1 + countMaxLevel;
+    }
+    */
+
+    public static int getHeight(TreeNode root) {
+        if (root == null)
+            return -1;
+        else
+            return 1 + getHeight(root.left);
+    }
+
+    public static int countNodes(TreeNode root) {
+        int h = getHeight(root);
+        if (h < 0)
+            return 0;
+        else {
+            if (getHeight(root.right) == h - 1)
+                return (1 << h) + countNodes(root.right); // last node is in right subTree. lefNodes + countRightNodes
+            else
+                return (1 << h - 1) + countNodes(root.left); //last node is in left subTree. rightNodes + countLeftNodes
+        }
     }
 
 }
