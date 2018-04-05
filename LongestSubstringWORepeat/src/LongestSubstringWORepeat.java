@@ -14,7 +14,7 @@ import java.util.Set;
 public class LongestSubstringWORepeat {
 
     public static void main(String[] args) {
-        System.out.print(lengthOfLongestSubstringOptimised("abccabdef"));
+        System.out.print(lengthOfLongestSubstringWOOptimised("abccabdef"));
     }
 
     private static int lengthOfLongestSubstring(String s) {
@@ -41,14 +41,15 @@ public class LongestSubstringWORepeat {
         return true;
     }
 
-    private static int lengthOfLongestSubstringOptimised(String s) {
+    private static int lengthOfLongestSubstringWOOptimised(String s) {
         int i, j;
         int n = s.length();
         int maxLength = 0;
         Map<Character, Integer> map = new HashMap<>();
         for (i = 0, j = 0; i < n; i++) {
             if (map.containsKey(s.charAt(i))) {
-                j = Math.max(j, map.get(s.charAt(i)) + 1);
+                j = Math.max(j, map.get(s.charAt(i)) + 1); // j = max(j, last know index of repeated character + 1)
+                                                           // j remains at last repeated character at cc'a'
             }
             map.put(s.charAt(i), i);
             maxLength = Math.max(maxLength, i - j + 1);
