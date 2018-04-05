@@ -8,7 +8,7 @@
 public class MinimumInCircularSortedArray {
 
     public static void main(String[] args) {
-        int array[] = {1};
+        int array[] = {4, 5, 6, 7, 1, 2, 3};
         System.out.print(findMin(array));
     }
 

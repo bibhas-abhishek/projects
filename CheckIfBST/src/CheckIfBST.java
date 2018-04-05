@@ -53,7 +53,7 @@ public class CheckIfBST {
         if ((min != null && node.data < min) || (max != null && node.data >= max))
             return false;
 
-        if (!checkBST(node.left, null, node.data) || !checkBST(node.right, node.data, null))
+        if (!checkBST(node.left, min, node.data) || !checkBST(node.right, node.data, max))
             return false;
 
         return true;
