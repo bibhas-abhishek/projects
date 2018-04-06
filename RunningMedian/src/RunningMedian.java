@@ -1,6 +1,7 @@
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Random;
 
 /**
  * Bibhas Abhishek
@@ -22,7 +23,15 @@ public class RunningMedian {
     });
 
     public static void main(String[] args) {
+        for (int i = 0; i < 1000; i++)
+            addNum(getRandomNumberInRange(0, 1000));
 
+        System.out.print(findMedian());
+    }
+
+    private static int getRandomNumberInRange(int min, int max) {
+        Random r = new Random();
+        return r.nextInt((max - min) + 1) + min;
     }
 
     private static void addNum(int num) {

@@ -27,7 +27,7 @@ public class MinimumInCircularSortedArray {
             if (array[mid] <= array[midPrev] && array[mid] <= array[midNext])
                 return mid;
             else if (array[l] <= array[mid])
-                l = mid + 1;
+                l = mid + 1;    // if min were present, the subsequence would have had an inflection point
             else
                 r = mid - 1;
         }

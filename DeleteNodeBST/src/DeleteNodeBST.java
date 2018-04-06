@@ -60,13 +60,13 @@ public class DeleteNodeBST {
         else if (key > root.val)
             root.right = deleteNode(root.right, key);
         else {
-            if (root.left == null && root.right == null) {
+            if (root.left == null && root.right == null) {  // leaf node
                 root = null;
-            } else if (root.right == null) {
+            } else if (root.right == null) { // left child only
                 TreeNode temp = root;
                 root = root.left;
                 temp = null;
-            } else if (root.left == null) {
+            } else if (root.left == null) { // right child only
                 TreeNode temp = root;
                 root = root.right;
                 temp = null;
