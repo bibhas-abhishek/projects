@@ -48,7 +48,7 @@ public class InorderSuccessorBST {
         else {
             Node ancestor = current;
             Node successor = null;
-            while (ancestor != current) {
+            while (ancestor != current) { // find the deepest node for which the target node is in the left subtree
                 if (val < ancestor.data) {
                     successor = ancestor;
                     ancestor = ancestor.left;

@@ -6,7 +6,7 @@ public class ChildSum {
         Node left;
         Node right;
 
-        public Node(int data) {
+        Node(int data) {
             this.data = data;
             this.left = null;
             this.right = null;
@@ -31,10 +31,7 @@ public class ChildSum {
 
         int left = root.left != null ? root.left.data : 0;
         int right = root.right != null ? root.right.data : 0;
-        if ((left + right == root.data) && isChildSum(root.left) && isChildSum(root.right))
-            return true;
-        else
-            return false;
+        return (left + right == root.data) && isChildSum(root.left) && isChildSum(root.right);
     }
 
 }

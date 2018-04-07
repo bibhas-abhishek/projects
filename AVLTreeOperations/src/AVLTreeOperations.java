@@ -24,12 +24,18 @@ public class AVLTreeOperations {
 
     public static void main(String[] args) {
         Node root = null;
+        root = insertNode(root, 9);
+        root = insertNode(root, 5);
         root = insertNode(root, 10);
-        root = insertNode(root, 20);
-        root = insertNode(root, 30);
-        root = insertNode(root, 40);
-        root = insertNode(root, 50);
-        root = insertNode(root, 25);
+        root = insertNode(root, 0);
+        root = insertNode(root, 6);
+        root = insertNode(root, 11);
+        root = insertNode(root, -1);
+        root = insertNode(root, 1);
+        root = insertNode(root, 2);
+        preorderDFS(root);
+        System.out.println();
+        root = deleteNode(root, 10);
         preorderDFS(root);
     }
 
@@ -113,6 +119,71 @@ public class AVLTreeOperations {
 
         //LR case. Left Rotate. Then right rotate.
         if (balanceFactor > 1 && key > root.left.val) {
+            root.left = leftRotate(root.left);
+            return rightRotate(root);
+        }
+
+        return root;
+    }
+
+    private static Node findMin(Node root) {
+        while (root.left != null)
+            root = root.left;
+
+        return root;
+    }
+
+    private static Node deleteNode(Node root, int key) {
+        if (root == null)
+            return null;
+
+        if (key < root.val)
+            root.left = deleteNode(root.left, key);
+        else if (key > root.val)
+            root.right = deleteNode(root.right, key);
+        else {
+            if (root.left == null && root.right == null) {  // leaf node
+                root = null;
+            } else if (root.right == null) { // left child only
+                Node temp = root;
+                root = root.left;
+                temp = null;
+            } else if (root.left == null) { // right child only
+                Node temp = root;
+                root = root.right;
+                temp = null;
+            } else {
+                Node temp = findMin(root.right);
+                root.val = temp.val;
+                root.right = deleteNode(root.right, temp.val);
+            }
+        }
+
+        if (root == null)
+            return root;
+
+        root.ht = getHeight(root);
+
+        int balanceFactor = getBalanceFactor(root);
+
+        // RR case. Left Rotate only
+        if (balanceFactor < -1 && getBalanceFactor(root.right) <= 0) {
+            return leftRotate(root);
+        }
+
+        //RL case. Right rotate. Then left rotate.
+        if (balanceFactor < -1 && getBalanceFactor(root.right) > 0) {
+            root.right = rightRotate(root.right);
+            return leftRotate(root);
+        }
+
+        //LL case. Right rotate only
+        if (balanceFactor > 1 && getBalanceFactor(root.left) >= 0) {
+            return rightRotate(root);
+        }
+
+        //LR case. Left Rotate. Then right rotate.
+        if (balanceFactor > 1 && getBalanceFactor(root.left) < 0) {
             root.left = leftRotate(root.left);
             return rightRotate(root);
         }

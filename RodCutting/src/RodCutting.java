@@ -10,11 +10,11 @@ public class RodCutting {
     private static int cutRod(int price[], int n) {
         if (n <= 0)
             return 0;
-        int max_val = Integer.MIN_VALUE;
+        int maxVal = Integer.MIN_VALUE;
         for (int i = 0; i < n; i++)
-            max_val = Math.max(max_val, price[i] + cutRod(price, n - i - 1));
+            maxVal = Math.max(maxVal, price[i] + cutRod(price, n - i - 1));
 
-        return max_val;
+        return maxVal;
     }
 
     private static int cutRodDP(int price[], int n) {
@@ -23,9 +23,9 @@ public class RodCutting {
 
         int dp[] = new int[n + 1];
         dp[0] = 0;
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++) { // i -> 1 to N
             int maxVal = Integer.MIN_VALUE;
-            for (int j = 0; j < i; j++) {
+            for (int j = 0; j < i; j++) { // j -> i
                 maxVal = Math.max(maxVal, price[j] + dp[i - j - 1]);
                 dp[i] = maxVal;
             }
