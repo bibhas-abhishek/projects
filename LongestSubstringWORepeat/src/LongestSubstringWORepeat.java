@@ -14,7 +14,7 @@ import java.util.Set;
 public class LongestSubstringWORepeat {
 
     public static void main(String[] args) {
-        System.out.print(lengthOfLongestSubstringWOOptimised("abccabdef"));
+        System.out.print(lengthOfLongestSubstringOptimised("abccabdef"));
     }
 
     private static int lengthOfLongestSubstring(String s) {
@@ -41,7 +41,7 @@ public class LongestSubstringWORepeat {
         return true;
     }
 
-    private static int lengthOfLongestSubstringWOOptimised(String s) {
+    private static int lengthOfLongestSubstringOptimised(String s) {
         int i, j;
         int n = s.length();
         int maxLength = 0;
