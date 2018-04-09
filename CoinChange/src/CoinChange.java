@@ -11,8 +11,8 @@ import java.util.HashMap;
 public class CoinChange {
 
     public static void main(String[] args) {
-        int[] coins = new int[]{1};
-        System.out.println(coinChange(coins, 1));
+        int[] coins = new int[]{1, 2, 3};
+        System.out.println(coinChange(coins, 4));
     }
 
     private static long coinChange(int[] coins, int amount) {
@@ -42,7 +42,7 @@ public class CoinChange {
     }
 
     private static int coinChangeHelper(int[] coins, int amount, int index) {
-        if (amount <= 0)
+        if (amount == 0)
             return 1;
 
         if (index >= coins.length)

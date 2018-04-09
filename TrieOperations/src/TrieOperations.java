@@ -29,12 +29,15 @@ public class TrieOperations {
     private static TrieNode root = new TrieNode();
 
     public static void main(String[] args) {
-        String[][] queries = {{"add", "hack"}, {"add", "hackerrank"}, {"find", "hac"}, {"find", "hak"}};
+        String[][] queries = {{"add", "hack"}, {"add", "hackerrank"}, {"find", "hac"}, {"find", "hak"}, {"add", "hacked"}};
         for (int i : contacts(queries))
             System.out.println(i);
 
         System.out.println(searchComplete("hack"));
         System.out.println(searchComplete("hacker"));
+        System.out.println(searchComplete("hacked"));
+        deleteWord("hacked");
+        System.out.println(searchComplete("hacked"));
     }
 
     private static void insertWord(String word) {
@@ -53,7 +56,7 @@ public class TrieOperations {
             childNode = new TrieNode();
             currentNode.childMap.put(ch, childNode);
         }
-        childNode.visited = childNode.visited + 1;
+        childNode.visited += 1;
         insertWord(childNode, word, index + 1);
     }
 
@@ -87,6 +90,7 @@ public class TrieOperations {
         return countPartial(childNode, word, index + 1);
     }
 
+    // hackerrank code
     private static int[] contacts(String[][] queries) {
         List<Integer> result = new ArrayList<>();
         for (String[] query : queries) {
@@ -106,6 +110,33 @@ public class TrieOperations {
         for (int i = 0; i < result.size(); i++)
             output[i] = result.get(i);
         return output;
+    }
+
+    private static void deleteWord(String word) {
+        deleteWord(root, word, 0);
+    }
+
+    private static boolean deleteWord(TrieNode current, String word, int index) {
+        if (index == word.length()) {
+            if (!current.endOfWord) {
+                return false;
+            }
+            current.endOfWord = false;
+            return current.childMap.size() == 0;
+        }
+
+        char ch = word.charAt(index);
+        TrieNode childNode = current.childMap.get(ch);
+        if (childNode == null) {
+            return false;
+        }
+
+        boolean shouldDeleteCurrentNode = deleteWord(childNode, word, index + 1);
+        if (shouldDeleteCurrentNode) {
+            current.childMap.remove(ch);
+            return current.childMap.size() == 0;
+        }
+        return false;
     }
 
 }
