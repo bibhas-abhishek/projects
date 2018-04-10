@@ -31,3 +31,10 @@ private static class Node {
         System.out.print(root.data + " ");
         inorderDFS(root.right);
     }
+
+    Set<Character> keySet = childMap.keySet();
+            if (keySet.size() == 1) {
+                ch = keySet.iterator().next();
+                builder.append(ch);
+            } else
+                return builder.toString();

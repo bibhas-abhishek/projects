@@ -10,7 +10,6 @@ import java.util.Map;
  * https://www.hackerrank.com/challenges/contacts/problem
  * https://github.com/bibhas-abhishek/projects/tree/master/TrieOperations
  **/
-
 public class TrieOperations {
 
     private static class TrieNode {
@@ -81,6 +80,8 @@ public class TrieOperations {
     }
 
     private static int countPartial(TrieNode current, String word, int index) {
+        if (current == null)
+            return 0;
         char ch = word.charAt(index);
         TrieNode childNode = current.childMap.get(ch);
         if (childNode == null)
