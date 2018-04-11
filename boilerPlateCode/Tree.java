@@ -11,7 +11,7 @@ private static class Node {
     }
 
     public static void main(String[] args) {
-        Node root = new Node(4  );
+        Node root = new Node(4);
         root.left = new Node(2);
         root.right = new Node(6);
         root.left.left = new Node(1);
@@ -31,10 +31,3 @@ private static class Node {
         System.out.print(root.data + " ");
         inorderDFS(root.right);
     }
-
-    Set<Character> keySet = childMap.keySet();
-            if (keySet.size() == 1) {
-                ch = keySet.iterator().next();
-                builder.append(ch);
-            } else
-                return builder.toString();

@@ -105,7 +105,7 @@ public class SortedLLToBalancedBST {
         root.left = tLeft;
 
         headNode = headNode.next;
-        root.right = sortedListToBSTUtil(length - length / 2 - 1);
+        root.right = sortedListToBSTUtil(length - length / 2 - 1);  // length - left tree nodes - root
         return root;
     }
 
