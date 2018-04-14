@@ -23,6 +23,7 @@ public class TrieOperations {
             endOfWord = false;
             visited = 0;
         }
+
     }
 
     private static TrieNode root = new TrieNode();
