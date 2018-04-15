@@ -31,3 +31,18 @@ private static class Node {
         System.out.print(root.data + " ");
         inorderDFS(root.right);
     }
+
+    private static void printLevelOrder(TreeNode root) {
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.offer(root);
+            while (!queue.isEmpty()) {
+                System.out.print(queue.peek().val + " ");
+                TreeNode temp = queue.poll();
+                if (temp.left != null)
+                    queue.add(temp.left);
+                if (temp.right != null)
+                    queue.add(temp.right);
+            }
+        }
+
+        

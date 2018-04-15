@@ -12,9 +12,7 @@ public class KLargestBST {
         Node left;
         Node right;
 
-        static int count = 0;
-
-        public Node(int data) {
+        Node(int data) {
             this.data = data;
             this.left = null;
             this.right = null;
@@ -22,27 +20,39 @@ public class KLargestBST {
 
     }
 
+    static int count = 1;
+
     public static void main(String[] args) {
-        Node root = new Node(1);
-        root.left = new Node(4);
-        root.right = new Node(7);
-        root.left.left = new Node(2);
-        root.left.right = new Node(5);
-        root.right.left = new Node(6);
-        root.right.right = new Node(8);
-        KLargest(root, 2);
+        Node root = new Node(6);
+        root.left = new Node(2);
+        root.right = new Node(10);
+        root.left.left = new Node(1);
+        root.left.right = new Node(3);
+        root.right.right = new Node(12);
+        root.right.left = new Node(7);
+        inorderDFS(root);
+        System.out.println();
+        System.out.println(KLargest(root, 7).data);
     }
 
-    private static void KLargest(Node root, int i) {
-        if (root == null || Node.count >= i)
+    private static void inorderDFS(Node root) {
+        if (root == null)
             return;
-        KLargest(root.right, i);
-        Node.count++;
-        if (Node.count == i) {
-            System.out.print(root.data);
-            return;
-        }
-        KLargest(root.left, i);
+        inorderDFS(root.left);
+        System.out.print(root.data + " ");
+        inorderDFS(root.right);
+    }
+
+    private static Node KLargest(Node root, int k) {
+        if (root == null)
+            return null;
+        Node res = KLargest(root.right, k);
+        if (res != null)
+            return res;
+        if (count == k)
+            return root;
+        count += 1;
+        return KLargest(root.left, k);
     }
 
 }

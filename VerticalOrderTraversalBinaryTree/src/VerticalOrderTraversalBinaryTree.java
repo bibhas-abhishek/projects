@@ -52,11 +52,10 @@ public class VerticalOrderTraversalBinaryTree {
             return;
 
         List<Integer> keys = treeMap.get(hd);
-        if (keys == null) {
+        if (keys == null)
             keys = new ArrayList<>();
-            keys.add(root.data);
-        } else
-            keys.add(root.data);
+
+        keys.add(root.data);
 
         treeMap.put(hd, keys);
         printVerticalOrder(root.left, treeMap, hd - 1);
