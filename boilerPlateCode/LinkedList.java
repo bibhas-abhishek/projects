@@ -1,18 +1,18 @@
 public class LinkedList {
 
-private static class Node {
+    private static class Node {
 
-int data;
-Node next;
+        int data;
+        Node next;
 
-public Node(int data) {
-        this.data = data;
-        this.next = null;
-}
+        public Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
 
-}
+    }
 
-public static void main(String[] args) {
+    public static void main(String[] args) {
         Node head = null;
         head = insert(head, 1);
         head = insert(head, 2);
@@ -23,28 +23,28 @@ public static void main(String[] args) {
         printList(head);
         head = KReverse(head, 3);
         printList(head);
-}
+    }
 
-private static void printList(Node head) {
+    private static void printList(Node head) {
         Node temp = head;
         while (temp != null) {
-                System.out.print(temp.data + (temp.next != null ? "->" : ""));
-                temp = temp.next;
+            System.out.print(temp.data + (temp.next != null ? "->" : ""));
+            temp = temp.next;
         }
         System.out.println();
-}
+    }
 
-private static Node insert(Node head, int data) {
+    private static Node insert(Node head, int data) {
         if (head == null)
-                head = new Node(data);
+            head = new Node(data);
         else {
-                Node temp = head;
-                while (temp.next != null)
-                        temp = temp.next;
-                temp.next = new Node(data);
+            Node temp = head;
+            while (temp.next != null)
+                temp = temp.next;
+            temp.next = new Node(data);
         }
 
         return head;
-}
+    }
 
 }

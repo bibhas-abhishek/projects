@@ -1,18 +1,18 @@
 public class Tree {
 
-private static class Node {
+    private static class Node {
 
-int data;
-Node left;
-Node right;
+        int data;
+        Node left;
+        Node right;
 
-Node(int data) {
-        this.data = data;
-}
+        Node(int data) {
+            this.data = data;
+        }
 
-}
+    }
 
-public static void main(String[] args) {
+    public static void main(String[] args) {
         Node root = new Node(4);
         root.left = new Node(2);
         root.right = new Node(6);
@@ -24,27 +24,27 @@ public static void main(String[] args) {
         inorderDFS(root);
         System.out.println();
         System.out.println(isBSTAlt(root));
-}
+    }
 
-private static void inorderDFS(Node root) {
+    private static void inorderDFS(Node root) {
         if (root == null)
-                return;
+            return;
         inorderDFS(root.left);
         System.out.print(root.data + " ");
         inorderDFS(root.right);
-}
+    }
 
-private static void printLevelOrder(TreeNode root) {
+    private static void printLevelOrder(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
-                System.out.print(queue.peek().val + " ");
-                TreeNode temp = queue.poll();
-                if (temp.left != null)
-                        queue.add(temp.left);
-                if (temp.right != null)
-                        queue.add(temp.right);
+            System.out.print(queue.peek().val + " ");
+            TreeNode temp = queue.poll();
+            if (temp.left != null)
+                queue.add(temp.left);
+            if (temp.right != null)
+                queue.add(temp.right);
         }
-}
+    }
 
 }
