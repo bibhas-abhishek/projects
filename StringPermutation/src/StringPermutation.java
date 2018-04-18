@@ -31,6 +31,7 @@ public class StringPermutation {
             count[index] = entry.getValue();
             index += 1;
         }
+
         List<String> resultList = new ArrayList<>();
         char[] result = new char[input.length];
         permuteString(str, count, result, 0, resultList);
