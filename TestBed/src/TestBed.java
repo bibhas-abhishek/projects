@@ -6,18 +6,27 @@
  */
 public class TestBed {
 
-    private static String reverseWords(String s) {
-        s = s.trim();
-        String[] words = s.split("\\s+");
-        StringBuilder builder = new StringBuilder();
-        for (int i = words.length - 1; i >= 0; i--)
-            builder.append(words[i]).append(" ");
+    private static String reverseString(String s) {
+        char[] strArray = reverseString(s.toCharArray(), 0, s.length() - 1);
+        return new String(strArray);
+    }
 
-        return builder.toString().trim();
+    private static char[] reverseString(char[] strArray, int i, int j) {
+        if (i >= j)
+            return strArray;
+
+        swap(strArray, i, j);
+        return reverseString(strArray, i + 1, j - 1);
+    }
+
+    private static void swap(char[] charArray, int i, int j) {
+        char temp = charArray[i];
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
     }
 
     public static void main(String[] args) {
-        System.out.println(reverseWords("   a   b   "));
+        System.out.println(reverseString("abcxyz"));
     }
 
 }

@@ -1,12 +1,11 @@
 /**
  * Bibhas Abhishek
  * [bibhas_01@hotmail.com]
- * 22 Oct 2017
- * https://www.hackerrank.com/challenges/merge-two-sorted-linked-lists/problem
- * https://leetcode.com/problems/merge-two-sorted-lists/description/
- * https://github.com/bibhas-abhishek/projects/tree/master/MergeSortedLL
- */
-public class MergeSortedLL {
+ * 21 Apr 2018
+ * https://github.com/bibhas-abhishek/projects/tree/master/MergeSortLinkedList
+ **/
+
+public class MergeSortLinkedList {
 
     private static class ListNode {
 
@@ -21,17 +20,16 @@ public class MergeSortedLL {
     }
 
     public static void main(String[] args) {
-        ListNode headA = null;
-        ListNode headB = null;
-        headA = insert(headA, 1);
-        headB = insert(headB, 2);
-        headA = insert(headA, 3);
-        headB = insert(headB, 4);
-        headA = insert(headA, 5);
-        headB = insert(headB, 6);
-        printList(headA);
-        printList(headB);
-        printList(mergeLists(headA, headB));
+        ListNode head = null;
+        head = insert(head, 4);
+        head = insert(head, -1);
+        head = insert(head, 0);
+        head = insert(head, 1);
+        head = insert(head, 3);
+        head = insert(head, 2);
+        printList(head);
+        head = mergeSort(head);
+        printList(head);
     }
 
     private static void printList(ListNode head) {
@@ -56,6 +54,19 @@ public class MergeSortedLL {
         return head;
     }
 
+    private static ListNode findMiddle(ListNode head) {
+        if (head == null)
+            return head;
+
+        ListNode slowPtr = head;
+        ListNode fastPtr = head.next;
+        while (fastPtr != null && fastPtr.next != null) {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+        return slowPtr;
+    }
+
     private static ListNode mergeLists(ListNode headA, ListNode headB) {
         if (headA == null)
             return headB;
@@ -70,6 +81,21 @@ public class MergeSortedLL {
             headB.next = mergeLists(headB.next, headA);
             return headB;
         }
+    }
+
+    private static ListNode mergeSort(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+
+        ListNode middle = findMiddle(head);
+        ListNode middleNext = middle.next;
+
+        middle.next = null;
+
+        ListNode leftList = mergeSort(head);
+        ListNode rightList = mergeSort(middleNext);
+
+        return mergeLists(leftList, rightList);
     }
 
 }

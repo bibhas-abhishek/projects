@@ -41,28 +41,27 @@ public class Knapsack01 {
     }
 
     private static int knapsack01DP(int[] values, int[] weight, int maxWeight) {
-        return knapsack01DPUtil(values, weight, maxWeight, values.length, 0, new HashMap<MemoKey, Integer>());
+        return knapsack01DPUtil(values, weight, maxWeight, 0, new HashMap<MemoKey, Integer>());
     }
 
-    private static int knapsack01DPUtil(int[] values, int[] weight, int remainingWeight, int totalItems, int currentItem,
-                                        HashMap<MemoKey, Integer> memo) {
-        if (currentItem >= totalItems || remainingWeight <= 0)
+    private static int knapsack01DPUtil(int[] values, int[] weight, int remainingWeight, int currentItem, HashMap<MemoKey, Integer> memo) {
+        if (currentItem >= values.length || remainingWeight <= 0)
             return 0;
 
         // currentItem is index of current item
         MemoKey memoKey = new MemoKey();
         memoKey.remainingWeight = remainingWeight;
-        memoKey.remainingItems = totalItems - currentItem - 1;
+        memoKey.remainingItems = values.length - currentItem - 1;
         if (memo.containsKey(memoKey))
             return memo.get(memoKey);
 
         int maxValue;
         if (remainingWeight < weight[currentItem])
-            maxValue = knapsack01DPUtil(values, weight, remainingWeight, totalItems, currentItem + 1, memo);  // skip current item
+            maxValue = knapsack01DPUtil(values, weight, remainingWeight, currentItem + 1, memo);  // skip current item
         else
             return Math.max(values[currentItem] +
-                            knapsack01DPUtil(values, weight, remainingWeight - weight[currentItem], totalItems, currentItem + 1, memo), // take current item
-                    knapsack01DPUtil(values, weight, remainingWeight, totalItems, currentItem + 1, memo)); //skip current item
+                            knapsack01DPUtil(values, weight, remainingWeight - weight[currentItem], currentItem + 1, memo), // take current item
+                    knapsack01DPUtil(values, weight, remainingWeight, currentItem + 1, memo)); //skip current item
 
         memo.put(memoKey, maxValue);
         return maxValue;

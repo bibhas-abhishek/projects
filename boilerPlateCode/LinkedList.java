@@ -21,8 +21,6 @@ public class LinkedList {
         head = insert(head, 5);
         head = insert(head, 6);
         printList(head);
-        head = KReverse(head, 3);
-        printList(head);
     }
 
     private static void printList(Node head) {
