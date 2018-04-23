@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.Arrays;
 
 /**
@@ -47,10 +46,10 @@ public class SegmentTreeOperations {
     }
 
     private static int rangeMinQueryUtil(int[] segmentTree, int low, int high, int qLow, int qHigh, int pos) {
-        if (qLow > high || qHigh < low)
+        if (qLow > high || qHigh < low)     // no overlap
             return Integer.MAX_VALUE;
 
-        if (qLow <= low && qHigh >= high)
+        if (qLow <= low && qHigh >= high)   // complete overlap low-high lies between qLow-qHigh
             return segmentTree[pos];
 
         int mid = (low + high) / 2;

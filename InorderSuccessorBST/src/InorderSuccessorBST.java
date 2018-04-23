@@ -32,21 +32,22 @@ public class InorderSuccessorBST {
         root.right.left.right = new Node(12);
         root.right.right.right = new Node(16);
         inorderDFS(root);
-        System.out.print(getInorderSuccessor(root, 15));
+        System.out.println();
+        System.out.println(getInorderSuccessor(root, 6).data);
     }
 
     private static Node getInorderSuccessor(Node root, int val) {
         if (root == null)
             return null;
 
-        Node current = findNode(root, 15);
+        Node current = findNode(root, val);
         if (current == null)
             return null;
 
         if (current.right != null) // right subtree exists
             return findMin(current.right);
         else {
-            Node ancestor = current;
+            Node ancestor = root;
             Node successor = null;
             while (ancestor != current) { // find the deepest node for which the target node is in the left subtree
                 if (val < ancestor.data) {
