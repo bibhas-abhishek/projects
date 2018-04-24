@@ -6,27 +6,19 @@
  */
 public class TestBed {
 
-    private static String reverseString(String s) {
-        char[] strArray = reverseString(s.toCharArray(), 0, s.length() - 1);
-        return new String(strArray);
-    }
-
-    private static char[] reverseString(char[] strArray, int i, int j) {
-        if (i >= j)
-            return strArray;
-
-        swap(strArray, i, j);
-        return reverseString(strArray, i + 1, j - 1);
-    }
-
-    private static void swap(char[] charArray, int i, int j) {
-        char temp = charArray[i];
-        charArray[i] = charArray[j];
-        charArray[j] = temp;
+    private static int cost(int[] B) {
+        int[][] dp = new int[100001][2];
+        int n = B.length;
+        for (int i = 0; i < n - 1; i++) {
+            dp[i + 1][0] = Math.max(dp[i][0], dp[i][1] + Math.abs(B[i] - 1));
+            dp[i + 1][1] = Math.max(dp[i][0] + Math.abs(B[i + 1] - 1), dp[i][1] + Math.abs(B[i] - B[i + 1]));
+        }
+        return Math.max(dp[n - 1][0], dp[n - 1][1]);
     }
 
     public static void main(String[] args) {
-        System.out.println(reverseString("abcxyz"));
+        int[] array = {10, 1, 10, 1, 10};
+        System.out.println(cost(array));
     }
 
 }
