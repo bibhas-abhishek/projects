@@ -44,6 +44,12 @@ public class RabinKarp {
     private static int contains(char[] text, char[] pattern) {
         int textLength = text.length;
         int patternLength = pattern.length;
+        if ((textLength == 0 && patternLength == 0) || (patternLength == 0 && textLength != 0))
+            return 0;
+
+        if (textLength == 0 || patternLength == 0 || patternLength > textLength)
+            return -1;
+
         long patternHash = createHash(pattern, patternLength);
         long textHash = createHash(text, patternLength);
         for (int i = 0; i <= textLength - patternLength; i++) {

@@ -1,5 +1,3 @@
-import sun.java2d.opengl.OGLSurfaceData;
-
 import java.util.*;
 
 /**
@@ -20,28 +18,28 @@ public class TopologicalSort {
 
         private enum State {COMPLETE, PARTIAL, BLANK}
 
-        public Project(String name) {
+        Project(String name) {
             this.name = name;
             this.state = State.BLANK;
         }
 
-        public List<Project> getChildren() {
+        List<Project> getChildren() {
             return children;
         }
 
-        public String getName() {
+        String getName() {
             return name;
         }
 
-        public State getState() {
+        State getState() {
             return state;
         }
 
-        public void setState(State state) {
+        void setState(State state) {
             this.state = state;
         }
 
-        public void addNeighbour(Project node) {
+        void addNeighbour(Project node) {
             if (!map.containsKey(node.getName())) {
                 children.add(node);
                 map.put(node.getName(), node);
@@ -55,11 +53,11 @@ public class TopologicalSort {
         private List<Project> nodes = new ArrayList<>();
         private Map<String, Project> map = new HashMap<>();
 
-        public List<Project> getNodes() {
+        List<Project> getNodes() {
             return nodes;
         }
 
-        public Project getOrCreateNode(String name) {
+        Project getOrCreateNode(String name) {
             if (!map.containsKey(name)) {
                 Project node = new Project(name);
                 nodes.add(node);
@@ -68,7 +66,7 @@ public class TopologicalSort {
             return map.get(name);
         }
 
-        public void addEdge(String startName, String endName) {
+        void addEdge(String startName, String endName) {
             Project start = getOrCreateNode(startName);
             Project end = getOrCreateNode(endName);
             start.addNeighbour(end);
@@ -90,8 +88,10 @@ public class TopologicalSort {
     private static Stack<Project> orderProjects(List<Project> projects) {
         Stack<Project> stack = new Stack<>();
         for (Project project : projects) {
-            if (!doDFS(project, stack))
-                return null;
+            if (project.getState() == Project.State.BLANK) {
+                if (!doDFS(project, stack))
+                    return null;
+            }
         }
         return stack;
     }
@@ -122,8 +122,10 @@ public class TopologicalSort {
         String[] projects = {"a", "b", "c", "d", "e", "f", "g"};
         String[][] dependencies = {{"a", "e"}, {"d", "g"}, {"c", "a"}, {"b", "a"}, {"b", "h"}, {"f", "c"}, {"f", "a"}, {"f", "b"}};
         Stack<Project> stack = findBuildOrder(projects, dependencies);
-        Collections.reverse(stack);
-        stack.stream().map(project -> project.name + " ").forEach(System.out::print);
+        if (stack != null)
+            stack.stream().map(project -> project.name + " ").forEach(System.out::print);
+        else
+            System.out.print("Cyclic Graph: No Build Order");
     }
 
 }
