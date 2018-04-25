@@ -22,8 +22,8 @@ public class LongestContinuousIncreasingSubsequence {
     }
 
     public static void main(String[] args) {
-        // int[] array = {1, 3, 5, 2, 7, 8, 9};
-        int[] array = {2, 2, 2, 2};
+        int[] array = {1, 3, 5, 2, 7, 8, 9};
+        // int[] array = {2, 2, 2, 2};
         System.out.println(findLengthOfLCIS(array));
     }
 
