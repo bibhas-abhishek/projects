@@ -24,8 +24,7 @@ public class LongestPalindromicSubsequence {
         if (hashMap.containsKey(key))
             return hashMap.get(key);
 
-        int res = 0;
-
+        int res;
         if (str[start] == str[end])
             res = 2 + longestPalindromicSubsequenceRec(str, start + 1, end - 1);
         else
@@ -36,6 +35,7 @@ public class LongestPalindromicSubsequence {
 
     private static int longestPalindromicSubsequenceDP(char[] str) {
         int[][] dp = new int[str.length][str.length];
+        // dp[i][j] = Max length of palindrome from index i -> j, both inclusive
         for (int i = 0; i < str.length; i++)
             dp[i][i] = 1;
 
@@ -48,7 +48,7 @@ public class LongestPalindromicSubsequence {
                     dp[i][j] = Math.max(dp[i + 1][j], dp[i][j - 1]);
             }
         }
-        return dp[0][str.length - 1];
+        return dp[0][str.length - 1]; // top-right corner of matrix
     }
 
     public static void main(String[] args) {
