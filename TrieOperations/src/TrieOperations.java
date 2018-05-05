@@ -14,12 +14,12 @@ public class TrieOperations {
 
     private static class TrieNode {
 
-        Map<Character, TrieNode> childMap;
+        Map<Character, TrieNode> children;
         boolean endOfWord;
         int visited;
 
-        public TrieNode() {
-            childMap = new HashMap<>();
+        TrieNode() {
+            children = new HashMap<>();
             endOfWord = false;
             visited = 0;
         }
@@ -51,10 +51,10 @@ public class TrieOperations {
         }
 
         char ch = word.charAt(index);
-        TrieNode childNode = currentNode.childMap.get(ch); // take out child trieNode from the parent childMap
+        TrieNode childNode = currentNode.children.get(ch);
         if (childNode == null) {
             childNode = new TrieNode();
-            currentNode.childMap.put(ch, childNode);
+            currentNode.children.put(ch, childNode);
         }
         childNode.visited += 1;
         insertWord(childNode, word, index + 1);
@@ -69,7 +69,7 @@ public class TrieOperations {
             return currentNode.endOfWord;
 
         char ch = word.charAt(index);
-        TrieNode childNode = currentNode.childMap.get(ch);
+        TrieNode childNode = currentNode.children.get(ch);
         if (childNode == null)
             return false;
 
@@ -84,7 +84,7 @@ public class TrieOperations {
         if (current == null)
             return 0;
         char ch = word.charAt(index);
-        TrieNode childNode = current.childMap.get(ch);
+        TrieNode childNode = current.children.get(ch);
         if (childNode == null)
             return 0;
         if (index == word.length() - 1)
@@ -124,19 +124,19 @@ public class TrieOperations {
                 return false;
             }
             current.endOfWord = false;
-            return current.childMap.size() == 0;
+            return current.children.size() == 0;
         }
 
         char ch = word.charAt(index);
-        TrieNode childNode = current.childMap.get(ch);
+        TrieNode childNode = current.children.get(ch);
         if (childNode == null) {
             return false;
         }
 
         boolean shouldDeleteCurrentNode = deleteWord(childNode, word, index + 1);
         if (shouldDeleteCurrentNode) {
-            current.childMap.remove(ch);
-            return current.childMap.size() == 0;
+            current.children.remove(ch);
+            return current.children.size() == 0;
         }
         return false;
     }

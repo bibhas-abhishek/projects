@@ -27,8 +27,8 @@ public class RodCutting {
             int maxVal = Integer.MIN_VALUE;
             for (int j = 0; j < i; j++) { // j -> i
                 maxVal = Math.max(maxVal, price[j] + dp[i - j - 1]);
-                dp[i] = maxVal;
             }
+            dp[i] = maxVal;
         }
         return dp[n];
     }
