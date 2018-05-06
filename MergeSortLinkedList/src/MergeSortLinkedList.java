@@ -50,7 +50,6 @@ public class MergeSortLinkedList {
                 temp = temp.next;
             temp.next = new ListNode(data);
         }
-
         return head;
     }
 
@@ -90,7 +89,7 @@ public class MergeSortLinkedList {
         ListNode middle = findMiddle(head);
         ListNode middleNext = middle.next;
 
-        middle.next = null;
+        middle.next = null;     // break list from middle
 
         ListNode leftList = mergeSort(head);
         ListNode rightList = mergeSort(middleNext);
