@@ -8,12 +8,12 @@ public class NextGreaterElement {
         for (int i = 1; i < array.length; i++) {
             int current = array[i];
             int top = stack.pop();
-            if (top > current)
-                stack.push(top);        // push baack popped stack top if current array element is less than it
+            if (current < top)
+                stack.push(top);        // push back popped stack top if current array element is less than it
             else {
-                while (current > top) {     // found: current is the max for the stack top
+                while (current > top) {     // keep removing elements from the stack if current > stackTop
                     System.out.println(top + "->" + current);
-                    if(stack.isEmpty())
+                    if (stack.isEmpty())
                         break;
                     top = stack.pop();      // continue if the stack tops are lesser than the current scanned element
                 }
