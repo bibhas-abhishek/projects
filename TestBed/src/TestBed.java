@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * Bibhas Abhishek
@@ -8,18 +8,21 @@ import java.util.Arrays;
  */
 public class TestBed {
 
-    private static boolean isAnagram(String s, String t) {
-        return sort(s).equals(sort(t));
-    }
-
-    private static String sort(String s) {
-        char[] array = s.toCharArray();
-        Arrays.sort(array);
-        return new String(array);
+    private static List<String> findRepeatedDnaSequences(String s) {
+        Set<String> hashSet = new HashSet<>();
+        Set<String> result = new HashSet<>();
+        for (int i = 0; i + 9 < s.length(); i++) {
+            String str = s.substring(i, i + 10);
+            if (hashSet.contains(str))
+                result.add(str);
+            else
+                hashSet.add(str);
+        }
+        return new ArrayList<>(result);
     }
 
     public static void main(String[] args) {
-        System.out.println(isAnagram("anagram", "nagaram"));
+        System.out.println(findRepeatedDnaSequences("AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"));
     }
 
 }
