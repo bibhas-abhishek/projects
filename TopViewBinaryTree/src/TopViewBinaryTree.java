@@ -28,7 +28,7 @@ public class TopViewBinaryTree {
         TreeNode treeNode;
         int hd;
 
-        public QueueNode(TreeNode treeNode, int hd) {
+        QueueNode(TreeNode treeNode, int hd) {
             this.treeNode = treeNode;
             this.hd = hd;
         }
@@ -59,17 +59,17 @@ public class TopViewBinaryTree {
         while (!queue.isEmpty()) {
             QueueNode queueNode = queue.poll();
             TreeNode treeNode = queueNode.treeNode;
-            int level = queueNode.hd;
-            if (!set.contains(level)) {
+            int hDist = queueNode.hd;
+            if (!set.contains(hDist)) {
                 System.out.print(treeNode.data + " ");
-                set.add(level);
+                set.add(hDist);
             }
 
             if (treeNode.left != null)
-                queue.add(new QueueNode(treeNode.left, level - 1));
+                queue.add(new QueueNode(treeNode.left, hDist - 1));
 
             if (treeNode.right != null)
-                queue.add(new QueueNode(treeNode.right, level + 1));
+                queue.add(new QueueNode(treeNode.right, hDist + 1));
         }
     }
 
