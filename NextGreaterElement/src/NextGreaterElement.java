@@ -1,3 +1,10 @@
+/**
+ * Bibhas Abhishek
+ * [bibhas_01@hotmail.com]
+ * 26 May 2018
+ * https://github.com/bibhas-abhishek/projects/tree/master/NextGreaterElement
+ **/
+
 import java.util.Stack;
 
 public class NextGreaterElement {
