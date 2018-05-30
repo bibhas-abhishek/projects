@@ -21,7 +21,7 @@ public class UglyNumbers {
         return n == 1;
     }
 
-    private static int nthUglyNumber(int n) {
+    private static int nthUglyNumberNaive(int n) {
         int uglyCount = 1;
         int num = 1;
         while (uglyCount < n) {
@@ -32,7 +32,7 @@ public class UglyNumbers {
         return num;
     }
 
-    private static int nthUglyNumberII(int n) {
+    private static int nthUglyNumberDP(int n) {
         int[] dp = new int[n];
         dp[0] = 1;
         int i2 = 0, i3 = 0, i5 = 0;
@@ -52,8 +52,8 @@ public class UglyNumbers {
     }
 
     public static void main(String[] args) {
-        System.out.println(nthUglyNumber(1352));
-        System.out.println(nthUglyNumberII(1352));
+        System.out.println(nthUglyNumberNaive(1352));
+        System.out.println(nthUglyNumberDP(1352));
     }
 
 }
