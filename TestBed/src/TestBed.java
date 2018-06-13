@@ -8,20 +8,8 @@ import java.util.*;
  */
 public class TestBed {
 
-    public boolean containsDuplicate(int[] nums) {
-        Set<Integer> set = new HashSet<>(nums.length);
-        for (int x : nums) {
-            if (set.contains(x)) return true;
-            set.add(x);
-        }
-        return false;
-    }
-
-    private static int singleNumber(int[] nums) {
-        int result = 0;
-        for (int n : nums)
-            result ^= n;
-        return result;
+    public static void main(String[] args) {
+        System.out.println("Hello World");
     }
 
 }
