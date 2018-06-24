@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 06 Apr 2018
  * https://www.hackerrank.com/challenges/coin-change/problem
  * https://leetcode.com/problems/coin-change/description/
@@ -16,7 +16,7 @@ public class CoinChange {
     }
 
     private static long coinChange(int[] coins, int amount) {
-        return coinChangeHelperDP(coins, amount, 0, new HashMap<String, Long>());
+        return coinChangeHelperDP(coins, amount, 0, new HashMap<>());
     }
 
     private static long coinChangeHelperDP(int[] coins, int targetAmount, int index, HashMap<String, Long> memo) {
@@ -41,7 +41,7 @@ public class CoinChange {
         return ways;
     }
 
-    private static int coinChangeHelper(int[] coins, int amount, int index) {
+    private static int coinChangeRecursive(int[] coins, int amount, int index) {
         if (amount == 0)
             return 1;
 
@@ -52,7 +52,7 @@ public class CoinChange {
         int ways = 0;
         for (int i = 0; i * coinAmount <= amount; i++) {
             int remainingAmount = amount - i * coinAmount;
-            ways += coinChangeHelper(coins, remainingAmount, index + 1);
+            ways += coinChangeRecursive(coins, remainingAmount, index + 1);
         }
         return ways;
     }

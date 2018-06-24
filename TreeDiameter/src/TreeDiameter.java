@@ -1,6 +1,6 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 01 Apr 2018
  * https://leetcode.com/problems/diameter-of-binary-tree/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/TreeDiameter

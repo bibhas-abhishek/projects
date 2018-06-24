@@ -1,6 +1,6 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 18 Apr 2018
  * https://leetcode.com/problems/kth-largest-element-in-an-array/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/KthLargestElementArray

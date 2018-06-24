@@ -2,7 +2,7 @@ import java.util.*;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 23 Apr 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/TopologicalSort
  **/
