@@ -82,7 +82,7 @@ public class GraphOperations {
     }
 
     public static void main(String[] args) {
-        int[][] graphNodes = {{0, 1}, {1, 2}, {2, 3}, {3, 0}, {0, 2}, {3, 1}};
+        int[][] graphNodes = {{0, 1}, {1, 2}, {2, 3}, {3, 0}, {0, 2}, {3, 1}, {3, 3}};
         int[] nodes = {0, 1, 2, 3};
         Graph graph = buildGraph(nodes, graphNodes, true);
         printGraph(graph);
