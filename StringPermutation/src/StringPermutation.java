@@ -5,7 +5,7 @@ import java.util.TreeMap;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 12 Apr 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/StringPermutation
  **/
