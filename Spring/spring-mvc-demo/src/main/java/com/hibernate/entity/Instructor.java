@@ -26,9 +26,9 @@ public class Instructor {
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
 
-    /*@OneToMany(mappedBy = "instructor",
+    @OneToMany(mappedBy = "instructor",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    private List<Course> courses;*/
+    private List<Course> courses;
 
     public Instructor() {
     }
@@ -79,7 +79,7 @@ public class Instructor {
         this.instructorDetail = instructorDetail;
     }
 
-    /*public List<Course> getCourses() {
+    public List<Course> getCourses() {
         return courses;
     }
 
@@ -92,7 +92,7 @@ public class Instructor {
             courses = new ArrayList<>();
         tempCourse.setInstructor(this);
         courses.add(tempCourse);
-    }*/
+    }
 
     @Override
     public String toString() {

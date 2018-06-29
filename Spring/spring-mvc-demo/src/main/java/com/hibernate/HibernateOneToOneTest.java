@@ -17,8 +17,11 @@ public class HibernateOneToOneTest {
                 addAnnotatedClass(InstructorDetail.class).buildSessionFactory();
              Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
-            Instructor instructor = new Instructor("John", "Doe", "johndoe@hotmail.com");
-            InstructorDetail instructorDetail = new InstructorDetail("youtube.com/john-doe", "singing");
+            /*InstructorDetail instructorDetail = session.get(InstructorDetail.class, 1);
+            System.out.println(instructorDetail);
+            System.out.println(instructorDetail.getInstructor());*/
+            Instructor instructor = new Instructor("Jane", "Doe", "janedoe@hotmail.com");
+            InstructorDetail instructorDetail = new InstructorDetail("youtube.com/jane-doe", "dancing");
             instructor.setInstructorDetail(instructorDetail);
             session.save(instructor);
             session.getTransaction().commit();
