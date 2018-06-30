@@ -28,13 +28,10 @@ public class GraphOperations {
 
     }
 
-    static Graph buildGraph(int[] nodes, int[][] graphNodes, boolean isDirected) {
+    static Graph buildGraph(int[] nodes, int[][] graphNodes) {
         Graph graph = new Graph(nodes.length);
-        for (int[] graphNode : graphNodes) {
+        for (int[] graphNode : graphNodes)
             graph.addEdge(graphNode[0], graphNode[1]);
-            if (!isDirected)
-                graph.addEdge(graphNode[1], graphNode[0]);
-        }
         return graph;
     }
 
@@ -48,48 +45,74 @@ public class GraphOperations {
         }
     }
 
-    static void breadthFirstSearch(Graph graph, int u) {
+    static void breadthFirstSearch(Graph graph, int v) {
         boolean[] visited = new boolean[graph.adjList.size()];
         Queue<Integer> queue = new LinkedList<>();
-        queue.add(u);
-        visited[u] = true;
+        queue.add(v);
+        visited[v] = true;
         while (!queue.isEmpty()) {
-            u = queue.poll();
-            System.out.print(u + " ");
-            List<Integer> nodeList = graph.adjList.get(u);
-            for (Integer node : nodeList) {
-                if (!visited[node]) {
-                    visited[node] = true;
-                    queue.add(node);
+            v = queue.poll();
+            System.out.print(v + " ");
+            List<Integer> children = graph.adjList.get(v);
+            for (Integer child : children) {
+                if (!visited[child]) {
+                    visited[child] = true;
+                    queue.add(child);
                 }
             }
         }
     }
 
-    static void depthFirstSearch(Graph graph, int u) {
+    static void depthFirstSearch(Graph graph, int v) {
         boolean[] visited = new boolean[graph.adjList.size()];
-        depthFirstSearch(graph, u, visited);
+        depthFirstSearch(graph, v, visited);
     }
 
-    private static void depthFirstSearch(Graph graph, int u, boolean[] visited) {
-        visited[u] = true;
-        System.out.print(u + " ");
-        List<Integer> nodeList = graph.adjList.get(u);
-        for (Integer node : nodeList) {
-            if (!visited[node])
-                depthFirstSearch(graph, node, visited);
+    private static void depthFirstSearch(Graph graph, int v, boolean[] visited) {
+        visited[v] = true;
+        System.out.print(v + " ");
+        List<Integer> children = graph.adjList.get(v);
+        for (Integer child : children) {
+            if (!visited[child])
+                depthFirstSearch(graph, child, visited);
         }
     }
 
+    private static boolean isCyclicUndirected(Graph graph) {
+        boolean[] visited = new boolean[graph.adjList.size()];
+        for (int v = 0; v < graph.adjList.size(); v++) {
+            if (!visited[v])
+                if (isCyclicUndirected(graph, v, -1, visited)) // v-> current, u-> parent
+                    return true;
+        }
+        return false;
+    }
+
+    private static boolean isCyclicUndirected(Graph graph, int v, int u, boolean[] visited) {
+        visited[v] = true;
+        List<Integer> children = graph.adjList.get(v);
+        for (Integer child : children) {
+            if (!visited[child]) {
+                if (isCyclicUndirected(graph, child, v, visited))
+                    return true;
+            } else if (child != u) // if the child is the parent && visited -> not a cycle; any visited child
+                return true;       // that is not the parent means a cycle
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
-        int[][] graphNodes = {{0, 1}, {1, 2}, {2, 3}, {3, 0}, {0, 2}, {3, 1}, {3, 3}};
+        int[][] graphNodes = {{0, 1}, {1, 2}, {2, 3}};
         int[] nodes = {0, 1, 2, 3};
-        Graph graph = buildGraph(nodes, graphNodes, true);
+        Graph graph = buildGraph(nodes, graphNodes);
         printGraph(graph);
+        System.out.print("BFS: ");
+        breadthFirstSearch(graph, 0);
         System.out.println();
-        breadthFirstSearch(graph, 3);
-        System.out.println();
+        System.out.print("DFS: ");
         depthFirstSearch(graph, 0);
+        System.out.println();
+        System.out.println("isCyclic: " + isCyclicUndirected(graph));
     }
 
 }

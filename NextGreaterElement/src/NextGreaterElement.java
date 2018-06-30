@@ -1,6 +1,6 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 26 May 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/NextGreaterElement
  **/

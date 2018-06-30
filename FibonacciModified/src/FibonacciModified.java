@@ -1,9 +1,12 @@
 import java.math.BigInteger;
+import java.sql.SQLOutput;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 14 Oct 2017
  * https://github.com/bibhas-abhishek/projects/tree/master/FibonacciModified
  * https://www.hackerrank.com/challenges/fibonacci-modified/problem
@@ -11,7 +14,7 @@ import java.util.Scanner;
 public class FibonacciModified {
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+        /*Scanner in = new Scanner(System.in);
         BigInteger t1 = in.nextBigInteger();
         BigInteger t2 = in.nextBigInteger();
         int n = in.nextInt();
@@ -21,7 +24,8 @@ public class FibonacciModified {
         memo[0] = t1;
         memo[1] = t2;
         BigInteger bigInteger = modifiedFastFib(memo, n - 1);
-        System.out.print(bigInteger.toString());
+        System.out.print(bigInteger.toString());*/
+        System.out.println(fastFibonacci(2));
     }
 
     private static BigInteger modifiedFastFib(BigInteger[] memo, int n) {
@@ -36,6 +40,19 @@ public class FibonacciModified {
                     (modifiedFastFib(memo, n - 1).multiply(modifiedFastFib(memo, n - 1)));
             return memo[n];
         }
+    }
+
+    private static int fastFibonacci(int n) {
+        if (n <= 1)
+            return n;
+
+        int nMinus1 = 1, nMinus2 = 0;
+        for (int i = 2; i <= n; i++) {
+            int nMinus0 = nMinus1 + nMinus2;
+            nMinus2 = nMinus1;
+            nMinus1 = nMinus0;
+        }
+        return nMinus1;
     }
 
 }
