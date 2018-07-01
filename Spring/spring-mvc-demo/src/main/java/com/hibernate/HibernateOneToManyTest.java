@@ -6,6 +6,8 @@ import com.hibernate.entity.InstructorDetail;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.SubqueryExpression;
+import org.hibernate.query.Query;
 
 import javax.transaction.Transactional;
 
@@ -35,13 +37,19 @@ public class HibernateOneToManyTest {
             session.save(course1);
             session.save(course2); */
 
-            /* // get instructor courses
+            /*// get instructor courses
             Instructor instructor = session.get(Instructor.class, 1);
-            System.out.println("Instructor courses: " + instructor.getCourses()); */
+            System.out.println("Instructor: " + instructor);
+            System.out.println("Instructor courses: " + instructor.getCourses());*/
 
-            // delete course
+            /* // delete course
             Course course = session.get(Course.class, 11);
-            session.delete(course);
+            session.delete(course);*/
+
+            Query<Instructor> query = session.createQuery("SELECT i FROM Instructor i JOIN FETCH i.courses WHERE i.id=:instructorId");
+            query.setParameter("instructorId", 1);
+            Instructor instructor = query.getSingleResult();
+            System.out.println(instructor);
 
             // commit txn
             session.getTransaction().commit();
