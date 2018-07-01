@@ -1,9 +1,3 @@
-/**
- * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
- * 17 Mar 2018
- **/
-
 package com.springmvc.controller;
 
 import com.springmvc.model.Customer;

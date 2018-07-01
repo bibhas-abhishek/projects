@@ -1,9 +1,3 @@
-/**
- * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
- * 11 Mar 2018
- **/
-
 package com.springmvc.controller;
 
 import com.springmvc.model.Student;
