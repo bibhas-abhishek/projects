@@ -1,9 +1,3 @@
-/**
- * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
- * 15 Mar 2018
- **/
-
 package com.springmvc.model;
 
 import com.springmvc.annotation.CourseCode;
