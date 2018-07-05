@@ -25,6 +25,7 @@
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <c3p0.version>0.9.5.2</c3p0.version>
         <spring-orm.version>5.0.7.RELEASE</spring-orm.version>
+        <aspectj.version>1.9.1</aspectj.version>
     </properties>
 
     <dependencies>
@@ -94,6 +95,13 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
             <version>${spring-orm.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
         </dependency>
     </dependencies>
 
