@@ -15,10 +15,6 @@ class RadixSort {
     // A function to do counting sort of arr[] according to
     // the digit represented by exp.
     static void countSort(int arr[], int n, int exp) {
-        System.out.println("  exp : "+exp);
-        System.out.println("  n : "+n);
-
-        print(arr, n);
         int output[] = new int[n]; // output array
         int i;
         int count[] = new int[10];
@@ -47,7 +43,7 @@ class RadixSort {
 
     // The main function to that sorts arr[] of size n using
     // Radix Sort
-    static void radixsort(int arr[], int n) {
+    static void radixSort(int arr[], int n) {
         // Find the maximum number to know number of digits
         int m = getMax(arr, n);
 
@@ -60,19 +56,17 @@ class RadixSort {
 
     // A utility function to print an array
     static void print(int arr[], int n) {
-
         for (int i = 0; i < n; i++)
             System.out.print(arr[i] + " ");
-
         System.out.println();
     }
-
 
     /*Driver function to check for above function*/
     public static void main(String[] args) {
         int arr[] = {170, 45, 75, 90, 802, 24, 2, 66};
         int n = arr.length;
-        radixsort(arr, n);
+        radixSort(arr, n);
         print(arr, n);
     }
+
 }

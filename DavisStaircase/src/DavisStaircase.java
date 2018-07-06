@@ -1,6 +1,14 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Bibhas Abhishek
+ * [bibhas_01@hotmail.com]
+ * 30 May 2018
+ * https://leetcode.com/problems/climbing-stairs/description/
+ * https://github.com/bibhas-abhishek/projects/tree/master/DavisStaircase
+ **/
+
 public class DavisStaircase {
 
     public static void main(String[] args) {

@@ -1,5 +1,12 @@
 import java.util.Arrays;
 
+/**
+ * Bibhas Abhishek
+ * bibhas_01@hotmail.com
+ * 29 Jun 2018
+ * https://github.com/bibhas-abhishek/projects/tree/master/HeapSort
+ **/
+
 public class HeapSort {
 
     private static void swap(int[] array, int a, int b) {
@@ -36,7 +43,7 @@ public class HeapSort {
     }
 
     public static void main(String[] args) {
-        int[] array = {4, 10, 3, 5, 1};
+        int[] array = {5, 1, 4, 2, 3, 6};
         heapSort(array);
         Arrays.stream(array).mapToObj(i -> i + " ").forEach(System.out::print);
     }

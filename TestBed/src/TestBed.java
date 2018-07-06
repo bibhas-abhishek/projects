@@ -2,11 +2,11 @@ import java.text.ParseException;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 03 Oct 2017
- * {“unitCode”:”22”, “gtwyCode”:”25”, “date”:”18-MAY-2018”}
  * https://github.com/bibhas-abhishek/projects/tree/master/TestBed
  */
+
 public class TestBed {
 
     public static void main(String[] args) throws ParseException {
