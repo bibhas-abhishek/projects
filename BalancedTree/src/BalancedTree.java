@@ -30,8 +30,8 @@ public class BalancedTree {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
         inorderDFS(root);
-        System.out.println("Method1: " + isBalancedInferior(root));
-        System.out.println("Method2 : " + String.valueOf(isBalancedSuperior(root) != Integer.MAX_VALUE));
+        System.out.println("Method1: " + isBalancedNaive(root));
+        System.out.println("Method2 : " + String.valueOf(isBalancedOptimised(root) != Integer.MAX_VALUE));
     }
 
     private static void inorderDFS(Node root) {
@@ -42,27 +42,27 @@ public class BalancedTree {
         inorderDFS(root.right);
     }
 
-    private static boolean isBalancedInferior(Node root) {
+    private static boolean isBalancedNaive(Node root) {
         if (root == null)
             return true;
 
         int leftHeight = getHeight(root.left);
         int rightHeight = getHeight(root.right);
-        if ((Math.abs(leftHeight - rightHeight) <= 1) && isBalancedInferior(root.left) && isBalancedInferior(root.right))
+        if ((Math.abs(leftHeight - rightHeight) <= 1) && isBalancedNaive(root.left) && isBalancedNaive(root.right))
             return true;
         else
             return false;
     }
 
-    private static int isBalancedSuperior(Node root) {
+    private static int isBalancedOptimised(Node root) {
         if (root == null)
             return 0;
 
-        int leftHeight = isBalancedSuperior(root.left);
+        int leftHeight = isBalancedOptimised(root.left);
         if (leftHeight == Integer.MAX_VALUE)
             return Integer.MAX_VALUE;
 
-        int rightHeight = isBalancedSuperior(root.right);
+        int rightHeight = isBalancedOptimised(root.right);
         if (rightHeight == Integer.MAX_VALUE)
             return Integer.MAX_VALUE;
 
