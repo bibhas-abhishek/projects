@@ -13,7 +13,7 @@
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx.xsd
-http://www.springframework.org/schema/tx ">
+        http://www.springframework.org/schema/tx ">
 
     <!-- Add support for component scanning -->
     <context:component-scan base-package="com.app"/>
