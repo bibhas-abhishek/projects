@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 public class DemoLoggingAspect {
 
     @Pointcut("execution(* com.aopdemo.dao.*.*(..))")
-    private void forDaoPackage() {
+    private void daoPointCut() {
     }
 
-    @Before("forDaoPackage()")
+    @Before("daoPointCut()")
     public void beforeAddAccountAdvice() {
         System.out.println("Executing @Before advice");
     }

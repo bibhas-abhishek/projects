@@ -1,6 +1,6 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 22 Oct 2017
  * https://github.com/bibhas-abhishek/projects/tree/master/CheckIfBST
  */
@@ -12,7 +12,7 @@ public class CheckIfBST {
         Node left;
         Node right;
 
-        public Node(int data) {
+        Node(int data) {
             this.data = data;
         }
 
@@ -55,7 +55,6 @@ public class CheckIfBST {
 
         if (!checkBST(node.left, min, node.data) || !checkBST(node.right, node.data, max))
             return false;
-
         return true;
     }
 
@@ -72,7 +71,6 @@ public class CheckIfBST {
         prev = root;
         if (!isBSTAlt(root.right))
             return false;
-
         return true;
     }
 

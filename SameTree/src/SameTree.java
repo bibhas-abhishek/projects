@@ -1,9 +1,9 @@
 /**
  * Bibhas Abhishek
- * bibhas.abhishek@ril.com
+ * bibhas_01@hotmail.com
  * 07 Jun 2018
  * https://leetcode.com/problems/same-tree/description/
- * SameTree: Copyright JioMoney 2018
+ * https://github.com/bibhas-abhishek/projects/tree/master/SameTree
  **/
 
 public class SameTree {
@@ -34,10 +34,12 @@ public class SameTree {
         TreeNode root1 = new TreeNode(1);
         root1.left = new TreeNode(2);
         root1.right = new TreeNode(4);
+        root1.left.left = new TreeNode(5);
 
         TreeNode root2 = new TreeNode(1);
         root2.left = new TreeNode(2);
-        root2.right = new TreeNode(3);
+        root2.right = new TreeNode(4);
+        root2.right.right = new TreeNode(5);
 
         System.out.println(isSameTree(root1, root2));
     }
