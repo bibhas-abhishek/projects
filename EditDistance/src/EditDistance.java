@@ -1,22 +1,20 @@
-import com.sun.tools.corba.se.idl.InterfaceGen;
-
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 28 Apr 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/EditDistance
  **/
 
 public class EditDistance {
 
-    private static int minDistance(String word1, String word2) {
-        return minDistance(word1, word2, 0, 0, new HashMap<>());
+    private static int minDistanceTopDown(String word1, String word2) {
+        return minDistanceTopDown(word1, word2, 0, 0, new HashMap<>());
     }
 
-    private static int minDistance(String word1, String word2, int index1, int index2, Map<String, Integer> memo) {
+    private static int minDistanceTopDown(String word1, String word2, int index1, int index2, Map<String, Integer> memo) {
         if (index1 == word1.length())
             return word2.length() - index2;
 
@@ -27,19 +25,19 @@ public class EditDistance {
         if (memo.containsKey(key))
             return memo.get(key);
 
-        int result = 0;
+        int result;
         if (word1.charAt(index1) == word2.charAt(index2))
-            result = minDistance(word1, word2, index1 + 1, index2 + 1, memo);
+            result = minDistanceTopDown(word1, word2, index1 + 1, index2 + 1, memo);
         else
-            result = 1 + Math.min(minDistance(word1, word2, index1 + 1, index2 + 1, memo),  // replace
-                    Math.min(minDistance(word1, word2, index1 + 1, index2, memo),                  //delete from word1
-                            minDistance(word1, word2, index1, index2 + 1, memo)));                 // delete from word2
+            result = 1 + Math.min(minDistanceTopDown(word1, word2, index1 + 1, index2 + 1, memo),  // replace
+                    Math.min(minDistanceTopDown(word1, word2, index1 + 1, index2, memo),                  // delete from word1
+                            minDistanceTopDown(word1, word2, index1, index2 + 1, memo)));                 // add to word1
 
         memo.put(key, result);
         return result;
     }
 
-    private static int minDistanceDP(String word1, String word2) {
+    private static int minDistanceBottomUp(String word1, String word2) {
         int[][] dp = new int[word1.length() + 1][word2.length() + 1];
         for (int i = 0; i < dp.length; i++)
             dp[i][0] = i;
@@ -59,8 +57,8 @@ public class EditDistance {
     }
 
     public static void main(String[] args) {
-        System.out.println(minDistance("horse", "ros"));
-        System.out.println(minDistanceDP("horse", "ros"));
+        System.out.println(minDistanceTopDown("sunday", "saturday"));
+        System.out.println(minDistanceBottomUp("sunday", "saturday"));
     }
 
 }
