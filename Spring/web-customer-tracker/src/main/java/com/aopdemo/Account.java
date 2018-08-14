@@ -6,7 +6,6 @@ public class Account {
     private String level;
 
     public Account() {
-
     }
 
     public Account(String name, String level) {
@@ -28,6 +27,14 @@ public class Account {
 
     public void setLevel(String level) {
         this.level = level;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "name='" + name + '\'' +
+                ", level='" + level + '\'' +
+                '}';
     }
 
 }
