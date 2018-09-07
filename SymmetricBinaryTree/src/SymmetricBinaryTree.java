@@ -1,3 +1,10 @@
+/**
+ * Bibhas Abhishek
+ * bibhas_01@hotmail.com
+ * 07 Sep 2018
+ * https://github.com/bibhas-abhishek/projects/tree/master/SymmetricBinaryTree
+ */
+
 public class SymmetricBinaryTree {
 
     private static class Node {

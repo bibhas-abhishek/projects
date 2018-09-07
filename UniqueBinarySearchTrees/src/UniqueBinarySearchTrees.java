@@ -1,6 +1,6 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 15 Apr 2018
  * https://leetcode.com/problems/unique-binary-search-trees/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/UniqueBinarySearchTrees

@@ -52,7 +52,6 @@ public class MergeSortedLL {
                 temp = temp.next;
             temp.next = new ListNode(data);
         }
-
         return head;
     }
 
