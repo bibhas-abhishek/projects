@@ -17,7 +17,7 @@ public class UniqueBinarySearchTrees {
         memo[0] = 1;
         memo[1] = 1;
         for (int i = 2; i <= n; i++) {
-            for (int j = 0; j < i; j++) {
+            for (int j = 0; j < i; j++) { // index chosen as root = j
                 memo[i] += memo[j] * memo[i - j - 1];
             }
         }
