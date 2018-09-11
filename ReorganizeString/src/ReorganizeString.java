@@ -4,8 +4,12 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
- * https://leetcode.com/problems/reorganize-string/description/
+ * Bibhas Abhishek
+ * bibhas_01@hotmail.com
+ * 10 Sep 2018
+ * https://github.com/bibhas-abhishek/projects/tree/master/ReorganizeString
  */
+
 public class ReorganizeString {
 
     private static String reorganizeString(String s) {
@@ -42,7 +46,7 @@ public class ReorganizeString {
     }
 
     public static void main(String[] args) {
-        System.out.println(reorganizeString("aab"));
+        System.out.println(reorganizeString("aabac"));
     }
 
 }
