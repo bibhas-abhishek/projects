@@ -5,16 +5,16 @@ import java.util.List;
  * Bibhas Abhishek
  * bibhas_01@hotmail.com
  * 09 Sep 2018
- * https://www.geeksforgeeks.org/program-to-validate-an-ip-address/
+ * https://leetcode.com/problems/restore-ip-addresses/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/GenerateIPAddresses
  */
 
 public class GenerateIPAddresses {
 
-    public static List<String> restoreIpAddresses(String ipString) {
-        if (ipString.length() < 3 || ipString.length() > 12)
+    public static List<String> restoreIpAddresses(String s) {
+        if (s.length() < 3 || s.length() > 12)
             return new ArrayList<>();
-        return convert(ipString);
+        return convert(s);
     }
 
     private static List<String> convert(String s) {
@@ -36,15 +36,15 @@ public class GenerateIPAddresses {
         return result;
     }
 
-    private static boolean isValid(String ip) {
-        String a[] = ip.split("[.]");
-        for (String s : a) {
-            int i = Integer.parseInt(s);
-            if (s.length() > 3 || i < 0 || i > 255)
+    private static boolean isValid(String s) {
+        String a[] = s.split("[.]");
+        for (String part : a) {
+            int i = Integer.parseInt(part);
+            if (part.length() > 3 || i < 0 || i > 255)
                 return false;
-            if (s.length() > 1 && i == 0)
+            if (part.length() > 1 && i == 0)
                 return false;
-            if (s.length() > 1 && i != 0 && s.charAt(0) == '0')
+            if (part.length() > 1 && i != 0 && part.charAt(0) == '0')
                 return false;
         }
         return true;

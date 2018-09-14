@@ -9,7 +9,7 @@
 public class DecodeWays {
 
     public static void main(String[] args) {
-        System.out.println(numDecodings("12"));
+        System.out.println(numDecodings("123"));
     }
 
     private static int numDecodings(String s) {
@@ -17,7 +17,7 @@ public class DecodeWays {
             return 0;
 
         int n = s.length();
-        int[] memo = new int[n + 1];
+        int[] memo = new int[n + 1]; // memo[i] is the number of decoding for string of length i
         memo[0] = 1;
         memo[1] = s.charAt(0) == '0' ? 0 : 1;
         for (int i = 2; i <= n; i++) {
