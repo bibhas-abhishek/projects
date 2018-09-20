@@ -1,9 +1,10 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 09 Apr 2018
  * https://leetcode.com/problems/longest-common-prefix/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/LongestCommonPrefix
@@ -22,19 +23,10 @@ public class LongestCommonPrefix {
             endOfWord = false;
             visited = 0;
         }
+
     }
 
     private static TrieNode root = new TrieNode();
-
-    public static void main(String[] args) {
-        String array[] = {"geeksforgeeks", "geeks", "geek", "geezer", "ge"};
-        // System.out.println(longestCommonPrefixDNC(array, 0, array.length - 1));
-        for (String word : array)
-            insertWord(word);
-
-        System.out.println(findLongestPrefixTrie(root, new StringBuilder()));
-
-    }
 
     private static String findLongestPrefixTrie(TrieNode current, StringBuilder builder) {
         if (current == null)
@@ -57,19 +49,20 @@ public class LongestCommonPrefix {
         return findLongestPrefixTrie(current.childMap.get(ch), builder);
     }
 
-    private static String longestCommonPrefixDNC(String[] array, int low, int high) {
+    private static String solveDivideConquer(String[] array, int low, int high) {
         if (low == high)
             return array[low];
+
         if (low < high) {
             int mid = (low + high) / 2;
-            String s1 = longestCommonPrefixDNC(array, low, mid);
-            String s2 = longestCommonPrefixDNC(array, mid + 1, high);
-            return longestCommonPrefixDNCUtil(s1, s2);
+            String s1 = solveDivideConquer(array, low, mid);
+            String s2 = solveDivideConquer(array, mid + 1, high);
+            return checkMatch(s1, s2);
         }
         return null;
     }
 
-    private static String longestCommonPrefixDNCUtil(String s1, String s2) {
+    private static String checkMatch(String s1, String s2) {
         int i = 0, j = 0;
         StringBuilder stringBuilder = new StringBuilder();
         while (i < s1.length() && j < s2.length()) {
@@ -101,6 +94,15 @@ public class LongestCommonPrefix {
         }
         childNode.visited += 1;
         insertWord(childNode, word, index + 1);
+    }
+
+    public static void main(String[] args) {
+        String array[] = {"geeksforgeeks", "geeks", "geek", "geezer", "ge"};
+        System.out.println(solveDivideConquer(array, 0, array.length - 1));
+
+        Arrays.stream(array).forEach(LongestCommonPrefix::insertWord);
+        System.out.println(findLongestPrefixTrie(root, new StringBuilder()));
+
     }
 
 }
