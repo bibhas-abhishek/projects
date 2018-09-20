@@ -10,36 +10,36 @@ import java.util.Arrays;
 public class QuickSort {
 
     public static void main(String[] args) {
-        int[] A = {7, 4, 5, 8, 1, 2, 0, 9};
-        quickSort(A, 0, A.length - 1);
-        Arrays.stream(A).mapToObj(element -> element + " ").forEach(System.out::print);
+        int[] arr = {7, 4, 5, 8, 1, 2, 0, 9};
+        quickSort(arr, 0, arr.length - 1);
+        Arrays.stream(arr).mapToObj(e -> e + " ").forEach(System.out::print);
     }
 
-    private static void quickSort(int[] A, int start, int end) {
+    private static void quickSort(int[] arr, int start, int end) {
         if (start < end) {
-            int pIndex = partition(A, start, end);
-            quickSort(A, start, pIndex - 1);
-            quickSort(A, pIndex + 1, end);
+            int pIndex = partition(arr, start, end);
+            quickSort(arr, start, pIndex - 1);
+            quickSort(arr, pIndex + 1, end);
         }
     }
 
-    private static int partition(int[] A, int start, int end) {
+    private static int partition(int[] arr, int start, int end) {
         int pIndex = start;
-        int pivot = A[end];
+        int pivot = arr[end];
         for (int i = start; i < end; i++) {
-            if (A[i] <= pivot) {
-                swap(A, i, pIndex);
-                pIndex++;
+            if (arr[i] <= pivot) {
+                swap(arr, i, pIndex);
+                pIndex += 1;
             }
         }
-        swap(A, pIndex, end);
+        swap(arr, pIndex, end);
         return pIndex;
     }
 
-    private static void swap(int[] A, int a, int b) {
-        int temp = A[b];
-        A[b] = A[a];
-        A[a] = temp;
+    private static void swap(int[] arr, int a, int b) {
+        int temp = arr[b];
+        arr[b] = arr[a];
+        arr[a] = temp;
     }
 
 }

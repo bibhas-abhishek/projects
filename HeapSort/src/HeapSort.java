@@ -15,7 +15,7 @@ public class HeapSort {
         array[b] = temp;
     }
 
-    private static void heapify(int[] array, int n, int i) {
+    private static void heapify(int[] array, int n, int i) { // heapify at index i
         int largest = i;
         int left = 2 * i + 1;
         int right = 2 * i + 2;
@@ -33,7 +33,7 @@ public class HeapSort {
 
     private static void heapSort(int[] array) {
         int n = array.length;
-        for (int i = n / 2 - 1; i >= 0; i--)        // creating a maxHeap
+        for (int i = n / 2 - 1; i >= 0; i--)        // creating a maxHeap from last internal node = n/2 - 1
             heapify(array, n, i);
 
         for (int i = n - 1; i >= 0; i--) {

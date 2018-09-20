@@ -1,4 +1,4 @@
-import java.awt.*;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +10,7 @@ import java.util.Map;
  * https://github.com/bibhas-abhishek/projects/tree/master/RobotInAGrid
  **/
 
-public class RobotInAGrid {
+public class RobotInaGrid {
 
 
     public static void main(String[] args) {

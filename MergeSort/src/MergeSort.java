@@ -6,17 +6,18 @@ import java.util.Arrays;
  * 16 Oct 2017
  * https://github.com/bibhas-abhishek/projects/tree/master/MergeSort
  */
+
 public class MergeSort {
 
     public static void main(String[] args) {
         int array[] = {10, 5, 7, 8, 1, 2, 6, 3, 4, 9};
         int temp[] = new int[array.length];
         mergeSort(array, temp, 0, array.length - 1);
-        Arrays.stream(array).mapToObj(myArrayElement -> myArrayElement + " ").forEach(System.out::print);
+        Arrays.stream(array).mapToObj(e -> e + " ").forEach(System.out::print);
     }
 
     private static void mergeSort(int[] array, int[] temp, int start, int end) {
-        if (end <= start)
+        if (start >= end)
             return;
 
         int mid = (start + end) / 2;
@@ -31,7 +32,6 @@ public class MergeSort {
         int l = leftStart;
         int r = rightStart;
         int index = leftStart;
-
         while (l <= leftEnd && r <= rightEnd) {
             if (array[l] <= array[r])
                 temp[index++] = array[l++];
