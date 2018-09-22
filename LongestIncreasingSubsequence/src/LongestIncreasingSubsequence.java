@@ -1,8 +1,6 @@
-import java.util.Arrays;
-
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 22 Apr 2018
  * https://leetcode.com/problems/longest-increasing-subsequence/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/LongestIncreasingSubsequence
@@ -33,7 +31,7 @@ public class LongestIncreasingSubsequence {
     }
 
     public static void main(String[] args) {
-        int[] array = {10, 9, 2, 5, 3, 7, 101, 18};
+        int[] array = {3, 4, -1, 0, 6, 2, 3};
         System.out.println(lengthOfLIS(array));
     }
 
