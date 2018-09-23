@@ -1,6 +1,6 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 07 Apr 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/MorrisTraversal
  **/
@@ -29,26 +29,17 @@ public class MorrisTraversal {
         root.left.right = new Node(3);
         root.right.left = new Node(5);
         root.right.right = new Node(7);
-        morrisTraversal(root);
-        System.out.println();
+        morrisTraversalInorder(root);
+        /*System.out.println();
         System.out.println(count);
-        System.out.println(findMedian(root));
+        System.out.println(findMedian(root));*/
     }
 
-    private static boolean isOdd(int currentCount) {
-        return count % 2 != 0 && currentCount == (count + 1) / 2;
-    }
-
-    private static boolean isEven(int currentCount) {
-        return count % 2 == 0 && currentCount == count / 2;
-    }
-
-    private static void morrisTraversal(Node root) {
+    private static void morrisTraversalInorder(Node root) {
         Node current = root;
         while (current != null) {
             if (current.left == null) {
                 System.out.print(current.data + " ");
-                count++;
                 current = current.right;
             } else {
                 Node predecessor = current.left;
@@ -62,23 +53,30 @@ public class MorrisTraversal {
                 } else {
                     predecessor.right = null;
                     System.out.print(current.data + " "); // move this to upper if for pre order traversal
-                    count++;
                     current = current.right;
                 }
             }
         }
     }
 
+    private static boolean isOdd(int currentCount) {
+        return count % 2 != 0 && currentCount == (count + 1) / 2;
+    }
+
+    private static boolean isEven(int currentCount) {
+        return count % 2 == 0 && currentCount == count / 2;
+    }
+
     private static double findMedian(Node root) {
         Node current = root;
         Node previous = root;
-        int nodeCount = 0;
+        int count = 0;
         while (current != null) {
             if (current.left == null) {
-                nodeCount++;
-                if (isEven(nodeCount))
+                count++;
+                if (isEven(count))
                     return (current.data + previous.data) / 2.0;
-                else if (isOdd(nodeCount))
+                else if (isOdd(count))
                     return current.data;
                 previous = current;
                 current = current.right;
@@ -93,10 +91,10 @@ public class MorrisTraversal {
                     current = current.left;
                 } else {
                     predecessor.right = null;
-                    nodeCount++;
-                    if (isEven(nodeCount))
+                    count++;
+                    if (isEven(count))
                         return (current.data + previous.data) / 2.0;
-                    else if (isOdd(nodeCount))
+                    else if (isOdd(count))
                         return current.data;
                     previous = current;
                     current = current.right;

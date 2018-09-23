@@ -1,6 +1,6 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 02 Apr 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/InorderSuccessorBST
  **/
@@ -31,9 +31,19 @@ public class InorderSuccessorBST {
         root.right.right = new Node(15);
         root.right.left.right = new Node(12);
         root.right.right.right = new Node(16);
+        System.out.print("Inorder Traversal: ");
         inorderDFS(root);
         System.out.println();
-        System.out.println(getInorderSuccessor(root, 6).data);
+        System.out.print("Inorder successor of 11: ");
+        System.out.println(getInorderSuccessor(root, 11).data);
+    }
+
+    private static void inorderDFS(Node root) {
+        if (root == null)
+            return;
+        inorderDFS(root.left);
+        System.out.print(root.data + " ");
+        inorderDFS(root.right);
     }
 
     private static Node getInorderSuccessor(Node root, int val) {
@@ -45,27 +55,19 @@ public class InorderSuccessorBST {
             return null;
 
         if (current.right != null) // right subtree exists
-            return findMin(current.right);
+            return findMin(current.right); // find min in right subtree
         else {
-            Node ancestor = root;
+            Node ptr = root;
             Node successor = null;
-            while (ancestor != current) { // find the deepest node for which the target node is in the left subtree
-                if (val < ancestor.data) {
-                    successor = ancestor;
-                    ancestor = ancestor.left;
+            while (ptr != current) { // find the deepest node for which the target node is in the left subtree
+                if (val < ptr.data) {
+                    successor = ptr;
+                    ptr = ptr.left;
                 } else
-                    ancestor = ancestor.right;
+                    ptr = ptr.right;
             }
             return successor;
         }
-    }
-
-    private static void inorderDFS(Node root) {
-        if (root == null)
-            return;
-        inorderDFS(root.left);
-        System.out.print(root.data + " ");
-        inorderDFS(root.right);
     }
 
     private static Node findNode(Node root, int val) {
@@ -74,10 +76,8 @@ public class InorderSuccessorBST {
 
         if (root.data == val)
             return root;
-        else if (val < root.data)
-            return findNode(root.left, val);
-        else
-            return findNode(root.right, val);
+
+        return val <= root.data ? findNode(root.left, val) : findNode(root.right, val);
     }
 
     private static Node findMin(Node root) {
