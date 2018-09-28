@@ -19,7 +19,6 @@ public class TrieOperations {
         TrieNode() {
             children = new HashMap<>();
             endOfWord = false;
-            visited = 0;
         }
 
     }
@@ -30,17 +29,17 @@ public class TrieOperations {
         insertWord(root, word, 0);
     }
 
-    private static void insertWord(TrieNode currentNode, String word, int index) {
+    private static void insertWord(TrieNode root, String word, int index) {
         if (index == word.length()) {
-            currentNode.endOfWord = true;
+            root.endOfWord = true;
             return;
         }
 
         char ch = word.charAt(index);
-        TrieNode childNode = currentNode.children.get(ch);
+        TrieNode childNode = root.children.get(ch);
         if (childNode == null) {
             childNode = new TrieNode();
-            currentNode.children.put(ch, childNode);
+            root.children.put(ch, childNode);
         }
 
         childNode.visited += 1;
@@ -78,6 +77,7 @@ public class TrieOperations {
 
         if (index == word.length() - 1)
             return childNode.visited;
+
         return countPartial(childNode, word, index + 1);
     }
 
@@ -85,25 +85,24 @@ public class TrieOperations {
         deleteWord(root, word, 0);
     }
 
-    private static boolean deleteWord(TrieNode current, String word, int index) {
+    private static boolean deleteWord(TrieNode root, String word, int index) {
         if (index == word.length()) {
-            if (!current.endOfWord) {
+            if (!root.endOfWord) {
                 return false;
             }
-            current.endOfWord = false;
-            return current.children.size() == 0;
+            root.endOfWord = false;
+            return root.children.size() == 0;
         }
 
         char ch = word.charAt(index);
-        TrieNode childNode = current.children.get(ch);
+        TrieNode childNode = root.children.get(ch);
         if (childNode == null) {
             return false;
         }
 
-        boolean shouldDeleteCurrentNode = deleteWord(childNode, word, index + 1);
-        if (shouldDeleteCurrentNode) {
-            current.children.remove(ch);
-            return current.children.size() == 0;
+        if (deleteWord(childNode, word, index + 1)) {
+            root.children.remove(ch);
+            return root.children.size() == 0;
         }
         return false;
     }

@@ -16,47 +16,62 @@ public class LongestCommonPrefix {
 
         Map<Character, TrieNode> childMap;
         boolean endOfWord;
-        int visited;
 
         public TrieNode() {
             childMap = new HashMap<>();
             endOfWord = false;
-            visited = 0;
         }
 
     }
 
     private static TrieNode root = new TrieNode();
 
-    private static String findLongestPrefixTrie(TrieNode current, StringBuilder builder) {
-        if (current == null)
-            return null;
-
-        if (current.endOfWord)
-            return builder.toString();
-
-        Map<Character, TrieNode> childMap = current.childMap;
-        char ch = ' ';
-        if (childMap != null) {
-            if (childMap.size() == 1) {
-                for (Map.Entry<Character, TrieNode> entry : childMap.entrySet()) {
-                    ch = entry.getKey();
-                    builder.append(ch);
-                }
-            } else
-                return builder.toString();
-        }
-        return findLongestPrefixTrie(current.childMap.get(ch), builder);
+    private static void insertWord(String word) {
+        insertWord(root, word, 0);
     }
 
-    private static String solveDivideConquer(String[] array, int low, int high) {
+    private static void insertWord(TrieNode currentNode, String word, int index) {
+        if (index == word.length()) {
+            currentNode.endOfWord = true;
+            return;
+        }
+
+        char ch = word.charAt(index);
+        TrieNode childNode = currentNode.childMap.get(ch); // take out child trieNode from the parent childMap
+        if (childNode == null) {
+            childNode = new TrieNode();
+            currentNode.childMap.put(ch, childNode);
+        }
+        insertWord(childNode, word, index + 1);
+    }
+
+    private static String solveTrie(TrieNode root, StringBuilder builder) {
+        if (root == null)
+            return null;
+
+        if (root.endOfWord)
+            return builder.toString();
+
+        char ch;
+        Map<Character, TrieNode> childMap = root.childMap;
+        if (childMap != null && childMap.size() == 1) {
+            ch = childMap.keySet().stream().findFirst().get();
+            builder.append(ch);
+        } else
+            return builder.toString();
+
+        TrieNode childNode = root.childMap.get(ch);
+        return solveTrie(childNode, builder);
+    }
+
+    private static String solveDivideNConquer(String[] array, int low, int high) {
         if (low == high)
             return array[low];
 
         if (low < high) {
             int mid = (low + high) / 2;
-            String s1 = solveDivideConquer(array, low, mid);
-            String s2 = solveDivideConquer(array, mid + 1, high);
+            String s1 = solveDivideNConquer(array, low, mid);
+            String s2 = solveDivideNConquer(array, mid + 1, high);
             return checkMatch(s1, s2);
         }
         return null;
@@ -76,32 +91,12 @@ public class LongestCommonPrefix {
         return stringBuilder.toString();
     }
 
-    private static void insertWord(String word) {
-        insertWord(root, word, 0);
-    }
-
-    private static void insertWord(TrieNode currentNode, String word, int index) {
-        if (index == word.length()) {
-            currentNode.endOfWord = true;
-            return;
-        }
-
-        char ch = word.charAt(index);
-        TrieNode childNode = currentNode.childMap.get(ch); // take out child trieNode from the parent childMap
-        if (childNode == null) {
-            childNode = new TrieNode();
-            currentNode.childMap.put(ch, childNode);
-        }
-        childNode.visited += 1;
-        insertWord(childNode, word, index + 1);
-    }
-
     public static void main(String[] args) {
-        String array[] = {"geeksforgeeks", "geeks", "geek", "geezer", "ge"};
-        System.out.println(solveDivideConquer(array, 0, array.length - 1));
+        String array[] = {"geeksforgeeks", "geeks", "geek", "geezer", "gee"};
+        System.out.println(solveDivideNConquer(array, 0, array.length - 1));
 
         Arrays.stream(array).forEach(LongestCommonPrefix::insertWord);
-        System.out.println(findLongestPrefixTrie(root, new StringBuilder()));
+        System.out.println(solveTrie(root, new StringBuilder()));
 
     }
 

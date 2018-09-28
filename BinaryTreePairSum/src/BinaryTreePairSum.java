@@ -1,11 +1,12 @@
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 01 Apr 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/BinaryTreePairSum
  **/
-import java.util.HashSet;
-import java.util.Set;
 
 public class BinaryTreePairSum {
 
@@ -31,18 +32,13 @@ public class BinaryTreePairSum {
         root.left.right = new Node(5);
         root.right.left = new Node(6);
         root.right.right = new Node(7);
-        boolean res = findIfSumExists(root, 13, new HashSet<>());
-        if (!res)
+        if (!findIfSumExists(root, 11, new HashSet<>()))
             System.out.print("Pair not found");
-
     }
 
     private static boolean findIfSumExists(Node root, int key, Set<Integer> set) {
         if (root == null)
             return false;
-
-        if (findIfSumExists(root.left, key, set))
-            return true;
 
         if (set.contains(key - root.data)) {
             System.out.print(String.valueOf(root.data) + " : " + String.valueOf(key - root.data));
@@ -50,7 +46,7 @@ public class BinaryTreePairSum {
         } else
             set.add(root.data);
 
-        return findIfSumExists(root.right, key, set);
+        return findIfSumExists(root.left, key, set) || findIfSumExists(root.right, key, set);
     }
 
 }

@@ -3,7 +3,7 @@ import java.util.Map;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 25 Apr 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/EggDropping
  **/
@@ -31,11 +31,11 @@ public class EggDropping {
 
         int result = Integer.MAX_VALUE;
         for (int floor = 1; floor <= k; floor++) {
-            int drops = Math.max(eggDrop(n - 1, floor - 1), eggDrop(n, k - floor));
+            int drops = 1 + Math.max(eggDrop(n - 1, floor - 1), eggDrop(n, k - floor));
             result = Math.min(result, drops);
         }
-        map.put(key, result + 1);
-        return result + 1;
+        map.put(key, result);
+        return result;
     }
 
     private static int eggDropDP(int eggs, int floors) {
@@ -46,7 +46,7 @@ public class EggDropping {
         for (int i = 0; i <= floors; i++)
             dp[1][i] = i;
 
-        int result = 0;
+        int result;
         for (int e = 2; e <= eggs; e++) {
             for (int f = 1; f <= floors; f++) {
                 dp[e][f] = Integer.MAX_VALUE;

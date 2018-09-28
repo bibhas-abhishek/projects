@@ -23,10 +23,7 @@ public class RatMaze {
 
         if (isSafe(maze, x, y)) {
             result[x][y] = 1;
-            if (solveMazeUtil(maze, x, y + 1, result, n))
-                return true;
-
-            if (solveMazeUtil(maze, x + 1, y, result, n))
+            if (solveMazeUtil(maze, x, y + 1, result, n) || solveMazeUtil(maze, x + 1, y, result, n))
                 return true;
 
             result[x][y] = 0;

@@ -1,9 +1,10 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 16 Oct 2017
  * https://github.com/bibhas-abhishek/projects/tree/master/PrintBinaryTreeZigZag
  */
+
 public class PrintBinaryTreeZigZag {
 
     private static class TreeNode {
