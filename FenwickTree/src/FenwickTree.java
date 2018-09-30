@@ -1,9 +1,19 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 13 Apr 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/FenwickTree
  **/
+
+/**
+ * A Fenwick tree or binary indexed tree is a data structure providing efficient methods
+ * for calculation and manipulation of the prefix sums of a table of values.
+ *
+ * Space complexity: O(n)
+ * Time complexity to create: O(nlogn)
+ * Time complexity to update: O(logn)
+ * Time complexity to get prefix sum: O(logn)
+ */
 
 public class FenwickTree {
 

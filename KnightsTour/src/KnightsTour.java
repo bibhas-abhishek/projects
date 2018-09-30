@@ -17,7 +17,7 @@ public class KnightsTour {
         for (int i = 0; i < n; i++)
             Arrays.fill(tour[i], -1);
 
-        tour[0][0] = 1;
+        tour[0][0] = 0;
         int xMove[] = {2, 1, -1, -2, -2, -1, 1, 2};
         int yMove[] = {1, 2, 2, 1, -1, -2, -2, -1};
         if (!knightsTour(0, 0, 1, xMove, yMove, tour, n)) {

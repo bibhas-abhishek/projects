@@ -3,7 +3,7 @@ import java.util.List;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 20 Apr 2018
  * https://leetcode.com/problems/n-queens/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/NQueen
@@ -42,23 +42,22 @@ public class NQueen {
                         builder.append(".");
                 }
                 result.add(builder.toString());
-                builder = new StringBuilder();
             }
             resultList.add(result);
             return;
         }
 
         for (int col = 0; col < n; col++) {
-            boolean foundSafe = true;
-            for (int queen = 0; queen < row; queen++) {
-                if (positions[queen].col == col || positions[queen].row - positions[queen].col == row - col ||
-                        positions[queen].row + positions[queen].col == row + col) {
-                    foundSafe = false;
-                    break;  // skip current column
+            boolean isSafe = true;
+            for (int prevQueen = 0; prevQueen < row; prevQueen++) {
+                if (positions[prevQueen].col == col || positions[prevQueen].row - positions[prevQueen].col == row - col ||
+                        positions[prevQueen].row + positions[prevQueen].col == row + col) {
+                    isSafe = false;
+                    break; // position already in attack from a previous queen. no need to check from lower queens. try next column.
                 }
             }
 
-            if (foundSafe) {
+            if (isSafe) {
                 positions[row] = new Position(row, col);
                 solveNQueens(resultList, positions, row + 1, n);
             }

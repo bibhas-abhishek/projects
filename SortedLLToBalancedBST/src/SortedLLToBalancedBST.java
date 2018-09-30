@@ -1,10 +1,11 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 03 Apr 2018
  * https://leetcode.com/problems/convert-sorted-list-to-binary-search-tree/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/SortedLLToBalancedBST
  **/
+
 public class SortedLLToBalancedBST {
 
     private static class ListNode {
@@ -78,7 +79,6 @@ public class SortedLLToBalancedBST {
                 temp = temp.next;
             temp.next = new ListNode(data);
         }
-
         return head;
     }
 
@@ -103,7 +103,6 @@ public class SortedLLToBalancedBST {
         TreeNode tLeft = sortedListToBSTUtil(length / 2);
         TreeNode root = new TreeNode(headNode.val);
         root.left = tLeft;
-
         headNode = headNode.next;
         root.right = sortedListToBSTUtil(length - length / 2 - 1);  // length - left tree nodes - root
         return root;

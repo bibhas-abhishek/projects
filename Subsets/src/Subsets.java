@@ -11,28 +11,28 @@ import java.util.List;
 
 public class Subsets {
 
-    private static List<List<Integer>> subsets(int[] nums) {
+    private static List<List<Integer>> subsets(int[] set) {
         List<List<Integer>> result = new ArrayList<>();
-        int size = 1 << nums.length;
+        int size = 1 << set.length;
         for (int k = 0; k < size; k++)
-            result.add(getSubset(k, nums));
+            result.add(getSubset(k, set));
         return result;
     }
 
-    private static List<Integer> getSubset(int k, int[] nums) {
+    private static List<Integer> getSubset(int k, int[] set) {
         int index = 0;
         List<Integer> subset = new ArrayList<>();
         for (int x = k; x > 0; x >>= 1) {
             if ((x & 1) == 1)
-                subset.add(nums[index]);
+                subset.add(set[index]);
             index += 1;
         }
         return subset;
     }
 
     public static void main(String[] args) {
-        int[] nums = {1, 2, 3};
-        System.out.println(subsets(nums));
+        int[] set = {1, 2, 3};
+        System.out.println(subsets(set));
     }
 
 }

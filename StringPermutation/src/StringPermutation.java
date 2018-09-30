@@ -38,8 +38,8 @@ public class StringPermutation {
         return resultList;
     }
 
-    private static void permuteString(char[] str, int[] count, char[] result, int level, List<String> resultList) {
-        if (level == result.length) {
+    private static void permuteString(char[] str, int[] count, char[] result, int index, List<String> resultList) {
+        if (index == result.length) {
             resultList.add(new String(result));
             return;
         }
@@ -48,15 +48,14 @@ public class StringPermutation {
             if (count[i] == 0)
                 continue;
 
-            result[level] = str[i];
+            result[index] = str[i];
             count[i] -= 1;
-            permuteString(str, count, result, level + 1, resultList);
+            permuteString(str, count, result, index + 1, resultList);
             count[i] += 1;
         }
     }
 
     public static void main(String args[]) {
-        StringPermutation sp = new StringPermutation();
         String input = "AABC";
         permute(input.toCharArray()).stream().map(str -> str + " ").forEach(System.out::print);
     }

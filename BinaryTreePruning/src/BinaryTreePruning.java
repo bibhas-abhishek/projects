@@ -3,7 +3,7 @@ import java.util.Queue;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 06 May 2018
  * https://leetcode.com/problems/binary-tree-pruning/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/BinaryTreePruning
@@ -35,14 +35,6 @@ public class BinaryTreePruning {
         root = pruneTree(root);
         System.out.println();
         printLevelOrder(root);
-    }
-
-    private static void inorderDFS(TreeNode root) {
-        if (root == null)
-            return;
-        inorderDFS(root.left);
-        System.out.print(root.val + " ");
-        inorderDFS(root.right);
     }
 
     private static void printLevelOrder(TreeNode root) {
