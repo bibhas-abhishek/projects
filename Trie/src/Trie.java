@@ -3,14 +3,14 @@ import java.util.*;
 /**
  * Bibhas Abhishek
  * bibhas_01@hotmail.com
- * 08 Apr 2018
+ * 02 Oct 2018
  * https://www.hackerrank.com/challenges/contacts/problem
- * https://github.com/bibhas-abhishek/projects/tree/master/TrieOperations
- **/
+ * https://github.com/bibhas-abhishek/projects/tree/master/Trie
+ */
 
-public class TrieOperations {
+public class Trie {
 
-    private static class TrieNode {
+    private class TrieNode {
 
         Map<Character, TrieNode> children;
         boolean endOfWord;
@@ -23,13 +23,13 @@ public class TrieOperations {
 
     }
 
-    private static TrieNode root = new TrieNode();
+    private TrieNode root = new TrieNode();
 
-    private static void insertWord(String word) {
+    private void insertWord(String word) {
         insertWord(root, word, 0);
     }
 
-    private static void insertWord(TrieNode root, String word, int index) {
+    private void insertWord(TrieNode root, String word, int index) {
         if (index == word.length()) {
             root.endOfWord = true;
             return;
@@ -46,11 +46,11 @@ public class TrieOperations {
         insertWord(childNode, word, index + 1);
     }
 
-    private static boolean searchComplete(String word) {
+    private boolean searchComplete(String word) {
         return searchComplete(root, word, 0);
     }
 
-    private static boolean searchComplete(TrieNode currentNode, String word, int index) {
+    private boolean searchComplete(TrieNode currentNode, String word, int index) {
         if (index == word.length())
             return currentNode.endOfWord;
 
@@ -62,11 +62,11 @@ public class TrieOperations {
         return searchComplete(childNode, word, index + 1);
     }
 
-    private static int countPartial(String word) {
+    private int countPartial(String word) {
         return countPartial(root, word, 0);
     }
 
-    private static int countPartial(TrieNode current, String word, int index) {
+    private int countPartial(TrieNode current, String word, int index) {
         if (current == null)
             return 0;
 
@@ -81,11 +81,11 @@ public class TrieOperations {
         return countPartial(childNode, word, index + 1);
     }
 
-    private static void deleteWord(String word) {
+    private void deleteWord(String word) {
         deleteWord(root, word, 0);
     }
 
-    private static boolean deleteWord(TrieNode root, String word, int index) {
+    private boolean deleteWord(TrieNode root, String word, int index) {
         if (index == word.length()) {
             if (!root.endOfWord) {
                 return false;
@@ -108,7 +108,7 @@ public class TrieOperations {
     }
 
     // Hackerrank
-    private static int[] contacts(String[][] queries) {
+    private int[] contacts(String[][] queries) {
         List<Integer> result = new ArrayList<>();
         for (String[] query : queries) {
             String operation = query[0];
@@ -130,20 +130,25 @@ public class TrieOperations {
     }
 
     public static void main(String[] args) {
-        /*String[][] queries = {{"add", "hack"}, {"add", "hackerrank"}, {"find", "hac"}, {"find", "hak"}, {"add", "hacked"}};
-        Arrays.stream(contacts(queries)).forEach(System.out::println);*/
+        /*
+        String[][] queries = {{"add", "hack"}, {"add", "hackerrank"}, {"find", "hac"}, {"find", "hak"}, {"add", "hacked"}};
+        Arrays.stream(contacts(queries)).forEach(System.out::println);
+        */
 
-        insertWord("hack");
-        insertWord("hacker");
-        insertWord("hackerrank");
-        insertWord("hacked");
+        Trie trie = new Trie();
 
-        System.out.println("hack: " + searchComplete("hack"));
-        System.out.println("hacker: " + searchComplete("hacker"));
-        System.out.println("hac: " + searchComplete("hac"));
-        System.out.println("hacked: " + searchComplete("hacked"));
-        deleteWord("hacker");
-        System.out.println("hacker: " + searchComplete("hacker"));
+        trie.insertWord("hack");
+        trie.insertWord("hacker");
+        trie.insertWord("hackerrank");
+        trie.insertWord("hacked");
+
+        System.out.println("hack: " + trie.searchComplete("hack"));
+        System.out.println("hacker: " + trie.searchComplete("hacker"));
+        System.out.println("hac: " + trie.searchComplete("hac"));
+        System.out.println("hacked: " + trie.searchComplete("hacked"));
+
+        trie.deleteWord("hacker");
+        System.out.println("hacker: " + trie.searchComplete("hacker"));
     }
 
 }
