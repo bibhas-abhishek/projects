@@ -8,9 +8,9 @@ import java.util.Map;
  * 30 Jun 2018
  * https://www.hackerrank.com/challenges/components-in-graph/problem
  * https://github.com/bibhas-abhishek/projects/tree/master/DisjointSet
- * <p>
- * Space  = O(n)
- * Time  = O(m * alpha * n)
+ *
+ * Space complexity:  O(n)
+ * Time complexity:  O(m * alpha * n)
  * m = operations, n = elements, alpha * n <= 4
  * => Time ~= O(m)
  **/
@@ -41,8 +41,8 @@ public class DisjointSet {
         return findSet(map.get(data));
     }
 
-    // Find the representative recursively and does path compression as well
-    private static Node findSet(Node node) {
+    // Find the representative recursively and do path compression
+    public static Node findSet(Node node) {
         Node parent = node.parent;
         if (parent == node)
             return parent;
@@ -59,7 +59,7 @@ public class DisjointSet {
         Node parent2 = findSet(node2);
 
         if (parent1.data == parent2.data)
-            return false;
+            return false; // already in the same set
 
         if (parent1.rank >= parent2.rank) {
             parent1.rank += parent2.rank;
@@ -88,7 +88,7 @@ public class DisjointSet {
     }
 
     public static void main(String[] args) {
-        /*makeSet(1);
+        makeSet(1);
         makeSet(2);
         makeSet(3);
         makeSet(4);
@@ -109,11 +109,11 @@ public class DisjointSet {
         System.out.println(findSet(4));
         System.out.println(findSet(5));
         System.out.println(findSet(6));
-        System.out.println(findSet(7));*/
+        System.out.println(findSet(7));
 
-        int[][] gb = {{1, 6}, {2, 7}, {3, 8}, {4, 9}, {2, 6}};
+        /*int[][] gb = {{1, 6}, {2, 7}, {3, 8}, {4, 9}, {2, 6}};
         int[] result = componentsInGraph(5, gb);
-        Arrays.stream(result).mapToObj(n -> n + " ").forEach(System.out::print);
+        Arrays.stream(result).mapToObj(n -> n + " ").forEach(System.out::print);*/
     }
 
 }

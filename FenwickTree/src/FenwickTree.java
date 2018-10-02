@@ -20,7 +20,7 @@ public class FenwickTree {
     public static void main(String[] args) {
         int input[] = {1, 2, 3, 4, 5, 6, 7};
         int[] binaryIndexedTree = createBinaryIndexedTree(input);
-        System.out.println(getSum(binaryIndexedTree, 6));
+        System.out.println(getSum(binaryIndexedTree, 2));
     }
 
     private static int getParent(int index) {
@@ -33,7 +33,7 @@ public class FenwickTree {
 
     private static int[] createBinaryIndexedTree(int[] input) {
         int[] binaryIndexedTree = new int[input.length + 1];
-        for (int i = 1; i <= input.length; i++) // build tree from index 1->7. index 0 in tree is a dummy.
+        for (int i = 1; i <= input.length; i++) // BIT is 1 shifted to the right. index 0 in tree is a dummy.
             createBinaryIndexedTreeUtil(binaryIndexedTree, input[i - 1], i); // i is the index in BIT
 
         return binaryIndexedTree;

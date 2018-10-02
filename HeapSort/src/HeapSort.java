@@ -15,7 +15,13 @@ public class HeapSort {
         array[b] = temp;
     }
 
-    private static void heapify(int[] array, int n, int i) { // heapify at index i
+    /**
+     *
+     * @param array
+     * @param n -> total elements
+     * @param i -> heapify at index i
+     */
+    private static void heapify(int[] array, int n, int i) {
         int largest = i;
         int left = 2 * i + 1;
         int right = 2 * i + 2;
@@ -38,7 +44,7 @@ public class HeapSort {
 
         for (int i = n - 1; i >= 0; i--) {
             swap(array, 0, i);
-            heapify(array, i, 0);
+            heapify(array, i, 0); // last element already sorted. call heapify for elements - 1, hence n -> i
         }
     }
 

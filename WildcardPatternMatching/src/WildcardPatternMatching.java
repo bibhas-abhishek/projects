@@ -19,7 +19,7 @@ public class WildcardPatternMatching {
         dp[0][0] = true;
         for (int j = 1; j <= m; j++) {
             if (pattern.charAt(j - 1) == '*')
-                dp[0][j] = dp[0][j - 1];
+                dp[0][j] = dp[0][j - 1]; // '*' matches an empty pattern
         }
 
         for (int i = 1; i <= n; i++) {

@@ -10,22 +10,19 @@ import java.util.LinkedList;
 
 public class SlidingWindowMaximum {
 
-    public static void main(String[] args) {
-        int arr[] = {12, 1, 78, 90, 57, 89, 56};
-        int k = 3;
-        printMax(arr, arr.length, k);
-    }
-
     private static void printMax(int[] arr, int n, int k) {
         Deque<Integer> dQueue = new LinkedList<>();
         int i;
 
         // slide first k elements
         for (i = 0; i < k; i++) {
-            slide(arr, dQueue, i);
+            while (!dQueue.isEmpty() && arr[i] > arr[dQueue.peekLast()])
+                dQueue.removeLast();
+
+            dQueue.addLast(i); // adding indexes
         }
 
-        // queue_rear to queue_front -> small to large
+        // queueRear to queueFront -> small to large
         // larger arr[i] will deque all smaller elements
         // smaller arr[i] will be added at queue rear
 
@@ -37,19 +34,21 @@ public class SlidingWindowMaximum {
             // peek front because old elements are pushed to the front
             // remove the front elements if they do not lie in the window
             while (!dQueue.isEmpty() && dQueue.peek() <= i - k)
-                dQueue.removeFirst();
+                dQueue.removeFirst(); // peeking front elements since they are older
 
-            slide(arr, dQueue, i);
+            while (!dQueue.isEmpty() && arr[i] > arr[dQueue.peekLast()])
+                dQueue.removeLast();
+
+            dQueue.addLast(i);
             i++;
         }
         System.out.print(arr[dQueue.peek()]);
     }
 
-    private static void slide(int[] arr, Deque<Integer> dQueue, int i) {
-        while (!dQueue.isEmpty() && arr[i] > arr[dQueue.peekLast()])
-            dQueue.removeLast();
-
-        dQueue.addLast(i);
+    public static void main(String[] args) {
+        int arr[] = {12, 1, 78, 90, 57, 89, 56};
+        int k = 3;
+        printMax(arr, arr.length, k);
     }
 
 }
