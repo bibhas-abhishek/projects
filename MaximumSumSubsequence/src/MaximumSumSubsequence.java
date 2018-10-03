@@ -10,9 +10,7 @@ public class MaximumSumSubsequence {
     private static int maxSum(int[] arr) {
         int n = arr.length;
         int[] dp = new int[n];
-        for (int i = 0; i < n; i++)
-            dp[i] = arr[i];
-
+        dp[0] = arr[0];
         int result = Integer.MIN_VALUE;
         for (int i = 1; i < n; i++) {
             for (int j = 0; j < i; j++) {
