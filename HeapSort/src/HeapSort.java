@@ -9,19 +9,18 @@ import java.util.Arrays;
 
 public class HeapSort {
 
-    private static void swap(int[] array, int a, int b) {
+    private void swap(int[] array, int a, int b) {
         int temp = array[a];
         array[a] = array[b];
         array[b] = temp;
     }
 
     /**
-     *
      * @param array
-     * @param n -> total elements
-     * @param i -> heapify at index i
+     * @param n     -> total elements
+     * @param i     -> heapify at index i
      */
-    private static void heapify(int[] array, int n, int i) {
+    private void heapify(int[] array, int n, int i) {
         int largest = i;
         int left = 2 * i + 1;
         int right = 2 * i + 2;
@@ -37,7 +36,7 @@ public class HeapSort {
         }
     }
 
-    private static void heapSort(int[] array) {
+    public void heapSort(int[] array) {
         int n = array.length;
         for (int i = n / 2 - 1; i >= 0; i--)        // creating a maxHeap from last internal node = n/2 - 1
             heapify(array, n, i);
@@ -50,7 +49,7 @@ public class HeapSort {
 
     public static void main(String[] args) {
         int[] array = {5, 1, 4, 2, 3, 6};
-        heapSort(array);
+        new HeapSort().heapSort(array);
         Arrays.stream(array).mapToObj(i -> i + " ").forEach(System.out::print);
     }
 

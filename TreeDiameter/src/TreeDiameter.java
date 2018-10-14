@@ -21,6 +21,31 @@ public class TreeDiameter {
 
     }
 
+    public void inorderDFS(Node root) {
+        if (root == null)
+            return;
+        inorderDFS(root.left);
+        System.out.print(root.data + " ");
+        inorderDFS(root.right);
+    }
+
+    public int diameter(Node root) {
+        if (root == null)
+            return 0;
+
+        int maxDepthSums = getHeight(root.left) + getHeight(root.right);
+        int leftDiameter = diameter(root.left);
+        int rightDiameter = diameter(root.right);
+        return Math.max(maxDepthSums, Math.max(leftDiameter, rightDiameter));
+    }
+
+    private int getHeight(Node root) {
+        if (root == null)
+            return 0;
+        else
+            return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+    }
+
     public static void main(String[] args) {
         Node root = new Node(1);
         root.left = new Node(2);
@@ -29,33 +54,11 @@ public class TreeDiameter {
         root.left.right = new Node(5);
         root.right.left = new Node(6);
         root.right.right = new Node(7);
-        inorderDFS(root);
+
+        TreeDiameter obj = new TreeDiameter();
+        obj.inorderDFS(root);
         System.out.println();
-        System.out.println(diameter(root));
-    }
-
-    private static void inorderDFS(Node root) {
-        if (root == null)
-            return;
-        inorderDFS(root.left);
-        System.out.print(root.data + " ");
-        inorderDFS(root.right);
-    }
-
-    private static int diameter(Node root) {
-        if (root == null)
-            return 0;
-        int maxDepthSums = getHeight(root.left) + getHeight(root.right);
-        int leftHeight = diameter(root.left);
-        int rightHeight = diameter(root.right);
-        return Math.max(maxDepthSums, Math.max(leftHeight, rightHeight));
-    }
-
-    private static int getHeight(Node root) {
-        if (root == null)
-            return 0;
-        else
-            return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+        System.out.println(obj.diameter(root));
     }
 
 }

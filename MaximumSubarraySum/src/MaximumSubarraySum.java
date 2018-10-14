@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 05 Apr 2018
  * https://www.hackerrank.com/challenges/maxsubarray/problem
  * https://github.com/bibhas-abhishek/projects/tree/master/MaximumSubarraySum
@@ -10,14 +10,7 @@ import java.util.Arrays;
 
 public class MaximumSubarraySum {
 
-    public static void main(String[] args) {
-        int array[] = {-1, -2, -3, -4, -5, -6};
-        for (int i : maxSubarray(array)) {
-            System.out.print(i + " ");
-        }
-    }
-
-    private static int maximumSubarraySum(int[] array) {
+    public int maximumSubarraySum(int[] array) {
         int max = Arrays.stream(array).max().getAsInt();
         if (max < 0)
             return max;
@@ -31,7 +24,8 @@ public class MaximumSubarraySum {
         return maxSumSoFar;
     }
 
-    private static int[] maxSubarray(int[] array) {
+    // Hackerrank
+    public int[] maxSubarray(int[] array) {
         int max = Arrays.stream(array).max().getAsInt();
         if (max < 0)
             return new int[]{max, max};
@@ -50,6 +44,11 @@ public class MaximumSubarraySum {
             maxSubsequenceSum = Math.max(maxSubsequenceSum, maxSubsequenceSumHere);
         }
         return new int[]{maxSubarraySum, maxSubsequenceSum};
+    }
+
+    public static void main(String[] args) {
+        int array[] = {-1, -2, -3, -4, -5, -6};
+        System.out.println(new MaximumSubarraySum().maximumSubarraySum(array));
     }
 
 }

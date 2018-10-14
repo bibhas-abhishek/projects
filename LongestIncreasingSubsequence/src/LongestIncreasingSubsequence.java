@@ -8,7 +8,7 @@
 
 public class LongestIncreasingSubsequence {
 
-    private static int lengthOfLIS(int[] array) {
+    public int longestIncreasingSubsequence(int[] array) {
         int n = array.length;
         if (n == 0 || n == 1)
             return n;
@@ -18,13 +18,11 @@ public class LongestIncreasingSubsequence {
         dp[0] = 1;
         int result = dp[0];
         for (int i = 1; i < n; i++) {
-            int maxVal = 0;
+            dp[i] = 1;
             for (int j = 0; j < i; j++) {
-                if (array[i] > array[j]) {
-                    maxVal = Math.max(maxVal, dp[j]);
-                }
+                if (array[i] > array[j])
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
             }
-            dp[i] = maxVal + 1;
             result = Math.max(result, dp[i]);
         }
         return result;
@@ -32,7 +30,8 @@ public class LongestIncreasingSubsequence {
 
     public static void main(String[] args) {
         int[] array = {3, 4, -1, 0, 6, 2, 3};
-        System.out.println(lengthOfLIS(array));
+        System.out.println(new LongestIncreasingSubsequence().
+                longestIncreasingSubsequence(array));
     }
 
 }

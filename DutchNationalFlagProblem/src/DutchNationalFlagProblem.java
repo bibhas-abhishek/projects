@@ -10,7 +10,7 @@ public class DutchNationalFlagProblem {
 
     public int[] dutchNationalFlagSort(int[] array) {
         int low = 0, mid = 0, high = array.length - 1;
-        // low = first 1. // mid = last 1 + 1. // high = first 2 - 1
+        // low = first 1 // mid = last 1 + 1 // high = first 2 - 1
         while (mid <= high) {
             if (array[mid] == 0) {
                 swap(array, low, mid);

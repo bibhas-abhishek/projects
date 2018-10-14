@@ -1,6 +1,6 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 05 Apr 2018
  * https://leetcode.com/problems/trim-a-binary-search-tree/
  * https://github.com/bibhas-abhishek/projects/tree/master/TrimBST
@@ -20,21 +20,7 @@ public class TrimBST {
 
     }
 
-    public static void main(String[] args) {
-        TreeNode root = new TreeNode(6);
-        root.left = new TreeNode(-13);
-        root.right = new TreeNode(14);
-        root.left.right = new TreeNode(-8);
-        root.right.left = new TreeNode(13);
-        root.right.right = new TreeNode(15);
-        root.right.left.left = new TreeNode(7);
-        inorderDFS(root);
-        root = trimBST(root, -10, 13);
-        System.out.println();
-        inorderDFS(root);
-    }
-
-    private static TreeNode trimBST(TreeNode root, int L, int R) {
+    public TreeNode trimBST(TreeNode root, int L, int R) {
         if (root == null)
             return null;
 
@@ -49,12 +35,28 @@ public class TrimBST {
         return root;
     }
 
-    private static void inorderDFS(TreeNode root) {
+    public void inorderDFS(TreeNode root) {
         if (root == null)
             return;
         inorderDFS(root.left);
         System.out.print(root.val + " ");
         inorderDFS(root.right);
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(6);
+        root.left = new TreeNode(-13);
+        root.right = new TreeNode(14);
+        root.left.right = new TreeNode(-8);
+        root.right.left = new TreeNode(13);
+        root.right.right = new TreeNode(15);
+        root.right.left.left = new TreeNode(7);
+
+        TrimBST obj = new TrimBST();
+        obj.inorderDFS(root);
+        root = obj.trimBST(root, -10, 13);
+        System.out.println();
+        obj.inorderDFS(root);
     }
 
 }
