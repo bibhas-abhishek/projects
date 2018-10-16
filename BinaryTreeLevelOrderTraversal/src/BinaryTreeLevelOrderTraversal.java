@@ -5,11 +5,12 @@ import java.util.Queue;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
- * 16 Oct 2017
- * https://github.com/bibhas-abhishek/projects/tree/master/RecursiveLevelOrderTraversal
+ * bibhas_01@hotmail.com
+ * 16 Oct 2018
+ * https://github.com/bibhas-abhishek/projects/tree/master/BinaryTreeLevelOrderTraversal
  */
-public class RecursiveLevelOrderTraversal {
+
+public class BinaryTreeLevelOrderTraversal {
 
     private static class TreeNode {
 
@@ -25,30 +26,17 @@ public class RecursiveLevelOrderTraversal {
 
     }
 
-    public static void main(String[] args) {
-        TreeNode root = new TreeNode(10);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(3);
-        root.left.left = new TreeNode(7);
-        root.left.right = new TreeNode(8);
-        root.right.left = new TreeNode(12);
-        root.right.right = new TreeNode(15);
-        printLevelOrder(root);
-        System.out.println();
-        printLevelOrderWithQueue(root);
-        System.out.println();
-        System.out.println(levelOrder(root));
-    }
-
-    private static void printLevelOrder(TreeNode root) {
-        for (int i = 0; i <= height(root); i++) {
+    public void printLevelOrder(TreeNode root) {
+        int height = getHeight(root);
+        for (int i = 0; i <= height; i++) {
             printLevel(root, i);
         }
     }
 
-    private static void printLevel(TreeNode root, int level) {
+    private void printLevel(TreeNode root, int level) {
         if (root == null)
             return;
+
         if (level == 0)
             System.out.print(root.val + " ");
         else {
@@ -57,7 +45,7 @@ public class RecursiveLevelOrderTraversal {
         }
     }
 
-    private static void printLevelOrderWithQueue(TreeNode root) {
+    public void printLevelOrderWithQueue(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
@@ -65,19 +53,20 @@ public class RecursiveLevelOrderTraversal {
             TreeNode temp = queue.poll();
             if (temp.left != null)
                 queue.add(temp.left);
+
             if (temp.right != null)
                 queue.add(temp.right);
         }
     }
 
-    private static int height(TreeNode root) {
+    private int getHeight(TreeNode root) {
         if (root == null)
             return -1;
         else
-            return Math.max(height(root.left), height(root.right)) + 1;
+            return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
     }
 
-    private static List<List<Integer>> levelOrder(TreeNode root) {
+    public List<List<Integer>> levelOrder(TreeNode root) {
         Queue<TreeNode> queue = new LinkedList<>();
         List<List<Integer>> result = new ArrayList<>();
         queue.offer(root);
@@ -98,6 +87,23 @@ public class RecursiveLevelOrderTraversal {
             result.add(level);
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(10);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(7);
+        root.left.right = new TreeNode(8);
+        root.right.left = new TreeNode(12);
+        root.right.right = new TreeNode(15);
+
+        BinaryTreeLevelOrderTraversal obj = new BinaryTreeLevelOrderTraversal();
+        obj.printLevelOrder(root);
+        System.out.println();
+        obj.printLevelOrderWithQueue(root);
+        System.out.println();
+        System.out.println(obj.levelOrder(root));
     }
 
 }

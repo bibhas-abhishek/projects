@@ -3,7 +3,7 @@ import java.util.Queue;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 07 May 2018
  * https://leetcode.com/problems/merge-k-sorted-lists/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/MergeKSortedLists
@@ -23,7 +23,29 @@ public class MergeKSortedLists {
 
     }
 
-    private static ListNode merge2Lists(ListNode headA, ListNode headB) {
+    public ListNode mergeKLists2(ListNode[] lists) {
+        if (lists == null || lists.length == 0)
+            return null;
+
+        Queue<ListNode> minHeap = new PriorityQueue<>((a, b) -> a.val - b.val);
+        ListNode dummy = new ListNode(Integer.MIN_VALUE);
+        ListNode tail = dummy;
+        for (ListNode list : lists) {
+            if (list != null)
+                minHeap.offer(list);
+        }
+
+        while (minHeap.size() > 0) {
+            tail.next = minHeap.poll();
+            tail = tail.next;
+
+            if (tail.next != null)
+                minHeap.offer(tail.next);
+        }
+        return dummy.next;
+    }
+
+    private ListNode merge2Lists(ListNode headA, ListNode headB) {
         if (headA == null)
             return headB;
 
@@ -39,7 +61,7 @@ public class MergeKSortedLists {
         }
     }
 
-    private static ListNode mergeKLists(ListNode[] lists, int start, int end) {
+    private ListNode mergeKLists(ListNode[] lists, int start, int end) {
         if (start > end)
             return null;
 
@@ -52,31 +74,11 @@ public class MergeKSortedLists {
         return merge2Lists(headA, headB);
     }
 
-    private static ListNode mergeKLists(ListNode[] lists) {
+    public ListNode mergeKLists(ListNode[] lists) {
         if (lists == null || lists.length == 0)
             return null;
+
         return mergeKLists(lists, 0, lists.length - 1);
-    }
-
-    private static ListNode mergeKLists2(ListNode[] lists) {
-        if (lists == null || lists.length == 0)
-            return null;
-
-        Queue<ListNode> minHeap = new PriorityQueue<>((a, b) -> a.val - b.val);
-        ListNode dummy = new ListNode(Integer.MIN_VALUE);
-        ListNode tail = dummy;
-        for (ListNode list : lists)
-            if (list != null)
-                minHeap.offer(list);
-
-        while (minHeap.size() > 0) {
-            tail.next = minHeap.poll();
-            tail = tail.next;
-
-            if (tail.next != null)
-                minHeap.offer(tail.next);
-        }
-        return dummy.next;
     }
 
 }

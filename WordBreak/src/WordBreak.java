@@ -13,7 +13,7 @@ public class WordBreak {
 
     public boolean wordBreak(String s, List<String> wordDict) {
         boolean[] memo = new boolean[s.length() + 1];
-        memo[0] = true;
+        memo[0] = true; // empty string is contained in the dictionary
 
         // memo[i] means whether string(0,i) -> i exclusive can be segmented from the dictionary
         for (int i = 1; i <= s.length(); i++) {

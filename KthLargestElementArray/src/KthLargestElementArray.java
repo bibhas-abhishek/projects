@@ -9,41 +9,42 @@
 
 public class KthLargestElementArray {
 
-    private static int findKthLargest(int[] nums, int k) {
-        return findKthLargest(nums, 0, nums.length - 1, nums.length - k);
+    public int findKthLargest(int[] arr, int k) {
+        return findKthLargestUtil(arr, 0, arr.length - 1, arr.length - k);
     }
 
-    private static int findKthLargest(int[] A, int start, int end, int k) {
+    private int findKthLargestUtil(int[] arr, int start, int end, int k) {
         if (start > end)
             return -1;
 
-        int pivot = A[end];
+        int pivot = arr[end];
         int pIndex = start;
         for (int i = start; i < end; i++) {
-            if (A[i] <= pivot) {
-                swap(A, i, pIndex);
+            if (arr[i] <= pivot) {
+                swap(arr, i, pIndex);
                 pIndex += 1;
             }
         }
-        swap(A, pIndex, end);
 
+        swap(arr, pIndex, end);
         if (pIndex == k)
-            return A[pIndex];
+            return arr[pIndex];
         else if (k > pIndex)
-            return findKthLargest(A, pIndex + 1, end, k);
+            return findKthLargestUtil(arr, pIndex + 1, end, k);
         else
-            return findKthLargest(A, start, pIndex - 1, k);
+            return findKthLargestUtil(arr, start, pIndex - 1, k);
     }
 
-    private static void swap(int[] A, int a0, int a1) {
+    private void swap(int[] A, int a0, int a1) {
         int temp = A[a0];
         A[a0] = A[a1];
         A[a1] = temp;
     }
 
     public static void main(String[] args) {
-        int[] nums = {3, 2, 1, 5, 6, 4};
-        System.out.println(findKthLargest(nums, 2));
+        int[] arr = {3, 2, 1, 5, 6, 4};
+        KthLargestElementArray obj = new KthLargestElementArray();
+        System.out.println(obj.findKthLargest(arr, 2));
     }
 
 }

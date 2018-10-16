@@ -5,6 +5,7 @@
  * https://leetcode.com/problems/diameter-of-binary-tree/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/TreeDiameter
  **/
+
 public class TreeDiameter {
 
     private static class Node {
@@ -24,6 +25,7 @@ public class TreeDiameter {
     public void inorderDFS(Node root) {
         if (root == null)
             return;
+
         inorderDFS(root.left);
         System.out.print(root.data + " ");
         inorderDFS(root.right);
@@ -42,8 +44,8 @@ public class TreeDiameter {
     private int getHeight(Node root) {
         if (root == null)
             return 0;
-        else
-            return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+
+        return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
     }
 
     public static void main(String[] args) {

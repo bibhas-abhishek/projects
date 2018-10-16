@@ -1,6 +1,6 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 21 Apr 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/MergeSortLinkedList
  **/
@@ -19,20 +19,7 @@ public class MergeSortLinkedList {
 
     }
 
-    public static void main(String[] args) {
-        ListNode head = null;
-        head = insert(head, 4);
-        head = insert(head, -1);
-        head = insert(head, 0);
-        head = insert(head, 1);
-        head = insert(head, 3);
-        head = insert(head, 2);
-        printList(head);
-        head = mergeSort(head);
-        printList(head);
-    }
-
-    private static void printList(ListNode head) {
+    public void printList(ListNode head) {
         ListNode temp = head;
         while (temp != null) {
             System.out.print(temp.val + (temp.next != null ? "->" : ""));
@@ -41,19 +28,20 @@ public class MergeSortLinkedList {
         System.out.println();
     }
 
-    private static ListNode insert(ListNode head, int data) {
+    public ListNode insert(ListNode head, int data) {
         if (head == null)
             head = new ListNode(data);
         else {
             ListNode temp = head;
             while (temp.next != null)
                 temp = temp.next;
+
             temp.next = new ListNode(data);
         }
         return head;
     }
 
-    private static ListNode findMiddle(ListNode head) {
+    private ListNode findMiddle(ListNode head) {
         if (head == null)
             return head;
 
@@ -66,14 +54,14 @@ public class MergeSortLinkedList {
         return slowPtr;
     }
 
-    private static ListNode mergeLists(ListNode headA, ListNode headB) {
+    private ListNode mergeLists(ListNode headA, ListNode headB) {
         if (headA == null)
             return headB;
 
         if (headB == null)
             return headA;
 
-        if (headA.val < headB.val) {
+        if (headA.val <= headB.val) {
             headA.next = mergeLists(headA.next, headB);
             return headA;
         } else {
@@ -82,19 +70,31 @@ public class MergeSortLinkedList {
         }
     }
 
-    private static ListNode mergeSort(ListNode head) {
+    public ListNode mergeSort(ListNode head) {
         if (head == null || head.next == null)
             return head;
 
         ListNode middle = findMiddle(head);
         ListNode middleNext = middle.next;
-
         middle.next = null;     // break list from middle
-
         ListNode leftList = mergeSort(head);
         ListNode rightList = mergeSort(middleNext);
-
         return mergeLists(leftList, rightList);
+    }
+
+    public static void main(String[] args) {
+        MergeSortLinkedList obj = new MergeSortLinkedList();
+        ListNode head = null;
+        head = obj.insert(head, 4);
+        head = obj.insert(head, -1);
+        head = obj.insert(head, 0);
+        head = obj.insert(head, 1);
+        head = obj.insert(head, 3);
+        head = obj.insert(head, 2);
+
+        obj.printList(head);
+        head = obj.mergeSort(head);
+        obj.printList(head);
     }
 
 }
