@@ -8,14 +8,12 @@
 
 public class RatMaze {
 
-    private static boolean solveMaze(int[][] maze, int[][] result) {
+    private boolean isSafe(int[][] maze, int x, int y) {
         int n = maze.length;
-        if (!solveMazeUtil(maze, 0, 0, result, n))
-            return false;
-        return true;
+        return x >= 0 && x < n && y >= 0 && y < n && maze[x][y] == 1;
     }
 
-    private static boolean solveMazeUtil(int[][] maze, int x, int y, int[][] result, int n) {
+    private boolean solveMazeUtil(int[][] maze, int x, int y, int[][] result, int n) {
         if (x == n - 1 && y == n - 1) {
             result[x][y] = 1;
             return true;
@@ -32,12 +30,14 @@ public class RatMaze {
         return false;
     }
 
-    private static boolean isSafe(int[][] maze, int x, int y) {
+    public boolean solveMaze(int[][] maze, int[][] result) {
         int n = maze.length;
-        return x >= 0 && x < n && y >= 0 && y < n && maze[x][y] == 1;
+        if (!solveMazeUtil(maze, 0, 0, result, n))
+            return false;
+        return true;
     }
 
-    private static void printResult(int[][] result) {
+    public void printResult(int[][] result) {
         for (int i = 0; i < result.length; i++) {
             for (int j = 0; j < result[0].length; j++)
                 System.out.print(result[i][j] + " ");
@@ -46,6 +46,7 @@ public class RatMaze {
     }
 
     public static void main(String args[]) {
+        RatMaze obj = new RatMaze();
         int maze[][] = {{1, 0, 0, 0},
                 {1, 1, 0, 1},
                 {0, 1, 0, 0},
@@ -54,8 +55,9 @@ public class RatMaze {
                 {0, 0, 0, 0},
                 {0, 0, 0, 0},
                 {0, 0, 0, 0}};
-        solveMaze(maze, result);
-        printResult(result);
+
+        obj.solveMaze(maze, result);
+        obj.printResult(result);
     }
 
 }

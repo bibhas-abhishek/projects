@@ -12,7 +12,7 @@ import java.util.TreeMap;
 
 public class StringPermutation {
 
-    private static List<String> permute(char[] input) {
+    public List<String> permute(char[] input) {
         Map<Character, Integer> treeMap = new TreeMap<>();
         for (char ch : input) {
             treeMap.compute(ch, (key, val) -> {
@@ -38,7 +38,7 @@ public class StringPermutation {
         return resultList;
     }
 
-    private static void permuteString(char[] str, int[] count, char[] result, int index, List<String> resultList) {
+    private void permuteString(char[] str, int[] count, char[] result, int index, List<String> resultList) {
         if (index == result.length) {
             resultList.add(new String(result));
             return;
@@ -57,7 +57,9 @@ public class StringPermutation {
 
     public static void main(String args[]) {
         String input = "AABC";
-        permute(input.toCharArray()).stream().map(str -> str + " ").forEach(System.out::print);
+        StringPermutation obj = new StringPermutation();
+        for (String str : obj.permute(input.toCharArray()))
+            System.out.print(str + " ");
     }
 
 }

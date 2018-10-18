@@ -5,7 +5,7 @@ import java.util.Random;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 02 Apr 2018
  * https://www.hackerrank.com/challenges/find-the-running-median/problem
  * https://leetcode.com/problems/find-median-from-data-stream/description/
@@ -14,27 +14,15 @@ import java.util.Random;
 
 public class RunningMedian {
 
-    private static Queue<Integer> minHeap = new PriorityQueue<>();
-    private static Queue<Integer> maxHeap = new PriorityQueue<>(new Comparator<Integer>() {
-        @Override
-        public int compare(Integer o1, Integer o2) {
-            return o2 - o1;
-        }
-    });
+    private Queue<Integer> minHeap = new PriorityQueue<>();
+    private Queue<Integer> maxHeap = new PriorityQueue<>((o1, o2) -> o2 - o1);
 
-    public static void main(String[] args) {
-        for (int i = 0; i < 1000; i++)
-            addNum(getRandomNumberInRange(0, 1000));
-
-        System.out.print(findMedian());
-    }
-
-    private static int getRandomNumberInRange(int min, int max) {
+    public int getRandomNumberInRange(int min, int max) {
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
     }
 
-    private static void addNum(int num) {
+    public void addNum(int num) {
         if (maxHeap.isEmpty())
             maxHeap.add(num);
         else if (maxHeap.size() == minHeap.size()) {
@@ -52,16 +40,24 @@ public class RunningMedian {
                 minHeap.add(maxHeap.remove());
             }
         }
-        // maxHeap will never be smaller than minHeap
+        // maxHeap >= minHeap
     }
 
-    private static double findMedian() {
+    public double findMedian() {
         if (maxHeap.isEmpty())
             return -1;
         else if (maxHeap.size() == minHeap.size())
             return (minHeap.peek() + maxHeap.peek()) / 2.0;
         else
             return maxHeap.peek();
+    }
+
+    public static void main(String[] args) {
+        RunningMedian obj = new RunningMedian();
+        for (int i = 0; i < 1000; i++)
+            obj.addNum(obj.getRandomNumberInRange(0, 1000));
+
+        System.out.print(obj.findMedian());
     }
 
 }

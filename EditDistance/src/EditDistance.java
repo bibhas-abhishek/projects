@@ -10,11 +10,11 @@ import java.util.Map;
 
 public class EditDistance {
 
-    private static int minDistanceTopDown(String word1, String word2) {
+    public int minDistanceTopDown(String word1, String word2) {
         return minDistanceTopDown(word1, word2, 0, 0, new HashMap<>());
     }
 
-    private static int minDistanceTopDown(String word1, String word2, int index1, int index2, Map<String, Integer> memo) {
+    private int minDistanceTopDown(String word1, String word2, int index1, int index2, Map<String, Integer> memo) {
         if (index1 == word1.length())
             return word2.length() - index2;
 
@@ -28,16 +28,16 @@ public class EditDistance {
         int result;
         if (word1.charAt(index1) == word2.charAt(index2))
             result = minDistanceTopDown(word1, word2, index1 + 1, index2 + 1, memo);
-        else
+        else {
             result = 1 + Math.min(minDistanceTopDown(word1, word2, index1 + 1, index2 + 1, memo),  // replace
                     Math.min(minDistanceTopDown(word1, word2, index1 + 1, index2, memo),                  // delete from word1
                             minDistanceTopDown(word1, word2, index1, index2 + 1, memo)));                 // add to word1
-
+        }
         memo.put(key, result);
         return result;
     }
 
-    private static int minDistanceBottomUp(String word1, String word2) {
+    public int minDistanceBottomUp(String word1, String word2) {
         int[][] dp = new int[word1.length() + 1][word2.length() + 1];
         for (int i = 0; i < dp.length; i++)
             dp[i][0] = i;
@@ -57,8 +57,9 @@ public class EditDistance {
     }
 
     public static void main(String[] args) {
-        System.out.println(minDistanceTopDown("sunday", "saturday"));
-        System.out.println(minDistanceBottomUp("sunday", "saturday"));
+        EditDistance obj = new EditDistance();
+        System.out.println(obj.minDistanceTopDown("sunday", "saturday"));
+        System.out.println(obj.minDistanceBottomUp("sunday", "saturday"));
     }
 
 }
