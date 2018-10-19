@@ -1,33 +1,40 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 27 Apr 2018
+ * https://leetcode.com/problems/longest-palindromic-substring/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/LongestPalindromicSubstring
  **/
 
 public class LongestPalindromicSubstring {
 
-    private static int longestPalindromicSubstring1(String str) {
+    public int longestPalindromicSubstring(String str) {
         int n = str.length();
         boolean[][] dp = new boolean[n][n];
+        int start = 0;
         for (int i = 0; i < n; i++)
-            dp[i][i] = true;
+            dp[i][i] = true; // -> substring[i...j] of length 1 is a palindrome
 
-        int length = 0;
-        for (int k = 2; k <= n; k++) {
+        int maxLength = 1;
+        for (int k = 2; k <= n; k++) { // k -> result
             for (int i = 0; i <= n - k; i++) { // start index
                 int j = i + k - 1;
                 if (str.charAt(i) == str.charAt(j) && (k <= 2 || dp[i + 1][j - 1])) {
                     dp[i][j] = true;
-                    length = Math.max(length, k);
+                    if (k > maxLength) {
+                        start = i;
+                        maxLength = k;
+                    }
                 }
             }
         }
-        return length;
+        System.out.println(str.substring(start, start + maxLength));
+        return maxLength;
     }
 
     public static void main(String[] args) {
-        System.out.println(longestPalindromicSubstring1("forgeeksskeegfor"));
+        System.out.println(new LongestPalindromicSubstring().
+                longestPalindromicSubstring("forgeeksskeegfor"));
     }
 
 }

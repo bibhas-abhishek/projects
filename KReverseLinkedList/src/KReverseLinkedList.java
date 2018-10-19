@@ -1,3 +1,10 @@
+/**
+ * Bibhas Abhishek
+ * bibhas_01@hotmail.com
+ * 19 Oct 2018
+ * https://github.com/bibhas-abhishek/projects/tree/master/KReverseLinkedList
+ */
+
 public class KReverseLinkedList {
 
     private static class Node {
@@ -12,20 +19,7 @@ public class KReverseLinkedList {
 
     }
 
-    public static void main(String[] args) {
-        Node head = null;
-        head = insert(head, 1);
-        head = insert(head, 2);
-        head = insert(head, 3);
-        head = insert(head, 4);
-        head = insert(head, 5);
-        head = insert(head, 6);
-        printList(head);
-        head = KReverse(head, 3);
-        printList(head);
-    }
-
-    private static void printList(Node head) {
+    public void printList(Node head) {
         Node temp = head;
         while (temp != null) {
             System.out.print(temp.data + (temp.next != null ? "->" : ""));
@@ -34,7 +28,7 @@ public class KReverseLinkedList {
         System.out.println();
     }
 
-    private static Node insert(Node head, int data) {
+    public Node insert(Node head, int data) {
         if (head == null)
             head = new Node(data);
         else {
@@ -43,14 +37,13 @@ public class KReverseLinkedList {
                 temp = temp.next;
             temp.next = new Node(data);
         }
-
         return head;
     }
 
-    private static Node reverse(Node head) {
+    public Node reverse(Node head) {
         Node currentNode = head;
         Node prevNode = null;
-        Node nextNode = null;
+        Node nextNode;
         while (currentNode != null) {
             nextNode = currentNode.next;
             currentNode.next = prevNode;
@@ -61,7 +54,7 @@ public class KReverseLinkedList {
         return head;
     }
 
-    private static Node KReverse(Node head, int k) {
+    public Node KReverse(Node head, int k) {
         Node currentNode = head;
         Node prevNode = null;
         Node nextNode = null;
@@ -76,6 +69,20 @@ public class KReverseLinkedList {
         if (nextNode != null)
             head.next = KReverse(nextNode, k);
         return prevNode;
+    }
+
+    public static void main(String[] args) {
+        KReverseLinkedList obj = new KReverseLinkedList();
+        Node head = null;
+        head = obj.insert(head, 1);
+        head = obj.insert(head, 2);
+        head = obj.insert(head, 3);
+        head = obj.insert(head, 4);
+        head = obj.insert(head, 5);
+        head = obj.insert(head, 6);
+        obj.printList(head);
+        head = obj.KReverse(head, 3);
+        obj.printList(head);
     }
 
 }

@@ -3,7 +3,7 @@ import java.util.Set;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 21 Apr 2018
  * https://leetcode.com/problems/longest-palindrome/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/LongestPalindromeLength
@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class LongestPalindromeLength {
 
-    private static int longestPalindrome(String s) {
+    public int longestPalindrome(String s) {
         Set<Character> hashSet = new HashSet<>();
         int palindromeLength = 0;
         for (char ch : s.toCharArray()) {
@@ -30,7 +30,7 @@ public class LongestPalindromeLength {
     }
 
     public static void main(String[] args) {
-        System.out.println(longestPalindrome("abccccdd"));
+        System.out.println(new LongestPalindromeLength().longestPalindrome("abccccdd"));
     }
 
 }
