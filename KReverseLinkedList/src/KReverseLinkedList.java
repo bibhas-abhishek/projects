@@ -50,8 +50,7 @@ public class KReverseLinkedList {
             prevNode = currentNode;
             currentNode = nextNode;
         }
-        head = prevNode;
-        return head;
+        return prevNode;
     }
 
     public Node KReverse(Node head, int k) {
@@ -66,8 +65,10 @@ public class KReverseLinkedList {
             currentNode = nextNode;
             count--;
         }
+
         if (nextNode != null)
             head.next = KReverse(nextNode, k);
+
         return prevNode;
     }
 
@@ -80,6 +81,7 @@ public class KReverseLinkedList {
         head = obj.insert(head, 4);
         head = obj.insert(head, 5);
         head = obj.insert(head, 6);
+
         obj.printList(head);
         head = obj.KReverse(head, 3);
         obj.printList(head);
