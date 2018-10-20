@@ -1,12 +1,11 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
- * 06 Apr 2018
- * https://www.hackerrank.com/challenges/self-balancing-tree/problem
- * https://github.com/bibhas-abhishek/projects/tree/master/AVLTreeOperations
- **/
+ * bibhas_01@hotmail.com
+ * 20 Oct 2018
+ * https://github.com/bibhas-abhishek/projects/tree/master/AVLTree
+ */
 
-public class AVLTreeOperations {
+public class AVLTree {
 
     private static class Node {
 
@@ -22,71 +21,50 @@ public class AVLTreeOperations {
 
     }
 
-    public static void main(String[] args) {
-        Node root = null;
-        root = insertNode(root, 9);
-        root = insertNode(root, 5);
-        root = insertNode(root, 10);
-        root = insertNode(root, 0);
-        root = insertNode(root, 6);
-        root = insertNode(root, 11);
-        root = insertNode(root, -1);
-        root = insertNode(root, 1);
-        root = insertNode(root, 2);
-        preorderDFS(root);
-        System.out.println();
-        root = deleteNode(root, 10);
-        preorderDFS(root);
-    }
-
-    private static void preorderDFS(Node root) {
+    public void preorderTraversal(Node root) {
         if (root == null)
             return;
 
         System.out.print(root.val + " ");
-        preorderDFS(root.left);
-        preorderDFS(root.right);
+        preorderTraversal(root.left);
+        preorderTraversal(root.right);
     }
 
-    private static int getHeight(Node root) {
+    private int getHeight(Node root) {
         if (root == null)
             return -1;
-        else
-            return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+
+        return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
     }
 
-    private static int getBalanceFactor(Node root) {
+    private int getBalanceFactor(Node root) {
         if (root == null)
             return 0;
-        else
-            return getHeight(root.left) - getHeight(root.right);
+
+        return getHeight(root.left) - getHeight(root.right);
     }
 
-    private static Node leftRotate(Node l2) {
-        Node l1 = l2.right;
-        Node subTree = l1.left;
-        l1.left = l2;
-        l2.right = subTree;
-
-        l1.ht = getHeight(l1);
-        l2.ht = getHeight(l2);
-
-        return l1; // new root
+    private Node rightRotate(Node z) {
+        Node y = z.left;
+        Node temp = y.right;
+        y.right = z;
+        z.left = temp;
+        y.ht = getHeight(y);
+        z.ht = getHeight(z);
+        return y;
     }
 
-    private static Node rightRotate(Node l2) {
-        Node l1 = l2.left;
-        Node subTree = l1.right;
-        l1.right = l2;
-        l2.left = subTree;
-
-        l1.ht = getHeight(l1);
-        l2.ht = getHeight(l2);
-
-        return l1; // new root
+    private Node leftRotate(Node z) {
+        Node y = z.right;
+        Node temp = y.left;
+        y.left = z;
+        z.right = temp;
+        y.ht = getHeight(y);
+        z.ht = getHeight(z);
+        return y;
     }
 
-    private static Node insertNode(Node root, int key) {
+    public Node insertNode(Node root, int key) {
         if (root == null)
             return (new Node(key));
 
@@ -98,7 +76,6 @@ public class AVLTreeOperations {
             return root;
 
         root.ht = getHeight(root);
-
         int balanceFactor = getBalanceFactor(root);
 
         // RR case. Left Rotate only
@@ -106,34 +83,33 @@ public class AVLTreeOperations {
             return leftRotate(root);
         }
 
-        //RL case. Right rotate. Then left rotate.
+        // RL case. Right rotate. Then left rotate
         if (balanceFactor < -1 && key < root.right.val) {
             root.right = rightRotate(root.right);
             return leftRotate(root);
         }
 
-        //LL case. Right rotate only
+        // LL case. Right rotate only
         if (balanceFactor > 1 && key < root.left.val) {
             return rightRotate(root);
         }
 
-        //LR case. Left Rotate. Then right rotate.
+        // LR case. Left Rotate. Then right rotate
         if (balanceFactor > 1 && key > root.left.val) {
             root.left = leftRotate(root.left);
             return rightRotate(root);
         }
-
         return root;
     }
 
-    private static Node findMin(Node root) {
+    private Node findMin(Node root) {
         while (root.left != null)
             root = root.left;
 
         return root;
     }
 
-    private static Node deleteNode(Node root, int key) {
+    public Node deleteNode(Node root, int key) {
         if (root == null)
             return null;
 
@@ -163,7 +139,6 @@ public class AVLTreeOperations {
             return root;
 
         root.ht = getHeight(root);
-
         int balanceFactor = getBalanceFactor(root);
 
         // RR case. Left Rotate only
@@ -187,8 +162,26 @@ public class AVLTreeOperations {
             root.left = leftRotate(root.left);
             return rightRotate(root);
         }
-
         return root;
+    }
+
+    public static void main(String[] args) {
+        AVLTree obj = new AVLTree();
+        Node root = null;
+        root = obj.insertNode(root, 9);
+        root = obj.insertNode(root, 5);
+        root = obj.insertNode(root, 10);
+        root = obj.insertNode(root, 0);
+        root = obj.insertNode(root, 6);
+        root = obj.insertNode(root, 11);
+        root = obj.insertNode(root, -1);
+        root = obj.insertNode(root, 1);
+        root = obj.insertNode(root, 2);
+
+        obj.preorderTraversal(root);
+        System.out.println();
+        root = obj.deleteNode(root, 10);
+        obj.preorderTraversal(root);
     }
 
 }

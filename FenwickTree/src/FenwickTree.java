@@ -26,8 +26,8 @@ public class FenwickTree {
     }
 
     public int[] createBinaryIndexedTree(int[] input) {
-        int[] binaryIndexedTree = new int[input.length + 1];
-        for (int i = 1; i <= input.length; i++) // BIT is 1 shifted to the right. index 0 in tree is a dummy.
+        int[] binaryIndexedTree = new int[input.length + 1]; //  index 0 in tree is a dummy
+        for (int i = 1; i <= input.length; i++) // BIT is 1 shifted to the right
             createBinaryIndexedTreeUtil(binaryIndexedTree, input[i - 1], i); // i is the index in BIT
 
         return binaryIndexedTree;
