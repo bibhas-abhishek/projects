@@ -9,6 +9,7 @@
 public class MedianSortedArrays {
 
     public double findMedianSortedArrays(int[] array1, int[] array2) {
+        // arr1.length < arr2.length -> assumption
         if (array1.length > array2.length)
             return findMedianSortedArrays(array2, array1);
 
@@ -19,8 +20,9 @@ public class MedianSortedArrays {
         while (low <= high) {
             int partitionX = (low + high) / 2;
             int partitionY = (x + y + 1) / 2 - partitionX;
-            int maxLeftX = (partitionX == 0) ? Integer.MIN_VALUE : array1[partitionX - 1]; // Use MIN for maxleft if left part is empty
-            int minRightX = (partitionX == x) ? Integer.MAX_VALUE : array1[partitionX]; // Use MAX for minRight if right part equals input length
+            // left.size >= right.size
+            int maxLeftX = (partitionX == 0) ? Integer.MIN_VALUE : array1[partitionX - 1];
+            int minRightX = (partitionX == x) ? Integer.MAX_VALUE : array1[partitionX];
             int maxLeftY = (partitionY == 0) ? Integer.MIN_VALUE : array2[partitionY - 1];
             int minRightY = (partitionY == y) ? Integer.MAX_VALUE : array2[partitionY];
             if (maxLeftX <= minRightY && maxLeftY <= minRightX) {
