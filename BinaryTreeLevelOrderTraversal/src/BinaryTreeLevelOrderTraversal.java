@@ -7,6 +7,7 @@ import java.util.Queue;
  * Bibhas Abhishek
  * bibhas_01@hotmail.com
  * 16 Oct 2018
+ * https://leetcode.com/problems/binary-tree-level-order-traversal-ii/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/BinaryTreeLevelOrderTraversal
  */
 
@@ -89,6 +90,25 @@ public class BinaryTreeLevelOrderTraversal {
         return result;
     }
 
+    public List<List<Integer>> reverseLevelOrderDFS(TreeNode root) {
+        List<List<Integer>> result = new LinkedList<>();
+        addLevel(result, root, 0);
+        return result;
+    }
+
+    private void addLevel(List<List<Integer>> result, TreeNode root, int level) {
+        if (root == null)
+            return;
+
+        if (result.size() == level)
+            result.add(0, new LinkedList<>());
+
+        addLevel(result, root.left, level + 1);
+        addLevel(result, root.right, level + 1);
+        List<Integer> list = result.get(result.size() - level - 1);
+        list.add(root.val);
+    }
+
     public static void main(String[] args) {
         TreeNode root = new TreeNode(10);
         root.left = new TreeNode(2);
@@ -104,6 +124,7 @@ public class BinaryTreeLevelOrderTraversal {
         obj.printLevelOrderWithQueue(root);
         System.out.println();
         System.out.println(obj.levelOrder(root));
+        System.out.println(obj.reverseLevelOrderDFS(root));
     }
 
 }

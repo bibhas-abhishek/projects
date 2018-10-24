@@ -19,23 +19,9 @@ public class MorrisTraversal {
 
     }
 
-    private static int count = 0;
+    private int count = 0;
 
-    public static void main(String[] args) {
-        Node root = new Node(4);
-        root.left = new Node(2);
-        root.right = new Node(6);
-        root.left.left = new Node(1);
-        root.left.right = new Node(3);
-        root.right.left = new Node(5);
-        root.right.right = new Node(7);
-        morrisTraversalInorder(root);
-        /*System.out.println();
-        System.out.println(count);
-        System.out.println(findMedian(root));*/
-    }
-
-    private static void morrisTraversalInorder(Node root) {
+    public void morrisTraversalInorder(Node root) {
         Node current = root;
         while (current != null) {
             if (current.left == null) {
@@ -59,15 +45,15 @@ public class MorrisTraversal {
         }
     }
 
-    private static boolean isOdd(int currentCount) {
+    private boolean isOdd(int currentCount) {
         return count % 2 != 0 && currentCount == (count + 1) / 2;
     }
 
-    private static boolean isEven(int currentCount) {
+    private boolean isEven(int currentCount) {
         return count % 2 == 0 && currentCount == count / 2;
     }
 
-    private static double findMedian(Node root) {
+    public double findMedian(Node root) {
         Node current = root;
         Node previous = root;
         int count = 0;
@@ -102,6 +88,20 @@ public class MorrisTraversal {
             }
         }
         return -1;
+    }
+
+    public static void main(String[] args) {
+        Node root = new Node(4);
+        root.left = new Node(2);
+        root.right = new Node(6);
+        root.left.left = new Node(1);
+        root.left.right = new Node(3);
+        root.right.left = new Node(5);
+        root.right.right = new Node(7);
+        new MorrisTraversal().morrisTraversalInorder(root);
+        /*System.out.println();
+        System.out.println(count);
+        System.out.println(findMedian(root));*/
     }
 
 }

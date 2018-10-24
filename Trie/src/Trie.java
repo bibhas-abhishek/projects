@@ -4,6 +4,8 @@ import java.util.*;
  * Bibhas Abhishek
  * bibhas_01@hotmail.com
  * 02 Oct 2018
+ * https://leetcode.com/problems/implement-trie-prefix-tree/description/
+ * https://leetcode.com/problems/add-and-search-word-data-structure-design/description/
  * https://www.hackerrank.com/challenges/contacts/problem
  * https://github.com/bibhas-abhishek/projects/tree/master/Trie
  */
@@ -25,53 +27,52 @@ public class Trie {
 
     private TrieNode root = new TrieNode();
 
-    private void insertWord(String word) {
-        insertWord(root, word, 0);
+    public void insert(String word) {
+        insert(root, word, 0);
     }
 
-    private void insertWord(TrieNode root, String word, int index) {
+    private void insert(TrieNode node, String word, int index) {
         if (index == word.length()) {
-            root.endOfWord = true;
+            node.endOfWord = true;
             return;
         }
 
         char ch = word.charAt(index);
-        TrieNode childNode = root.children.get(ch);
+        TrieNode childNode = node.children.get(ch);
         if (childNode == null) {
             childNode = new TrieNode();
-            root.children.put(ch, childNode);
+            node.children.put(ch, childNode);
         }
-
         childNode.visited += 1;
-        insertWord(childNode, word, index + 1);
+        insert(childNode, word, index + 1);
     }
 
-    private boolean searchComplete(String word) {
-        return searchComplete(root, word, 0);
+    public boolean search(String word) {
+        return search(root, word, 0);
     }
 
-    private boolean searchComplete(TrieNode currentNode, String word, int index) {
+    private boolean search(TrieNode node, String word, int index) {
         if (index == word.length())
-            return currentNode.endOfWord;
+            return node.endOfWord;
 
         char ch = word.charAt(index);
-        TrieNode childNode = currentNode.children.get(ch);
+        TrieNode childNode = node.children.get(ch);
         if (childNode == null)
             return false;
 
-        return searchComplete(childNode, word, index + 1);
+        return search(childNode, word, index + 1);
     }
 
-    private int countPartial(String word) {
+    public int countPartial(String word) {
         return countPartial(root, word, 0);
     }
 
-    private int countPartial(TrieNode current, String word, int index) {
-        if (current == null)
+    private int countPartial(TrieNode node, String word, int index) {
+        if (node == null)
             return 0;
 
         char ch = word.charAt(index);
-        TrieNode childNode = current.children.get(ch);
+        TrieNode childNode = node.children.get(ch);
         if (childNode == null)
             return 0;
 
@@ -81,28 +82,67 @@ public class Trie {
         return countPartial(childNode, word, index + 1);
     }
 
-    private void deleteWord(String word) {
-        deleteWord(root, word, 0);
+    public boolean startsWith(String prefix) {
+        return startsWith(root, prefix, 0);
     }
 
-    private boolean deleteWord(TrieNode root, String word, int index) {
+    private boolean startsWith(TrieNode node, String word, int index) {
+        if (index == word.length())
+            return true;
+
+        char ch = word.charAt(index);
+        TrieNode child = node.children.get(ch);
+        if (child == null)
+            return false;
+
+        return startsWith(child, word, index + 1);
+    }
+
+    public boolean searchPattern(String word) {
+        return searchPattern(root, word, 0);
+    }
+
+    private boolean searchPattern(TrieNode node, String word, int index) {
+        if (index == word.length())
+            return node.endOfWord;
+
+        char ch = word.charAt(index);
+        TrieNode child = node.children.get(ch);
+        if (word.charAt(index) == '.') {
+            for (Character c : node.children.keySet()) {
+                if (searchPattern(node.children.get(c), word, index + 1))
+                    return true;
+            }
+        }
+
+        if (child == null)
+            return false;
+
+        return searchPattern(child, word, index + 1);
+    }
+
+    public void delete(String word) {
+        delete(root, word, 0);
+    }
+
+    private boolean delete(TrieNode node, String word, int index) {
         if (index == word.length()) {
-            if (!root.endOfWord) {
+            if (!node.endOfWord) {
                 return false;
             }
-            root.endOfWord = false;
-            return root.children.size() == 0;
+            node.endOfWord = false;
+            return node.children.size() == 0;
         }
 
         char ch = word.charAt(index);
-        TrieNode childNode = root.children.get(ch);
+        TrieNode childNode = node.children.get(ch);
         if (childNode == null) {
             return false;
         }
 
-        if (deleteWord(childNode, word, index + 1)) {
-            root.children.remove(ch);
-            return root.children.size() == 0;
+        if (delete(childNode, word, index + 1)) {
+            node.children.remove(ch);
+            return node.children.size() == 0;
         }
         return false;
     }
@@ -115,7 +155,7 @@ public class Trie {
             String value = query[queries[0].length - 1];
             switch (operation) {
                 case "add":
-                    insertWord(value);
+                    insert(value);
                     break;
                 case "find":
                     result.add(countPartial(value));
@@ -137,18 +177,20 @@ public class Trie {
 
         Trie trie = new Trie();
 
-        trie.insertWord("hack");
-        trie.insertWord("hacker");
-        trie.insertWord("hackerrank");
-        trie.insertWord("hacked");
+        trie.insert("hack");
+        /*trie.insert("hacker");
+        trie.insert("hackerrank");
+        trie.insert("hacked");*/
 
-        System.out.println("hack: " + trie.searchComplete("hack"));
-        System.out.println("hacker: " + trie.searchComplete("hacker"));
-        System.out.println("hac: " + trie.searchComplete("hac"));
-        System.out.println("hacked: " + trie.searchComplete("hacked"));
+        System.out.println("hack: " + trie.search("hack"));
+        System.out.println("hacker: " + trie.search("hacker"));
+        System.out.println("hac: " + trie.search("hac"));
+        System.out.println("hacked: " + trie.search("hacked"));
 
-        trie.deleteWord("hacker");
-        System.out.println("hacker: " + trie.searchComplete("hacker"));
+        trie.delete("hacker");
+        System.out.println("hacker: " + trie.search("hacker"));
+        System.out.println("startsWith: " + trie.startsWith("hacks"));
+        System.out.println("hasPattern: " + trie.searchPattern("h..k"));
     }
 
 }

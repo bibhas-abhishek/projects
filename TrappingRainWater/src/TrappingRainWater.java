@@ -8,9 +8,9 @@
 
 public class TrappingRainWater {
 
-    private static int trap(int[] height) {
+    public int trap(int[] height) {
         int n = height.length;
-        if (n == 0 || n == 1)
+        if (n <= 1)
             return 0;
 
         int[] leftMaxes = new int[n];
@@ -36,7 +36,7 @@ public class TrappingRainWater {
 
     public static void main(String[] args) {
         int[] arr = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
-        System.out.println(trap(arr));
+        System.out.println(new TrappingRainWater().trap(arr));
     }
 
 }
