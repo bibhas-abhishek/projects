@@ -36,7 +36,7 @@ public class SegmentTree {
             return;
         }
 
-        int mid = (low + high) / 2;
+        int mid = low + (high - low) / 2;
         int leftChild = 2 * pos + 1;
         int rightChild = 2 * pos + 2;
         createSegmentTreeUtil(array, segmentTree, low, mid, leftChild);
@@ -48,16 +48,18 @@ public class SegmentTree {
         return rangeMinQueryUtil(segmentTree, qLow, qHigh, 0, length - 1, 0);
     }
 
-    private static int rangeMinQueryUtil(int[] segmentTree, int qLow, int qHigh, int low, int high, int pos) {
+    private int rangeMinQueryUtil(int[] segmentTree, int qLow, int qHigh, int low, int high, int pos) {
         if (qLow > high || qHigh < low)     // no overlap
             return Integer.MAX_VALUE;
 
         if (qLow <= low && qHigh >= high)   // complete overlap
             return segmentTree[pos];
 
-        int mid = (low + high) / 2;
-        return Math.min(rangeMinQueryUtil(segmentTree, qLow, qHigh, low, mid, 2 * pos + 1),
-                rangeMinQueryUtil(segmentTree, qLow, qHigh, mid + 1, high, 2 * pos + 2));
+        int mid = low + (high - low) / 2;
+        int leftChild = 2 * pos + 1;
+        int rightChild = 2 * pos + 2;
+        return Math.min(rangeMinQueryUtil(segmentTree, qLow, qHigh, low, mid, leftChild),
+                rangeMinQueryUtil(segmentTree, qLow, qHigh, mid + 1, high, rightChild));
     }
 
     public static void main(String[] args) {
