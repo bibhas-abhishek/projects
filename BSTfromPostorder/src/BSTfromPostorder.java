@@ -1,78 +1,78 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 14 Apr 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/BSTfromPostorder
  **/
 
 public class BSTfromPostorder {
 
-    private static class Node {
+    private static class TreeNode {
 
-        int data;
-        Node left;
-        Node right;
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-        Node(int data) {
-            this.data = data;
+        TreeNode(int val) {
+            this.val = val;
         }
 
     }
 
-    private static int index;
+    private int index;
 
-    private static void inorderDFS(Node root) {
+    public void inorderDFS(TreeNode root) {
         if (root == null)
             return;
+
         inorderDFS(root.left);
-        System.out.print(root.data + " ");
+        System.out.print(root.val + " ");
         inorderDFS(root.right);
     }
 
-    private static Node constructBST(int[] postorder) {
+    public TreeNode constructBST(int[] postorder) {
         index = postorder.length - 1;
-        // return constructBSTUtil(postorder, 0, postorder.length - 2);
-        return constructBSTUOptUtil(postorder, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return constructBST(postorder, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        // return constructBST2(postorder, 0, postorder.length - 2);
     }
 
-    private static Node constructBSTUtil(int[] postorder, int low, int high) {
-        if (low > high || index < 0)
-            return null;
-
-        Node root = new Node(postorder[index]);
-        index -= 1;
-
-        int i;
-        for (i = low; i < high; i++) {
-            if (postorder[i] > root.data)
-                break;
-        }
-
-        // found i as the index of first largest element greater than root
-        root.right = constructBSTUtil(postorder, i, index);
-        root.left = constructBSTUtil(postorder, low, i - 1);
-        return root;
-    }
-
-    private static Node constructBSTUOptUtil(int[] postorder, int minValue, int maxValue) {
+    private TreeNode constructBST(int[] postorder, int minValue, int maxValue) {
         if (index < 0)
             return null;
 
         int key = postorder[index];
-        Node root = null;
+        TreeNode root = null;
         if (key > minValue && key < maxValue) {
-            root = new Node(postorder[index]);
+            root = new TreeNode(key);
             index -= 1;
-            root.right = constructBSTUOptUtil(postorder, root.data, maxValue);
-            root.left = constructBSTUOptUtil(postorder, minValue, root.data);
+            root.right = constructBST(postorder, key, maxValue);
+            root.left = constructBST(postorder, minValue, key);
         }
         return root;
     }
 
+    private TreeNode constructBST2(int[] postorder, int low, int high) {
+        if (low > high || index < 0)
+            return null;
+
+        TreeNode root = new TreeNode(postorder[index]);
+        index -= 1;
+        int i;
+        for (i = low; i < high; i++) {
+            if (postorder[i] > root.val)
+                break;
+        }
+
+        root.right = constructBST2(postorder, i, index);
+        root.left = constructBST2(postorder, low, i - 1);
+        return root;
+    }
+
     public static void main(String[] args) {
+        BSTfromPostorder obj = new BSTfromPostorder();
         int postorder[] = new int[]{1, 7, 5, 50, 40, 10};
-        Node root = constructBST(postorder);
-        inorderDFS(root);
+        TreeNode root = obj.constructBST(postorder);
+        obj.inorderDFS(root);
     }
 
 }

@@ -1,78 +1,77 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 14 Apr 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/BSTfromPreorder
  **/
 
 public class BSTfromPreorder {
 
-    private static class Node {
+    private static class TreeNode {
 
-        int data;
-        Node left;
-        Node right;
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-        Node(int data) {
-            this.data = data;
+        TreeNode(int val) {
+            this.val = val;
         }
 
     }
 
-    private static int index;
+    private int index;
 
-    private static void inorderDFS(Node root) {
+    public void inorderDFS(TreeNode root) {
         if (root == null)
             return;
         inorderDFS(root.left);
-        System.out.print(root.data + " ");
+        System.out.print(root.val + " ");
         inorderDFS(root.right);
     }
 
-    private static Node constructBST(int[] preorder) {
+    public TreeNode constructBST(int[] preorder) {
         index = 0;
-        // return constructBSTUtil(preorder, 1, preorder.length - 1);
-        return constructBSTUOptUtil(preorder, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        return constructBST(preorder, Integer.MIN_VALUE, Integer.MAX_VALUE);
+        // return constructBST2(preorder, 1, preorder.length - 1);
     }
 
-    private static Node constructBSTUOptUtil(int[] preorder, int minValue, int maxValue) {
+    private TreeNode constructBST(int[] preorder, int minValue, int maxValue) {
         if (index >= preorder.length)
             return null;
 
         int key = preorder[index];
-        Node root = null;
+        TreeNode root = null;
         if (key > minValue && key < maxValue) {
-            root = new Node(preorder[index]);
+            root = new TreeNode(key);
             index += 1;
-            root.left = constructBSTUOptUtil(preorder, minValue, root.data);
-            root.right = constructBSTUOptUtil(preorder, root.data, maxValue);
+            root.left = constructBST(preorder, minValue, key);
+            root.right = constructBST(preorder, key, maxValue);
         }
         return root;
     }
 
-    private static Node constructBSTUtil(int[] preorder, int low, int high) {
+    public TreeNode constructBST2(int[] preorder, int low, int high) {
         if (low > high || index >= preorder.length)
             return null;
 
-        Node root = new Node(preorder[index]);
+        TreeNode root = new TreeNode(preorder[index]);
         index += 1;
-
         int i;
         for (i = low; i <= high; i++) {
-            if (preorder[i] > root.data)
+            if (preorder[i] > root.val)
                 break;
         }
 
-        // found i as the index of first largest element greater than root
-        root.left = constructBSTUtil(preorder, index, i - 1);
-        root.right = constructBSTUtil(preorder, i, high);
+        root.left = constructBST2(preorder, index, i - 1);
+        root.right = constructBST2(preorder, i, high);
         return root;
     }
 
     public static void main(String[] args) {
+        BSTfromPreorder obj = new BSTfromPreorder();
         int preorder[] = new int[]{10, 5, 1, 7, 40, 50};
-        Node root = constructBST(preorder);
-        inorderDFS(root);
+        TreeNode root = obj.constructBST(preorder);
+        obj.inorderDFS(root);
     }
 
 }

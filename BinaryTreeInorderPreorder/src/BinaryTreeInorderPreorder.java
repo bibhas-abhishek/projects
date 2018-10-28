@@ -3,13 +3,12 @@ import java.util.List;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
- * 15 Apr 2018
- * https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
- * https://github.com/bibhas-abhishek/projects/tree/master/ConstructTreeFromInorderPreorder
- **/
+ * bibhas_01@hotmail.com
+ * 28 Oct 2018
+ * https://github.com/bibhas-abhishek/projects/tree/master/BinaryTreeInorderPreorder
+ */
 
-public class ConstructTreeFromInorderPreorder {
+public class BinaryTreeInorderPreorder {
 
     private static class TreeNode {
 
@@ -23,9 +22,9 @@ public class ConstructTreeFromInorderPreorder {
 
     }
 
-    private static int index;
+    private int index;
 
-    private static TreeNode buildTree(int[] preorder, int[] inorder) {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
         index = 0;
         List<Integer> postorder = new ArrayList<>();
         TreeNode root = buildTree(preorder, inorder, 0, inorder.length - 1, postorder);
@@ -34,7 +33,7 @@ public class ConstructTreeFromInorderPreorder {
         return root;
     }
 
-    private static TreeNode buildTree(int[] preorder, int[] inorder, int start, int end, List<Integer> postorder) {
+    private TreeNode buildTree(int[] preorder, int[] inorder, int start, int end, List<Integer> postorder) {
         if (start > end)
             return null;
 
@@ -52,7 +51,7 @@ public class ConstructTreeFromInorderPreorder {
         return root;
     }
 
-    private static void inorderDFS(TreeNode root) {
+    public void inorderDFS(TreeNode root) {
         if (root == null)
             return;
         inorderDFS(root.left);
@@ -61,11 +60,12 @@ public class ConstructTreeFromInorderPreorder {
     }
 
     public static void main(String[] args) {
+        BinaryTreeInorderPreorder obj = new BinaryTreeInorderPreorder();
         int inorder[] = {4, 2, 5, 1, 3, 6};
         int preorder[] = {1, 2, 4, 5, 3, 6};
-        TreeNode root = buildTree(preorder, inorder);
+        TreeNode root = obj.buildTree(preorder, inorder);
         System.out.print("\nInorder: ");
-        inorderDFS(root);
+        obj.inorderDFS(root);
     }
 
 }

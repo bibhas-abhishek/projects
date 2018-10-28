@@ -66,11 +66,11 @@ public class LinkedListPairSwap {
         if (head == null || head.next == null)
             return head;
 
-        Node remaining = head.next.next;
-        Node newHead = head.next;
+        Node r = head.next.next;
+        Node n = head.next;
         head.next.next = head;
-        head.next = pairWiseSwap(remaining);
-        return newHead;
+        head.next = pairWiseSwap(r);
+        return n;
     }
 
     public static void main(String[] args) {
