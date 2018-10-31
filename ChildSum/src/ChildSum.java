@@ -1,37 +1,44 @@
+/**
+ * Bibhas Abhishek
+ * bibhas_01@hotmail.com
+ * 30 Oct 2018
+ * https://github.com/bibhas-abhishek/projects/tree/master/ChildSum
+ */
+
 public class ChildSum {
 
-    private static class Node {
+    private static class TreeNode {
 
-        int data;
-        Node left;
-        Node right;
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-        Node(int data) {
-            this.data = data;
+        TreeNode(int val) {
+            this.val = val;
             this.left = null;
             this.right = null;
         }
 
     }
 
-    public static void main(String[] args) {
-        Node root = new Node(10);
-        root.left = new Node(3);
-        root.right = new Node(7);
-        root.right.right = new Node(3);
-        root.right.left = new Node(4);
-        root.left.left = new Node(2);
-        root.left.right = new Node(1);
-        System.out.print(isChildSum(root));
-    }
-
-    private static boolean isChildSum(Node root) {
+    public boolean isChildSum(TreeNode root) {
         if (root == null || (root.left == null && root.right == null))
             return true;
 
-        int left = root.left != null ? root.left.data : 0;
-        int right = root.right != null ? root.right.data : 0;
-        return (left + right == root.data) && isChildSum(root.left) && isChildSum(root.right);
+        int left = root.left != null ? root.left.val : 0;
+        int right = root.right != null ? root.right.val : 0;
+        return isChildSum(root.left) && isChildSum(root.right) && (left + right == root.val);
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(10);
+        root.left = new TreeNode(3);
+        root.right = new TreeNode(7);
+        root.right.right = new TreeNode(3);
+        root.right.left = new TreeNode(4);
+        root.left.left = new TreeNode(2);
+        root.left.right = new TreeNode(1);
+        System.out.print(new ChildSum().isChildSum(root));
     }
 
 }

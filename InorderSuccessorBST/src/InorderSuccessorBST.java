@@ -21,6 +21,55 @@ public class InorderSuccessorBST {
 
     }
 
+    public void inorderDFS(Node root) {
+        if (root == null)
+            return;
+
+        inorderDFS(root.left);
+        System.out.print(root.data + " ");
+        inorderDFS(root.right);
+    }
+
+    public Node getInorderSuccessor(Node root, int val) {
+        if (root == null)
+            return null;
+
+        Node current = findNode(root, val);
+        if (current == null)
+            return null;
+
+        if (current.right != null) // right subtree exists
+            return findMin(current.right); // find min in right subtree
+
+        Node ptr = root;
+        Node successor = null;
+        while (ptr != current) { // find the deepest node for which the target node is in the left subtree
+            if (val < ptr.data) {
+                successor = ptr;
+                ptr = ptr.left;
+            } else
+                ptr = ptr.right;
+        }
+        return successor;
+    }
+
+    private Node findNode(Node root, int val) {
+        if (root == null)
+            return null;
+
+        if (root.data == val)
+            return root;
+
+        return val <= root.data ? findNode(root.left, val) : findNode(root.right, val);
+    }
+
+    private Node findMin(Node root) {
+        while (root.left != null)
+            root = root.left;
+
+        return root;
+    }
+
     public static void main(String[] args) {
         Node root = new Node(10);
         root.left = new Node(8);
@@ -31,60 +80,13 @@ public class InorderSuccessorBST {
         root.right.right = new Node(15);
         root.right.left.right = new Node(12);
         root.right.right.right = new Node(16);
+
+        InorderSuccessorBST obj = new InorderSuccessorBST();
         System.out.print("Inorder Traversal: ");
-        inorderDFS(root);
+        obj.inorderDFS(root);
         System.out.println();
         System.out.print("Inorder successor of 11: ");
-        System.out.println(getInorderSuccessor(root, 11).data);
-    }
-
-    private static void inorderDFS(Node root) {
-        if (root == null)
-            return;
-        inorderDFS(root.left);
-        System.out.print(root.data + " ");
-        inorderDFS(root.right);
-    }
-
-    private static Node getInorderSuccessor(Node root, int val) {
-        if (root == null)
-            return null;
-
-        Node current = findNode(root, val);
-        if (current == null)
-            return null;
-
-        if (current.right != null) // right subtree exists
-            return findMin(current.right); // find min in right subtree
-        else {
-            Node ptr = root;
-            Node successor = null;
-            while (ptr != current) { // find the deepest node for which the target node is in the left subtree
-                if (val < ptr.data) {
-                    successor = ptr;
-                    ptr = ptr.left;
-                } else
-                    ptr = ptr.right;
-            }
-            return successor;
-        }
-    }
-
-    private static Node findNode(Node root, int val) {
-        if (root == null)
-            return null;
-
-        if (root.data == val)
-            return root;
-
-        return val <= root.data ? findNode(root.left, val) : findNode(root.right, val);
-    }
-
-    private static Node findMin(Node root) {
-        while (root.left != null)
-            root = root.left;
-
-        return root;
+        System.out.println(obj.getInorderSuccessor(root, 11).data);
     }
 
 }
