@@ -14,21 +14,13 @@ public class BipartiteGraph {
 
     private class DisjointSet {
 
-        private Map<Long, Node> map = new HashMap<>(); // data -> node
+        private Map<Long, Node> map = new HashMap<>();
 
         private class Node {
 
             long data;
             Node parent;
-            int rank; // -> size
-
-            @Override
-            public String toString() {
-                return "Node{" +
-                        "data=" + data +
-                        ", rank=" + rank +
-                        '}';
-            }
+            int rank;
 
         }
 
@@ -61,7 +53,7 @@ public class BipartiteGraph {
             Node parent2 = findSet(node2);
 
             if (parent1.data == parent2.data)
-                return false; // already in the same set
+                return false;
 
             if (parent1.rank >= parent2.rank) {
                 parent1.rank += parent2.rank;
@@ -133,6 +125,7 @@ public class BipartiteGraph {
             for (int j = 0; j < graph[i].length; j++) {
                 if (ds.findSet(i) == ds.findSet(graph[i][j]))
                     return false;
+
                 if (j > 0)
                     ds.union(graph[i][j], graph[i][j - 1]);
             }

@@ -9,123 +9,69 @@ import java.util.*;
 
 public class TopologicalSort {
 
-    private static class Project {
-
-        private List<Project> children = new ArrayList<>();
-        private Map<String, Project> map = new HashMap<>();
-        private String name;
-        private State state;
-
-        private enum State {COMPLETE, PARTIAL, BLANK}
-
-        Project(String name) {
-            this.name = name;
-            this.state = State.BLANK;
-        }
-
-        List<Project> getChildren() {
-            return children;
-        }
-
-        String getName() {
-            return name;
-        }
-
-        State getState() {
-            return state;
-        }
-
-        void setState(State state) {
-            this.state = state;
-        }
-
-        void addNeighbour(Project node) {
-            if (!map.containsKey(node.getName())) {
-                children.add(node);
-                map.put(node.getName(), node);
-            }
-        }
-
-    }
-
     private static class Graph {
 
-        private List<Project> nodes = new ArrayList<>();
-        private Map<String, Project> map = new HashMap<>();
 
-        List<Project> getNodes() {
-            return nodes;
+        private int v;
+        private List<Integer>[] adjList;
+
+        Graph(int v) {
+            this.v = v;
+            adjList = new ArrayList[v];
+            for (int i = 0; i < v; i++)
+                adjList[i] = new ArrayList<>();
         }
 
-        Project getOrCreateNode(String name) {
-            if (!map.containsKey(name)) {
-                Project node = new Project(name);
-                nodes.add(node);
-                map.put(name, node);
-            }
-            return map.get(name);
+        private void addEdge(int u, int v) {
+            adjList[u].add(v);
         }
 
-        void addEdge(String startName, String endName) {
-            Project start = getOrCreateNode(startName);
-            Project end = getOrCreateNode(endName);
-            start.addNeighbour(end);
-        }
 
-    }
-
-    private static Graph buildGraph(String[] projects, String[][] dependencies) {
-        Graph graph = new Graph();
-        for (String project : projects)
-            graph.getOrCreateNode(project);
-
-        for (String[] dependency : dependencies)
-            graph.addEdge(dependency[0], dependency[1]);
-
-        return graph;
-    }
-
-    private static Stack<Project> orderProjects(List<Project> projects) {
-        Stack<Project> stack = new Stack<>();
-        for (Project project : projects) {
-            if (project.getState() == Project.State.BLANK) {
-                if (!doDFS(project, stack))
-                    return null;
+        public void printGraph() {
+            for (int i = 0; i < adjList.length; i++) {
+                System.out.print("[" + i + "]");
+                List<Integer> nodeList = adjList[i];
+                for (Integer node : nodeList)
+                    System.out.print("->" + node);
+                System.out.println();
             }
         }
-        return stack;
+
     }
 
-    private static boolean doDFS(Project project, Stack<Project> stack) {
-        if (project.getState() == Project.State.PARTIAL)
-            return false;
-
-        if (project.getState() == Project.State.BLANK) {
-            project.setState(Project.State.PARTIAL);
-            List<Project> children = project.getChildren();
-            for (Project child : children) {
-                if (!doDFS(child, stack))
-                    return false;
-            }
-            project.setState(Project.State.COMPLETE);
-            stack.push(project);
+    public void topologicalSort(Graph g) {
+        int V = g.v;
+        Stack<Integer> stack = new Stack<>();
+        boolean[] visited = new boolean[V];
+        for (int i = 0; i < V; i++) {
+            if (!visited[i])
+                topologicalSort(i, stack, visited, g);
         }
-        return true;
+
+        while (!stack.isEmpty())
+            System.out.print(stack.pop() + " ");
     }
 
-    private static Stack<Project> findBuildOrder(String[] projects, String[][] dependencies) {
-        Graph graph = buildGraph(projects, dependencies);
-        return orderProjects(graph.getNodes());
+    private void topologicalSort(int i, Stack<Integer> stack, boolean[] visited, Graph g) {
+        visited[i] = true;
+        List<Integer> next = g.adjList[i];
+        for (int node : next) {
+            if (!visited[node])
+                topologicalSort(node, stack, visited, g);
+
+        }
+        stack.push(i);
     }
 
     public static void main(String[] args) {
-        String[] projects = {"a", "b", "c", "d", "e", "f", "g"};
-        String[][] dependencies = {{"a", "e"}, {"d", "g"}, {"c", "a"}, {"b", "a"}, {"b", "h"}, {"f", "c"}, {"f", "a"}, {"f", "b"}};
-        Stack<Project> stack = findBuildOrder(projects, dependencies);
-        if (stack != null)
-            stack.stream().map(project -> project.name + " ").forEach(System.out::print);
-        else
-            System.out.print("Cyclic Graph: No Build Order");
+        Graph g = new Graph(6);
+        g.addEdge(5, 2);
+        g.addEdge(5, 0);
+        g.addEdge(4, 0);
+        g.addEdge(4, 1);
+        g.addEdge(2, 3);
+        g.addEdge(3, 1);
+        new TopologicalSort().topologicalSort(g);
     }
 
 }
