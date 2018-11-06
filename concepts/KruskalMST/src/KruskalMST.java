@@ -96,7 +96,7 @@ public class KruskalMST {
             ds.makeSet(i);
 
         int e = 0, k = 0;
-        while (e < V - 1) {
+        while (e < V - 1 && k < edges.length - 1) {
             Edge nextEdge = edges[k++];
             DisjointSet.Node p = ds.findSet(nextEdge.src);
             DisjointSet.Node q = ds.findSet(nextEdge.dest);
@@ -105,9 +105,12 @@ public class KruskalMST {
                 ds.union(p.data, q.data);
             }
         }
-
-        for (int i = 0; i < e; i++)
-            System.out.println(result[i].src + " -> " + result[i].dest + " = " + result[i].weight);
+        if (e == V - 1) {
+            for (int i = 0; i < e; i++)
+                System.out.println(result[i].src + " -> " + result[i].dest + " = " + result[i].weight);
+            return;
+        }
+        System.out.println("No MST exists");
     }
 
     /**
