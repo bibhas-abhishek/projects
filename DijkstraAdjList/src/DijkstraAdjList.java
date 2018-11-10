@@ -65,18 +65,18 @@ public class DijkstraAdjList {
         }
 
         while (!minheap.isEmpty()) {
-            Node u = minheap.poll();
-            int uIndex = u.index; // popped vertex
-            sptSet[uIndex] = true; // process vertex as part of spanning tree
-            for (Edge edge : adjList[uIndex]) {
-                int uDest = edge.dest; // destination index
-                if (!sptSet[uDest]) { // if destination index not already in spanning tree
-                    int newDist = heapNodes[uIndex].dist + edge.weight; // new cost of dest vertex
-                    int curDist = heapNodes[uDest].dist; // current cost of dest vertex
+            Node uNode = minheap.poll();
+            int u = uNode.index; // popped vertex
+            sptSet[u] = true; // process vertex as part of spanning tree
+            for (Edge edge : adjList[u]) {
+                int v = edge.dest; // destination index
+                if (!sptSet[v]) { // if destination index not already in spanning tree
+                    int newDist = heapNodes[u].dist + edge.weight; // new cost of dest vertex
+                    int curDist = heapNodes[v].dist; // current cost of dest vertex
                     if (curDist > newDist) {
-                        minheap.remove(heapNodes[uDest]); // pop dest node from minHeap
-                        heapNodes[uDest].dist = newDist; // update dest vertex cost
-                        minheap.offer(heapNodes[uDest]); // add updated vertex to minHeap
+                        minheap.remove(heapNodes[v]); // pop dest node from minHeap
+                        heapNodes[v].dist = newDist; // update dest vertex cost
+                        minheap.offer(heapNodes[v]); // add updated vertex to minHeap
                     }
                 }
             }
