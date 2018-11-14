@@ -23,7 +23,7 @@ public class ConnectSameLevelNodesBinaryTree {
 
     }
 
-    static void connect(Node root) {
+    public void connect(Node root) {
         Queue<Node> queue = new LinkedList<>();
         queue.offer(root);
         queue.offer(null);
@@ -35,7 +35,7 @@ public class ConnectSameLevelNodesBinaryTree {
                     queue.add(node.left);
                 if (node.right != null)
                     queue.add(node.right);
-            } else if (!queue.isEmpty()) // null evaluated as the last popped element. don't add null again
+            } else if (!queue.isEmpty()) // null evaluated as the last popped element. add null again as delimiter.
                 queue.add(null);
         }
     }
@@ -55,7 +55,7 @@ public class ConnectSameLevelNodesBinaryTree {
         root.left.left = new Node(3);
         root.right.right = new Node(90);
 
-        connect(root);
+        new ConnectSameLevelNodesBinaryTree().connect(root);
 
         System.out.println("-1 is printed if there is no nextRight");
         System.out.println("nextRight of " + root.data + " is " +

@@ -26,7 +26,6 @@ public class TopologicalSort {
             adjList[u].add(v);
         }
 
-
         public void printGraph() {
             for (int i = 0; i < adjList.length; i++) {
                 System.out.print("[" + i + "]");
@@ -58,7 +57,6 @@ public class TopologicalSort {
         for (int node : next) {
             if (!visited[node])
                 topologicalSort(node, stack, visited, g);
-
         }
         stack.push(i);
     }
@@ -71,6 +69,7 @@ public class TopologicalSort {
         g.addEdge(4, 1);
         g.addEdge(2, 3);
         g.addEdge(3, 1);
+        g.printGraph();
         new TopologicalSort().topologicalSort(g);
     }
 

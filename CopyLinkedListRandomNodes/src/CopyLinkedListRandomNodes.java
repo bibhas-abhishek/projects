@@ -25,7 +25,6 @@ public class CopyLinkedListRandomNodes {
 
     public RandomListNode copyRandomList(RandomListNode head) {
         Map<RandomListNode, RandomListNode> hashMap = new HashMap<>();
-
         RandomListNode node = head;
         while (node != null) {
             hashMap.put(node, new RandomListNode(node.label));

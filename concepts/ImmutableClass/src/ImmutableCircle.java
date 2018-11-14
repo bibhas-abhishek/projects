@@ -25,7 +25,7 @@ public final class ImmutableCircle {
     }
 
     public static void main(String[] args) {
-        ImmutableCircle immutableCircle = new ImmutableCircle(2, 2, 5);
+        ImmutableCircle immutableCircle = new ImmutableCircle(0, 1, 5);
         System.out.println(immutableCircle);
     }
 
