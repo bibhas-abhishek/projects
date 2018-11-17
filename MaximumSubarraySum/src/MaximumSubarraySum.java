@@ -15,13 +15,13 @@ public class MaximumSubarraySum {
         if (max < 0)
             return max;
 
-        int maxSumHere = 0, maxSumSoFar = 0;
+        int sum = 0, maxSum = 0;
         for (int i = 0; i < array.length; i++) {
-            maxSumHere += array[i];
-            maxSumHere = Math.max(0, maxSumHere);
-            maxSumSoFar = Math.max(maxSumSoFar, maxSumHere);
+            sum += array[i];
+            sum = Math.max(0, sum);
+            maxSum = Math.max(maxSum, sum);
         }
-        return maxSumSoFar;
+        return maxSum;
     }
 
     // Hackerrank

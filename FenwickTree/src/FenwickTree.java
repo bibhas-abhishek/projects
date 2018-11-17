@@ -8,7 +8,6 @@
 /**
  * A Fenwick tree or binary indexed tree is a data structure providing efficient methods
  * for calculation and manipulation of the prefix sums of a table of values.
- *
  * Space complexity: O(n)
  * Time complexity to create: O(nlogn)
  * Time complexity to update: O(logn)
@@ -27,9 +26,9 @@ public class FenwickTree {
 
     public int[] createBinaryIndexedTree(int[] input) {
         int[] binaryIndexedTree = new int[input.length + 1]; //  index 0 in tree is a dummy
-        for (int i = 1; i <= input.length; i++) // BIT is 1 shifted to the right
+        for (int i = 1; i <= input.length; i++) { // BIT is 1 shifted to the right
             createBinaryIndexedTreeUtil(binaryIndexedTree, input[i - 1], i); // i is the index in BIT
-
+        }
         return binaryIndexedTree;
     }
 

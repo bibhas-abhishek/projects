@@ -10,7 +10,7 @@ import java.util.Stack;
 
 public class LargestRectangularAreaHistogram {
 
-    private static int getMaxArea(int[] hist, int n) {
+    public int getMaxArea(int[] hist, int n) {
         Stack<Integer> stack = new Stack<>(); // stack stores indices
         int maxArea = 0, top, topArea, i = 0;
         while (i < n) {
@@ -38,8 +38,9 @@ public class LargestRectangularAreaHistogram {
     }
 
     public static void main(String[] args) {
+        LargestRectangularAreaHistogram obj = new LargestRectangularAreaHistogram();
         int hist[] = {6, 2, 5, 4, 5, 1, 6};
-        System.out.println(getMaxArea(hist, hist.length));
+        System.out.println(obj.getMaxArea(hist, hist.length));
     }
 
 }

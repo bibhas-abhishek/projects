@@ -8,7 +8,7 @@
 
 public class OptimalStrategyForGame {
 
-    private static int optimalStrategy(int[] game, int i, int j) {
+    public int optimalStrategy(int[] game, int i, int j) {
         if (game.length == 0)
             return 0;
 
@@ -22,7 +22,7 @@ public class OptimalStrategyForGame {
                 game[j] + Math.min(optimalStrategy(game, i + 1, j - 1), optimalStrategy(game, i, j - 2))); // choose Vj
     }
 
-    private static int optimalStrategyDP(int[] game, int n) {
+    public int optimalStrategyDP(int[] game, int n) {
         int[][] dp = new int[n][n];
         int x, y, z;
         for (int diff = 0; diff < n; diff++) {
@@ -37,9 +37,10 @@ public class OptimalStrategyForGame {
     }
 
     public static void main(String[] args) {
+        OptimalStrategyForGame obj = new OptimalStrategyForGame();
         int[] game = {8, 15, 3, 7};
-        System.out.println(optimalStrategy(game, 0, game.length - 1));
-        System.out.println(optimalStrategyDP(game, game.length));
+        System.out.println(obj.optimalStrategy(game, 0, game.length - 1));
+        System.out.println(obj.optimalStrategyDP(game, game.length));
     }
 
 }

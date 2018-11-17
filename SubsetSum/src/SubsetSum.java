@@ -1,13 +1,13 @@
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 25 Apr 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/SubsetSum
  **/
 
 public class SubsetSum {
 
-    private static boolean isSubsetSum(int[] set, int n, int sum) {
+    public boolean isSubsetSum(int[] set, int n, int sum) {
         if (sum == 0)
             return true;
 
@@ -20,15 +20,17 @@ public class SubsetSum {
             return isSubsetSum(set, n - 1, sum);
     }
 
-    private static boolean isSubsetSumDP(int[] input, int total) {
-        boolean[][] dp = new boolean[input.length + 1][total + 1];
+    public boolean isSubsetSumDP(int[] input, int total) {
+        int n = input.length;
+        boolean[][] dp = new boolean[n + 1][total + 1];
         for (int row = 0; row < dp.length; row++)
             dp[row][0] = true;
 
-        for (int row = 1; row <= input.length; row++) {
+        // dp[i][j] = true if sum j can be obtained with 0 -> i elements
+        for (int row = 1; row <= n; row++) {
             for (int col = 1; col <= total; col++) {
                 if (col < input[row - 1]) // if the current sum is less than subset element considered
-                    dp[row][col] = dp[row - 1][col];
+                    dp[row][col] = dp[row - 1][col]; // if sum col can be obtained till row - 1 elements
                 else
                     dp[row][col] = dp[row - 1][col] || dp[row - 1][col - input[row - 1]];
             }
@@ -37,15 +39,12 @@ public class SubsetSum {
     }
 
     public static void main(String args[]) {
+        SubsetSum obj = new SubsetSum();
         int set[] = {2, 3, 7, 8};
         int sum = 10;
         int n = set.length;
-        /*if (isSubsetSum(set, n, sum) == true)
-            System.out.println("Found a subset with given sum");
-        else
-            System.out.println("No subset with given sum");*/
-
-        System.out.println(isSubsetSumDP(set, sum));
+        System.out.println(obj.isSubsetSum(set, n, sum));
+        System.out.println(obj.isSubsetSumDP(set, sum));
     }
 
 }

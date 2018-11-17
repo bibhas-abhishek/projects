@@ -5,6 +5,9 @@
  * https://github.com/bibhas-abhishek/projects/tree/master/MaximumSumSubsequence
  */
 
+/**
+ * Maximum sum increasing subsequence
+ */
 public class MaximumSumSubsequence {
 
     private static int maxSum(int[] arr) {

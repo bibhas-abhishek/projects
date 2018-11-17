@@ -3,7 +3,7 @@ import java.util.Set;
 
 /**
  * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
+ * bibhas_01@hotmail.com
  * 04 May 2018
  * https://leetcode.com/problems/longest-consecutive-sequence/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/LongestConsecutiveSequence
@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class LongestConsecutiveSequence {
 
-    private static int longestConsecutive(int[] nums) {
+    public int longestConsecutive(int[] nums) {
         int max = 0;
         Set<Integer> set = new HashSet<>();
         for (int i = 0; i < nums.length; i++) {
@@ -38,7 +38,7 @@ public class LongestConsecutiveSequence {
 
     public static void main(String[] args) {
         int[] nums = {100, 4, 200, 1, 3, 2};
-        System.out.println(longestConsecutive(nums));
+        System.out.println(new LongestConsecutiveSequence().longestConsecutive(nums));
     }
 
 }

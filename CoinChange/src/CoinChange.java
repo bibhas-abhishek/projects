@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Bibhas Abhishek
@@ -15,7 +16,7 @@ public class CoinChange {
         return coinChangeDP(coins, amount, 0, new HashMap<>());
     }
 
-    private static long coinChangeDP(int[] coins, int amount, int index, HashMap<String, Long> memo) {
+    private static long coinChangeDP(int[] coins, int amount, int index, Map<String, Long> memo) {
         if (amount == 0)
             return 1;
 

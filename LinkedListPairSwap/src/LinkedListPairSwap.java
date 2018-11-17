@@ -66,10 +66,10 @@ public class LinkedListPairSwap {
         if (head == null || head.next == null)
             return head;
 
-        Node r = head.next.next;
+        Node remaining = head.next.next;
         Node n = head.next;
         head.next.next = head;
-        head.next = pairWiseSwap(r);
+        head.next = pairWiseSwap(remaining);
         return n;
     }
 

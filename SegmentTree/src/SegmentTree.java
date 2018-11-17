@@ -21,7 +21,6 @@ public class SegmentTree {
         return 1 << count;
     }
 
-
     public int[] createSegmentTree(int[] array) {
         int nextPowerOf2 = nextPowerOf2(array.length);
         int[] segmentTree = new int[2 * nextPowerOf2 - 1];
