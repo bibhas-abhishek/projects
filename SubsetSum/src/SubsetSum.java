@@ -26,7 +26,7 @@ public class SubsetSum {
         for (int row = 0; row < dp.length; row++)
             dp[row][0] = true;
 
-        // dp[i][j] = true if sum j can be obtained with 0 -> i elements
+        // dp[i][j] = true if sum j can be obtained with 0 -> i - 1 index elements
         for (int row = 1; row <= n; row++) {
             for (int col = 1; col <= total; col++) {
                 if (col < input[row - 1]) // if the current sum is less than subset element considered

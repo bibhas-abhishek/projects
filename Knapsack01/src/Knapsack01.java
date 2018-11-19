@@ -10,11 +10,11 @@ import java.util.Map;
 
 public class Knapsack01 {
 
-    private static int knapsack01DP(int[] values, int[] weight, int maxWeight) {
+    public int knapsack01DP(int[] values, int[] weight, int maxWeight) {
         return knapsack01DPUtil(values, weight, maxWeight, 0, new HashMap<>());
     }
 
-    private static int knapsack01DPUtil(int[] values, int[] weight, int remainingWeight, int currentItem, Map<String, Integer> memo) {
+    private int knapsack01DPUtil(int[] values, int[] weight, int remainingWeight, int currentItem, Map<String, Integer> memo) {
         if (currentItem >= values.length || remainingWeight <= 0)
             return 0;
 
@@ -39,7 +39,7 @@ public class Knapsack01 {
     public static void main(String[] args) {
         int value[] = {22, 20, 15, 30, 24, 54, 21, 32, 18, 25};
         int weight[] = {4, 2, 3, 5, 5, 6, 9, 7, 8, 10};
-        System.out.println(knapsack01DP(value, weight, 30));
+        System.out.println(new Knapsack01().knapsack01DP(value, weight, 30));
     }
 
 }
