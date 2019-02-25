@@ -1,12 +1,19 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Bibhas Abhishek
+ * bibhas_01@hotmail.com
+ * 26 Feb 2019
+ * https://github.com/bibhas-abhishek/projects/tree/master/LRUCache
+ */
+
 public class LRUCache {
 
     private class Node {
 
-        private int key;
-        private int value;
+        private int  key;
+        private int  value;
         private Node prev;
         private Node next;
 
@@ -19,9 +26,9 @@ public class LRUCache {
 
     }
 
-    private int capacity;
+    private int                capacity;
     private Map<Integer, Node> map;
-    private Node head, tail;
+    private Node               head, tail;
 
     LRUCache(int capacity) {
         this.capacity = capacity;
@@ -63,8 +70,7 @@ public class LRUCache {
         }
     }
 
-
-    // delete the last element in dll
+    // delete the last element in linked list
     private void purgeLRUKey() {
         map.remove(tail.key);
         tail = tail.prev;
@@ -73,17 +79,18 @@ public class LRUCache {
     // delete element and set as head
     // key already exists in the cache
     private void updateCache(int key) {
+        // update not needed if only cache has only one element or updated key is the
+        // head
         if (tail == head || head == map.get(key))
-            return; // update not needed if only cache has only one element or
-                    // updated key is the head
+            return;
 
         // at least 2 elements are present
         Node t = map.get(key);
         if (t == tail) { // next element does not exist
             tail = t.prev;
             tail.next = null;
-        } else {
-            // next element exists
+        }
+        else { // next element exists
             t.prev.next = t.next;
             t.next.prev = t.prev;
         }
