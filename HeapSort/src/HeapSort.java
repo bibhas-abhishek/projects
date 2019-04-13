@@ -1,11 +1,12 @@
-import java.util.Arrays;
+/*
+HeapSort
+---------------------
+Bibhas Abhishek
+bibhas_01@hotmail.com
+13 Apr 2019
+*/
 
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 29 Jun 2018
- * https://github.com/bibhas-abhishek/projects/tree/master/HeapSort
- **/
+import java.util.Arrays;
 
 public class HeapSort {
 
@@ -15,11 +16,6 @@ public class HeapSort {
         array[b] = temp;
     }
 
-    /**
-     * @param array
-     * @param n     -> total elements
-     * @param i     -> heapify at index i
-     */
     private void heapify(int[] array, int n, int i) {
         int largest = i;
         int left = 2 * i + 1;
@@ -38,12 +34,12 @@ public class HeapSort {
 
     public void heapSort(int[] array) {
         int n = array.length;
-        for (int i = n / 2 - 1; i >= 0; i--)        // creating a maxHeap from last internal node = n/2 - 1
+        for (int i = n / 2 - 1; i >= 0; i--)    //  creating a maxHeap from last internal node = n/2 - 1
             heapify(array, n, i);
 
         for (int i = n - 1; i >= 0; i--) {
             swap(array, 0, i);
-            heapify(array, i, 0); // last element already sorted. call heapify for elements - 1, hence n -> i
+            heapify(array, i, 0);   //  last element already sorted. call heapify for elements - 1, hence n -> i
         }
     }
 
