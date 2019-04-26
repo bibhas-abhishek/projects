@@ -36,10 +36,6 @@ public class JobController {
         map.put("time", new JobParameter(System.currentTimeMillis()));
         JobParameters jobParameters = new JobParameters(map);
         JobExecution jobExecution = jobLauncher.run(job, jobParameters);
-
-        System.out.println("job status: " + jobExecution.getStatus());
-        System.out.println("batch is running...");
-
         while (jobExecution.isRunning()) {
             System.out.println("...");
         }
