@@ -16,6 +16,7 @@ public class Writer implements ItemWriter<User> {
 
     @Override
     public void write(List<? extends User> list) throws Exception {
+
         System.out.println("Data saved for users: " + list);
         userRepository.save(list);
     }

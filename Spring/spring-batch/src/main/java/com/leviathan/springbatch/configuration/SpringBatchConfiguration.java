@@ -48,12 +48,7 @@ public class SpringBatchConfiguration {
 
     @Bean
     public Step sampleTaskletStep(StepBuilderFactory stepBuilderFactory) {
-        return stepBuilderFactory.get("sampleTasklet").tasklet(sampleTasklet()).build();
-    }
-
-    @Bean
-    public SampleTasklet sampleTasklet() {
-        return new SampleTasklet();
+        return stepBuilderFactory.get("sampleTasklet").tasklet(new SampleTasklet()).build();
     }
 
     @Bean

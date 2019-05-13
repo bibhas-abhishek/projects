@@ -83,14 +83,14 @@ public class HuffmanCode {
 
     public static void main(String[] args) {
         HuffmanCode obj = new HuffmanCode();
-        /*char[] val = {'a', 'b', 'c', 'd', 'e', 'f'};
-        int[] freq = {5, 9, 12, 13, 16, 45};*/
+        char[] val = {'a', 'b', 'c', 'd', 'e', 'f'};
+        int[] freq = {5, 9, 12, 13, 16, 45};
 
-        char[] val = {'A', 'B', 'C'};
-        int[] freq = {3, 1, 1};
+        /*char[] val = {'A', 'B', 'C'};
+        int[] freq = {3, 1, 1};*/
         obj.buildTree(val, freq);
         obj.printCodes(root, "");
-        System.out.println(obj.decodeString("1001011"));
+        System.out.println(obj.decodeString("01100100101"));
     }
 
 }
