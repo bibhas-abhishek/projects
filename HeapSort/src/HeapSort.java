@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /*
 HeapSort
 ---------------------
@@ -5,8 +7,6 @@ Bibhas Abhishek
 bibhas_01@hotmail.com
 13 Apr 2019
 */
-
-import java.util.Arrays;
 
 public class HeapSort {
 
@@ -34,19 +34,18 @@ public class HeapSort {
 
     public void heapSort(int[] array) {
         int n = array.length;
-        for (int i = n / 2 - 1; i >= 0; i--)    //  creating a maxHeap from last internal node = n/2 - 1
+        for (int i = n / 2 - 1; i >= 0; i--) // creating a maxHeap from last internal node = n/2 - 1
             heapify(array, n, i);
 
         for (int i = n - 1; i >= 0; i--) {
             swap(array, 0, i);
-            heapify(array, i, 0);   //  last element already sorted. call heapify for elements - 1, hence n -> i
+            heapify(array, i, 0); // last element already sorted. call heapify for elements - 1, hence n -> i;
         }
     }
 
     public static void main(String[] args) {
-        int[] array = {5, 1, 4, 2, 3, 6};
+        int[] array = { 5, 1, 4, 2, 3, 6 };
         new HeapSort().heapSort(array);
         Arrays.stream(array).mapToObj(i -> i + " ").forEach(System.out::print);
     }
-
 }

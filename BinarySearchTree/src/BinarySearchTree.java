@@ -1,15 +1,13 @@
 /**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 08 Oct 2018
+ * Bibhas Abhishek bibhas_01@hotmail.com 08 Oct 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/BinarySearchTree
  */
 
 public class BinarySearchTree {
 
-    private class TreeNode {
+    private static class TreeNode {
 
-        int val;
+        int      val;
         TreeNode left;
         TreeNode right;
 
@@ -18,7 +16,6 @@ public class BinarySearchTree {
             this.left = null;
             this.right = null;
         }
-
     }
 
     private static TreeNode root;
@@ -31,17 +28,11 @@ public class BinarySearchTree {
         inorderDFS(root.right);
     }
 
-    private TreeNode findMin(TreeNode root) {
-        while (root.left != null)
-            root = root.left;
-
-        return root;
-    }
-
     public TreeNode insertNode(TreeNode root, int key) {
         if (root == null) {
             root = new TreeNode(key);
-        } else {
+        }
+        else {
             if (key <= root.val)
                 root.left = insertNode(root.left, key);
             else
@@ -59,18 +50,24 @@ public class BinarySearchTree {
         else if (key > root.val)
             root.right = deleteNode(root.right, key);
         else {
-            if (root.left == null && root.right == null)  // leaf node
+            if (root.left == null && root.right == null) // leaf node
                 root = null;
-            else if (root.right == null)  // left child only
+            else if (root.right == null) // left child only
                 root = root.left;
-            else if (root.left == null)  // right child only
+            else if (root.left == null) // right child only
                 root = root.right;
-            else {  // has both children
+            else { // has both children
                 TreeNode temp = findMin(root.right);
                 root.val = temp.val;
                 root.right = deleteNode(root.right, temp.val);
             }
         }
+        return root;
+    }
+
+    private TreeNode findMin(TreeNode root) {
+        while (root.left != null)
+            root = root.left;
         return root;
     }
 
@@ -93,5 +90,4 @@ public class BinarySearchTree {
         obj.inorderDFS(root);
         System.out.println();
     }
-
 }

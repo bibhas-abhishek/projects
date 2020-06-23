@@ -42,5 +42,4 @@ public class QuickSort {
         obj.quickSort(arr, 0, arr.length - 1);
         Arrays.stream(arr).mapToObj(e -> e + " ").forEach(System.out::print);
     }
-
 }
