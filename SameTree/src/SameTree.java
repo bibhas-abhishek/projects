@@ -1,5 +1,7 @@
 /**
- * Bibhas Abhishek bibhas_01@hotmail.com 07 Jun 2018
+ * Bibhas Abhishek
+ * bibhas_01@hotmail.com
+ * 07 Jun 2018
  * https://leetcode.com/problems/same-tree/description/
  * https://github.com/bibhas-abhishek/projects/tree/master/SameTree
  **/

@@ -37,7 +37,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {7, 4, 5, 8, 1, 2, 0, 9};
+        int[] arr = { 7, 4, 5, 8, 1, 2, 0, 9 };
         QuickSort obj = new QuickSort();
         obj.quickSort(arr, 0, arr.length - 1);
         Arrays.stream(arr).mapToObj(e -> e + " ").forEach(System.out::print);

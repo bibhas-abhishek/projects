@@ -9,7 +9,7 @@ public class InorderSuccessorBST {
 
     private static class Node {
 
-        int data;
+        int  data;
         Node left;
         Node right;
 
@@ -18,13 +18,11 @@ public class InorderSuccessorBST {
             this.left = null;
             this.right = null;
         }
-
     }
 
     public void inorderDFS(Node root) {
         if (root == null)
             return;
-
         inorderDFS(root.left);
         System.out.print(root.data + " ");
         inorderDFS(root.right);
@@ -47,7 +45,8 @@ public class InorderSuccessorBST {
             if (val < ptr.data) {
                 successor = ptr;
                 ptr = ptr.left;
-            } else
+            }
+            else
                 ptr = ptr.right;
         }
         return successor;
@@ -59,14 +58,12 @@ public class InorderSuccessorBST {
 
         if (root.data == val)
             return root;
-
         return val <= root.data ? findNode(root.left, val) : findNode(root.right, val);
     }
 
     private Node findMin(Node root) {
         while (root.left != null)
             root = root.left;
-
         return root;
     }
 
@@ -85,8 +82,8 @@ public class InorderSuccessorBST {
         System.out.print("Inorder Traversal: ");
         obj.inorderDFS(root);
         System.out.println();
+
         System.out.print("Inorder successor of 11: ");
         System.out.println(obj.getInorderSuccessor(root, 11).data);
     }
-
 }

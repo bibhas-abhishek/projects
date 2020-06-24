@@ -1,5 +1,7 @@
 /**
- * Bibhas Abhishek bibhas_01@hotmail.com 08 Oct 2018
+ * Bibhas Abhishek
+ * bibhas_01@hotmail.com
+ * 08 Oct 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/BinarySearchTree
  */
 
@@ -59,7 +61,7 @@ public class BinarySearchTree {
             else { // has both children
                 TreeNode temp = findMin(root.right);
                 root.val = temp.val;
-                root.right = deleteNode(root.right, temp.val);
+                root.right = deleteNode(root.right, temp.val); // delete temp node
             }
         }
         return root;

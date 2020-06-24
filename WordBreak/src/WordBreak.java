@@ -15,7 +15,7 @@ public class WordBreak {
         boolean[] memo = new boolean[s.length() + 1];
         memo[0] = true; // empty string is contained in the dictionary
 
-        // memo[i] means whether string(0,i) -> i exclusive can be segmented from the dictionary
+        // memo[i] means whether string of length i can be segmented from the dictionary
         for (int i = 1; i <= s.length(); i++) {
             for (int j = 0; j < i; j++) {
                 if (memo[j] && wordDict.contains(s.substring(j, i))) {
@@ -30,9 +30,8 @@ public class WordBreak {
     public static void main(String[] args) {
         String s = "leetcode";
         List<String> wordDict = new ArrayList<>();
-        wordDict.add("l");
-        wordDict.add("etcode");
+        wordDict.add("leet");
+        wordDict.add("code");
         System.out.println(new WordBreak().wordBreak(s, wordDict));
     }
-
 }
