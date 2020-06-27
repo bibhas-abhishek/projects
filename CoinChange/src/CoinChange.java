@@ -18,13 +18,12 @@ public class CoinChange {
 
     private static long coinChangeDP(int[] coins, int amount, int index, Map<String, Long> memo) {
         if (amount == 0)
-            return 1;
+            return 1; // don't choose a coin
 
         if (index >= coins.length)
             return 0;
 
         String key = amount + "-" + index;
-
         if (memo.containsKey(key))
             return memo.get(key);
 
@@ -55,9 +54,8 @@ public class CoinChange {
     }
 
     public static void main(String[] args) {
-        int[] coins = new int[]{1, 2, 3};
+        int[] coins = new int[] { 1, 2, 3 };
         System.out.println(coinChangeRecursive(coins, 4, 0));
         System.out.println(coinChangeDP(coins, 4));
     }
-
 }

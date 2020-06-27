@@ -1,11 +1,11 @@
+import java.util.Stack;
+
 /**
  * Bibhas Abhishek
  * bibhas_01@hotmail.com
  * 26 May 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/NextGreaterElement
  **/
-
-import java.util.Stack;
 
 public class NextGreaterElement {
 
@@ -16,16 +16,16 @@ public class NextGreaterElement {
             int current = array[i];
             int top = stack.pop();
             if (current < top)
-                stack.push(top);        // push back popped stack top if current array element is less than it
+                stack.push(top); // push back popped stack top if current array element is less than it
             else {
-                while (current > top) {     // keep removing elements from the stack if current > stackTop
+                while (current > top) { // keep removing elements from the stack if current > stackTop
                     System.out.println(top + "->" + current);
                     if (stack.isEmpty())
                         break;
-                    top = stack.pop();      // continue if the stack tops are lesser than the current scanned element
+                    top = stack.pop(); // continue if the stack tops are lesser than the current scanned element
                 }
             }
-            stack.push(current);        // push the current scanned array element
+            stack.push(current); // push the current scanned array element
         }
 
         while (!stack.isEmpty())
@@ -33,8 +33,7 @@ public class NextGreaterElement {
     }
 
     public static void main(String[] args) {
-        int[] array = {4, 5, 2, 25};
+        int[] array = { 4, 5, 2, 25 };
         nextGreaterElement(array);
     }
-
 }

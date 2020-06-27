@@ -12,7 +12,7 @@ public class ConnectSameLevelNodesBinaryTree {
 
     private static class Node {
 
-        int data;
+        int  data;
         Node left, right, nextRight;
 
         public Node(int data) {
@@ -20,7 +20,6 @@ public class ConnectSameLevelNodesBinaryTree {
             left = right = null;
             nextRight = null;
         }
-
     }
 
     public void connect(Node root) {
@@ -35,12 +34,13 @@ public class ConnectSameLevelNodesBinaryTree {
                     queue.add(node.left);
                 if (node.right != null)
                     queue.add(node.right);
-            } else if (!queue.isEmpty()) // null evaluated as the last popped element. add null again as delimiter.
+            }
+            else if (!queue.isEmpty()) // null evaluated as the last popped element. add null again as delimiter.
                 queue.add(null);
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         /* Constructed binary tree is
                   10
@@ -56,18 +56,24 @@ public class ConnectSameLevelNodesBinaryTree {
         root.right.right = new Node(90);
 
         new ConnectSameLevelNodesBinaryTree().connect(root);
-
         System.out.println("-1 is printed if there is no nextRight");
-        System.out.println("nextRight of " + root.data + " is " +
-                ((root.nextRight != null) ? root.nextRight.data : -1));
-        System.out.println("nextRight of " + root.left.data + " is " +
-                ((root.left.nextRight != null) ? root.left.nextRight.data : -1));
-        System.out.println("nextRight of " + root.right.data + " is " +
-                ((root.right.nextRight != null) ? root.right.nextRight.data : -1));
-        System.out.println("nextRight of " + root.left.left.data + " is " +
-                ((root.left.left.nextRight != null) ? root.left.left.nextRight.data : -1));
-        System.out.println("nextRight of " + root.right.right.data + " is " +
-                ((root.right.right.nextRight != null) ? root.right.right.nextRight.data : -1));
+        System.out
+                .println("nextRight of " + root.data + " is " + ((root.nextRight != null) ? root.nextRight.data : -1));
+        System.out.println(
+                "nextRight of " + root.left.data
+                        + " is "
+                        + ((root.left.nextRight != null) ? root.left.nextRight.data : -1));
+        System.out.println(
+                "nextRight of " + root.right.data
+                        + " is "
+                        + ((root.right.nextRight != null) ? root.right.nextRight.data : -1));
+        System.out.println(
+                "nextRight of " + root.left.left.data
+                        + " is "
+                        + ((root.left.left.nextRight != null) ? root.left.left.nextRight.data : -1));
+        System.out.println(
+                "nextRight of " + root.right.right.data
+                        + " is "
+                        + ((root.right.right.nextRight != null) ? root.right.right.nextRight.data : -1));
     }
-
 }

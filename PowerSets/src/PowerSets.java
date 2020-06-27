@@ -7,6 +7,7 @@ import java.util.List;
  * 09 Oct 2017
  * https://github.com/bibhas-abhishek/projects/tree/master/PowerSets
  */
+
 public class PowerSets {
 
     public ArrayList<ArrayList<String>> getSubsets(List<String> set) {
@@ -39,5 +40,4 @@ public class PowerSets {
         ArrayList<ArrayList<String>> subsets = new PowerSets().getSubsets(set);
         System.out.print(subsets.toString());
     }
-
 }

@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 /**
  * Bibhas Abhishek
@@ -11,8 +13,7 @@ public class TopologicalSort {
 
     private static class Graph {
 
-
-        private int v;
+        private int             v;
         private List<Integer>[] adjList;
 
         Graph(int v) {
@@ -29,13 +30,11 @@ public class TopologicalSort {
         public void printGraph() {
             for (int i = 0; i < adjList.length; i++) {
                 System.out.print("[" + i + "]");
-                List<Integer> nodeList = adjList[i];
-                for (Integer node : nodeList)
+                for (Integer node : adjList[i])
                     System.out.print("->" + node);
                 System.out.println();
             }
         }
-
     }
 
     public void topologicalSort(Graph g) {
@@ -44,19 +43,18 @@ public class TopologicalSort {
         boolean[] visited = new boolean[V];
         for (int i = 0; i < V; i++) {
             if (!visited[i])
-                topologicalSort(i, stack, visited, g);
+                topologicalSortUtil(i, stack, visited, g);
         }
 
         while (!stack.isEmpty())
             System.out.print(stack.pop() + " ");
     }
 
-    private void topologicalSort(int i, Stack<Integer> stack, boolean[] visited, Graph g) {
+    private void topologicalSortUtil(int i, Stack<Integer> stack, boolean[] visited, Graph g) {
         visited[i] = true;
-        List<Integer> next = g.adjList[i];
-        for (int node : next) {
+        for (int node : g.adjList[i]) {
             if (!visited[node])
-                topologicalSort(node, stack, visited, g);
+                topologicalSortUtil(node, stack, visited, g);
         }
         stack.push(i);
     }
@@ -72,5 +70,4 @@ public class TopologicalSort {
         g.printGraph();
         new TopologicalSort().topologicalSort(g);
     }
-
 }

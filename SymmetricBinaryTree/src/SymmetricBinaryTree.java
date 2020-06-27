@@ -9,7 +9,7 @@ public class SymmetricBinaryTree {
 
     private static class Node {
 
-        int data;
+        int  data;
         Node left;
         Node right;
 
@@ -18,7 +18,17 @@ public class SymmetricBinaryTree {
             this.left = null;
             this.right = null;
         }
+    }
 
+    private static boolean isSymmetric(Node nodeA, Node nodeB) {
+        if (nodeA == null && nodeB == null)
+            return true;
+
+        if (nodeA != null && nodeB != null) {
+            return nodeA.data == nodeB.data && isSymmetric(nodeA.left, nodeB.right)
+                    && isSymmetric(nodeA.right, nodeB.left);
+        }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -31,17 +41,4 @@ public class SymmetricBinaryTree {
         root.right.right = new Node(3);
         System.out.print(isSymmetric(root, root));
     }
-
-    private static boolean isSymmetric(Node nodeA, Node nodeB) {
-        if (nodeA == null && nodeB == null)
-            return true;
-        if (nodeA != null && nodeB != null) {
-            if (nodeA.data == nodeB.data
-                    && isSymmetric(nodeA.left, nodeB.right)
-                    && isSymmetric(nodeA.right, nodeB.left))
-                return true;
-        }
-        return false;
-    }
-
 }
