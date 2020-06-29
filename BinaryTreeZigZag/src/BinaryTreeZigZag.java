@@ -2,14 +2,14 @@
  * Bibhas Abhishek
  * bibhas_01@hotmail.com
  * 16 Oct 2018
- * https://github.com/bibhas-abhishek/projects/tree/master/BinaryTreeZigZagTraversal
+ * https://github.com/bibhas-abhishek/projects/tree/master/BinaryTreeZigZag
  */
 
-public class BinaryTreeZigZagTraversal {
+public class BinaryTreeZigZag {
 
     private static class TreeNode {
 
-        int val;
+        int      val;
         TreeNode left;
         TreeNode right;
 
@@ -18,7 +18,6 @@ public class BinaryTreeZigZagTraversal {
             this.left = null;
             this.right = null;
         }
-
     }
 
     public void printZigZagOrder(TreeNode root) {
@@ -29,6 +28,7 @@ public class BinaryTreeZigZagTraversal {
         }
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void printLevel(TreeNode root, int level, boolean order) {
         if (root == null)
             return;
@@ -38,7 +38,8 @@ public class BinaryTreeZigZagTraversal {
         else if (order) {
             printLevel(root.left, level - 1, order);
             printLevel(root.right, level - 1, order);
-        } else {
+        }
+        else {
             printLevel(root.right, level - 1, order);
             printLevel(root.left, level - 1, order);
         }
@@ -47,7 +48,6 @@ public class BinaryTreeZigZagTraversal {
     private int height(TreeNode root) {
         if (root == null)
             return -1;
-
         return Math.max(height(root.left), height(root.right)) + 1;
     }
 
@@ -59,7 +59,6 @@ public class BinaryTreeZigZagTraversal {
         root.left.right = new TreeNode(5);
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(7);
-        new BinaryTreeZigZagTraversal().printZigZagOrder(root);
+        new BinaryTreeZigZag().printZigZagOrder(root);
     }
-
 }

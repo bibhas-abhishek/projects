@@ -10,7 +10,7 @@ public class LeastCommonAncestor {
 
     private static class TreeNode {
 
-        int val;
+        int      val;
         TreeNode left;
         TreeNode right;
 
@@ -19,7 +19,6 @@ public class LeastCommonAncestor {
             this.left = null;
             this.right = null;
         }
-
     }
 
     private boolean isContains(TreeNode root, int data) {
@@ -28,7 +27,6 @@ public class LeastCommonAncestor {
 
         if (root.val == data)
             return true;
-
         return isContains(root.left, data) || isContains(root.right, data);
     }
 
@@ -55,7 +53,6 @@ public class LeastCommonAncestor {
         TreeNode right = leastCommonAncestor(root.right, n1, n2);
         if (left != null && right != null) // getting not-null from both side. return root as ancestor
             return root;
-
         return left != null ? left : right;
     }
 
@@ -69,11 +66,8 @@ public class LeastCommonAncestor {
         root.left.left = new TreeNode(7);
         root.left.right = new TreeNode(8);
 
-        /* TreeNode result = leastCommonAncestor(root, 2, 12);
-        System.out.println(result != null ? result.val : "No LCA"); */
         TreeNode n1 = root.right.right;
         TreeNode n2 = root.right.left;
         System.out.println(obj.leastCommonAncestor(root, n1, n2).val);
     }
-
 }
