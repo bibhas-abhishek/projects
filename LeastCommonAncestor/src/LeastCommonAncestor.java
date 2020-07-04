@@ -51,8 +51,10 @@ public class LeastCommonAncestor {
 
         TreeNode left = leastCommonAncestor(root.left, n1, n2);
         TreeNode right = leastCommonAncestor(root.right, n1, n2);
-        if (left != null && right != null) // getting not-null from both side. return root as ancestor
+        // getting not-null from both side. return root as ancestor
+        if (left != null && right != null) {
             return root;
+        }
         return left != null ? left : right;
     }
 

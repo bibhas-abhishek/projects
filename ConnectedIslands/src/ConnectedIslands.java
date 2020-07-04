@@ -34,8 +34,8 @@ public class ConnectedIslands {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if (isSafe(i, j, water, visited)) {
-                    count += 1;
                     dfs(i, j, water, visited);
+                    count += 1;
                 }
             }
         }
@@ -43,15 +43,9 @@ public class ConnectedIslands {
     }
 
     public static void main(String[] args) {
-        int[][] water = {
-                {1, 1, 0, 0, 0},
-                {0, 1, 0, 0, 1},
-                {1, 0, 0, 1, 1},
-                {0, 0, 0, 0, 0},
-                {1, 0, 1, 0, 1}
-        };
+        int[][] water =
+                { { 1, 1, 0, 0, 0 }, { 0, 1, 0, 0, 1 }, { 1, 0, 0, 1, 1 }, { 0, 0, 0, 0, 0 }, { 1, 0, 1, 0, 1 } };
         ConnectedIslands obj = new ConnectedIslands();
         System.out.println(obj.countIslands(water));
     }
-
 }

@@ -14,7 +14,7 @@ public class TreeDiagonalTraversal {
 
     private static class TreeNode {
 
-        int val;
+        int      val;
         TreeNode left;
         TreeNode right;
 
@@ -23,7 +23,31 @@ public class TreeDiagonalTraversal {
             this.left = null;
             this.right = null;
         }
+    }
 
+    public void printDiagonalTree(TreeNode root) {
+        Map<Integer, List<Integer>> map = new TreeMap<>((o1, o2) -> o2 - o1);
+        map = printDiagonalTreeUtil(root, 0, map);
+        for (Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
+            System.out.println(entry.getValue());
+        }
+    }
+
+    private Map<Integer, List<Integer>> printDiagonalTreeUtil(TreeNode root, int hd, Map<Integer, List<Integer>> map) {
+        if (root == null) {
+            return map;
+        }
+
+        List<Integer> list = map.get(hd);
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+
+        list.add(root.val);
+        map.put(hd, list);
+        printDiagonalTreeUtil(root.right, hd, map);
+        printDiagonalTreeUtil(root.left, hd - 1, map);
+        return map;
     }
 
     public static void main(String[] args) {
@@ -34,30 +58,6 @@ public class TreeDiagonalTraversal {
         root.left.right = new TreeNode(5);
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(7);
-        printDiagonalTree(root);
+        new TreeDiagonalTraversal().printDiagonalTree(root);
     }
-
-    private static void printDiagonalTree(TreeNode root) {
-        Map<Integer, List<Integer>> map = new TreeMap<>((o1, o2) -> o2 - o1);
-        map = diagonalMapUtil(root, 0, map);
-        for (Map.Entry<Integer, List<Integer>> entry : map.entrySet())
-            System.out.println(entry.getValue());
-    }
-
-    private static Map<Integer, List<Integer>> diagonalMapUtil(TreeNode root, int hd, Map<Integer, List<Integer>> map) {
-        if (root == null)
-            return map;
-
-        List<Integer> list = map.get(hd);
-        if (list == null)
-            list = new ArrayList<>();
-
-        list.add(root.val);
-        map.put(hd, list);
-
-        diagonalMapUtil(root.right, hd, map);
-        diagonalMapUtil(root.left, hd - 1, map);
-        return map;
-    }
-
 }

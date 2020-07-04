@@ -2,8 +2,7 @@
  * Bibhas Abhishek
  * bibhas_01@hotmail.com
  * 31 Oct 2018
- * https://leetcode.com/problems/surrounded-regions/description/
- * https://github.com/bibhas-abhishek/projects/tree/master/SurroundedRegions
+ * https://leetcode.com/problems/surrounded-regions/
  */
 
 public class SurroundedRegions {
@@ -26,11 +25,12 @@ public class SurroundedRegions {
     public void solve(char[][] board) {
         int n = board.length;
         int m = board[0].length;
-        if (n == 0)
+        if (n == 0) {
             return;
+        }
 
-        int[] xMove = {0, 0, 1, -1};
-        int[] yMove = {1, -1, 0, 0};
+        int[] xMove = { 0, 0, 1, -1 };
+        int[] yMove = { 1, -1, 0, 0 };
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (i == 0 || i == n - 1 || j == 0 || j == m - 1) {
@@ -43,23 +43,22 @@ public class SurroundedRegions {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                if (board[i][j] == 'B')
+                // nodes marked B are accessible from the border
+                if (board[i][j] == 'B') {
                     board[i][j] = 'O';
-                else if (board[i][j] == 'O')
+                }
+                // nodes still marked O are not accessible from the border
+                else if (board[i][j] == 'O') {
                     board[i][j] = 'X';
+                }
             }
         }
     }
 
     public static void main(String[] args) {
-        char[][] board = {
-                {'X', 'X', 'X', 'X'},
-                {'X', 'O', 'O', 'X'},
-                {'X', 'O', 'O', 'X'},
-                {'X', 'O', 'X', 'X'}
-        };
-        SurroundedRegions obj = new SurroundedRegions();
-        obj.solve(board);
+        char[][] board =
+                { { 'X', 'X', 'X', 'X' }, { 'X', 'O', 'O', 'X' }, { 'X', 'X', 'O', 'X' }, { 'X', 'O', 'X', 'X' } };
+        new SurroundedRegions().solve(board);
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 System.out.print(board[i][j] + " ");
@@ -67,5 +66,4 @@ public class SurroundedRegions {
             System.out.println();
         }
     }
-
 }

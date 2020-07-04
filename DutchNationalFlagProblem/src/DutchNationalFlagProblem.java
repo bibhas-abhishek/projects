@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Bibhas Abhishek
  * bibhas_01@hotmail.com
@@ -10,13 +12,13 @@ public class DutchNationalFlagProblem {
 
     public int[] dutchNationalFlagSort(int[] array) {
         int low = 0, mid = 0, high = array.length - 1;
-        // low = first 1 // mid = last 1 + 1 // high = first 2 - 1
         while (mid <= high) {
             if (array[mid] == 0) {
                 swap(array, low, mid);
                 mid += 1;
                 low += 1;
-            } else if (array[mid] == 1)
+            }
+            else if (array[mid] == 1)
                 mid += 1;
             else if (array[mid] == 2) {
                 swap(array, mid, high);
@@ -36,10 +38,8 @@ public class DutchNationalFlagProblem {
 
     public static void main(String[] args) {
         DutchNationalFlagProblem obj = new DutchNationalFlagProblem();
-        int[] array = {0, 1, 2, 0, 2, 1, 2, 1, 2, 1, 0};
+        int[] array = { 0, 1, 2, 0, 2, 1, 2, 1, 2, 1, 0 };
         array = obj.dutchNationalFlagSort(array);
-        for (int i : array)
-            System.out.print(i + " ");
+        Arrays.stream(array).mapToObj(i -> i + " ").forEach(System.out::print);
     }
-
 }

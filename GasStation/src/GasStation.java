@@ -16,7 +16,8 @@ public class GasStation {
             if (sum >= 0) {
                 sum += gas[end] - cost[end];
                 end += 1;
-            } else {
+            }
+            else {
                 start -= 1;
                 sum += gas[start] - cost[start];
             }
@@ -24,11 +25,9 @@ public class GasStation {
         return sum >= 0 ? start : -1;
     }
 
-
     public static void main(String[] args) {
-        int[] gas = {1, 2, 3, 4, 5};
-        int[] cost = {3, 4, 5, 1, 2};
+        int[] gas = { 1, 2, 3, 4, 5 };
+        int[] cost = { 3, 4, 5, 1, 2 };
         System.out.println(canCompleteCircuit(gas, cost));
     }
-
 }

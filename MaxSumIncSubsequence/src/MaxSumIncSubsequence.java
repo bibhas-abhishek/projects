@@ -5,10 +5,7 @@
  * https://github.com/bibhas-abhishek/projects/tree/master/MaximumSumSubsequence
  */
 
-/**
- * Maximum sum increasing subsequence
- */
-public class MaximumSumSubsequence {
+public class MaxSumIncSubsequence {
 
     private static int maxSum(int[] arr) {
         int n = arr.length;
@@ -16,9 +13,11 @@ public class MaximumSumSubsequence {
         dp[0] = arr[0];
         int result = Integer.MIN_VALUE;
         for (int i = 1; i < n; i++) {
+            dp[i] = arr[i];
             for (int j = 0; j < i; j++) {
-                if (arr[j] < arr[i])
+                if (arr[j] < arr[i]) {
                     dp[i] = Math.max(dp[i], dp[j] + arr[i]);
+                }
             }
             result = Math.max(result, dp[i]);
         }
@@ -26,8 +25,7 @@ public class MaximumSumSubsequence {
     }
 
     public static void main(String[] args) {
-        int arr[] = {4, 6, 1, 3, 8, 4, 6};
+        int[] arr = { 1, 101, 2, 3, 100, 4, 5 };
         System.out.println(maxSum(arr));
     }
-
 }

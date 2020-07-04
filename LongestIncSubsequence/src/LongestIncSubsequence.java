@@ -6,14 +6,14 @@
  * https://github.com/bibhas-abhishek/projects/tree/master/LongestIncreasingSubsequence
  **/
 
-public class LongestIncreasingSubsequence {
+public class LongestIncSubsequence {
 
     public int longestIncreasingSubsequence(int[] array) {
         int n = array.length;
-        if (n == 0 || n == 1)
+        if (n == 0 || n == 1) {
             return n;
+        }
 
-        // dp[i] means the length of the longest subsequence till i
         int[] dp = new int[n];
         dp[0] = 1;
         int result = dp[0];
@@ -29,9 +29,7 @@ public class LongestIncreasingSubsequence {
     }
 
     public static void main(String[] args) {
-        int[] array = {3, 4, -1, 0, 6, 2, 3};
-        System.out.println(new LongestIncreasingSubsequence().
-                longestIncreasingSubsequence(array));
+        int[] array = { 3, 4, -1, 0, 6, 2, 3 };
+        System.out.println(new LongestIncSubsequence().longestIncreasingSubsequence(array));
     }
-
 }
