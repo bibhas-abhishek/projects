@@ -12,8 +12,7 @@ import java.util.Queue;
 
 public class Graph {
 
-
-    private int v;
+    private int             v;
     private List<Integer>[] adjList;
 
     Graph(int v) {
@@ -27,21 +26,17 @@ public class Graph {
         adjList[u].add(v);
     }
 
-
     public void printGraph() {
         for (int i = 0; i < adjList.length; i++) {
             System.out.print("[" + i + "]");
             List<Integer> nodeList = adjList[i];
-            for (Integer node : nodeList)
+            for (Integer node : nodeList) {
                 System.out.print("->" + node);
+            }
             System.out.println();
         }
     }
 
-    /**
-     * O(V+E)
-     * @param s
-     */
     public void breadthFirstSearch(int s) {
         boolean[] visited = new boolean[adjList.length];
         Queue<Integer> queue = new LinkedList<>();
@@ -51,16 +46,13 @@ public class Graph {
             visited[node] = true;
             System.out.print(node + " ");
             for (int neighbour : adjList[node]) {
-                if (!visited[neighbour])
+                if (!visited[neighbour]) {
                     queue.add(neighbour);
+                }
             }
         }
     }
 
-    /**
-     * O(V+E)
-     * @param s
-     */
     public void depthFirstSearch(int s) {
         boolean[] visited = new boolean[adjList.length];
         depthFirstSearch(s, visited);
@@ -70,8 +62,9 @@ public class Graph {
         visited[node] = true;
         System.out.print(node + " ");
         for (int neighbour : adjList[node]) {
-            if (!visited[neighbour])
+            if (!visited[neighbour]) {
                 depthFirstSearch(neighbour, visited);
+            }
         }
     }
 
@@ -91,5 +84,4 @@ public class Graph {
         System.out.print("DFS: ");
         g.depthFirstSearch(2);
     }
-
 }

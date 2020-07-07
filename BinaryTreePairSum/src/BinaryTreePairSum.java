@@ -12,7 +12,7 @@ public class BinaryTreePairSum {
 
     private static class Node {
 
-        int data;
+        int  data;
         Node left;
         Node right;
 
@@ -21,7 +21,21 @@ public class BinaryTreePairSum {
             this.left = null;
             this.right = null;
         }
+    }
 
+    private static boolean findIfSumExists(Node root, int key, Set<Integer> set) {
+        if (root == null) {
+            return false;
+        }
+
+        if (set.contains(key - root.data)) {
+            System.out.print(root.data + " + " + (key - root.data));
+            return true;
+        }
+        else {
+            set.add(root.data);
+        }
+        return findIfSumExists(root.left, key, set) || findIfSumExists(root.right, key, set);
     }
 
     public static void main(String[] args) {
@@ -32,21 +46,8 @@ public class BinaryTreePairSum {
         root.left.right = new Node(5);
         root.right.left = new Node(6);
         root.right.right = new Node(7);
-        if (!findIfSumExists(root, 11, new HashSet<>()))
+        if (!findIfSumExists(root, 11, new HashSet<>())) {
             System.out.print("Pair not found");
+        }
     }
-
-    private static boolean findIfSumExists(Node root, int key, Set<Integer> set) {
-        if (root == null)
-            return false;
-
-        if (set.contains(key - root.data)) {
-            System.out.print(String.valueOf(root.data) + " : " + String.valueOf(key - root.data));
-            return true;
-        } else
-            set.add(root.data);
-
-        return findIfSumExists(root.left, key, set) || findIfSumExists(root.right, key, set);
-    }
-
 }

@@ -45,21 +45,19 @@ public class StringPermutation {
         }
 
         for (int i = 0; i < str.length; i++) {
-            if (count[i] == 0)
-                continue;
-
-            result[index] = str[i];
-            count[i] -= 1;
-            permuteString(str, count, result, index + 1, resultList);
-            count[i] += 1;
+            if (count[i] != 0) {
+                result[index] = str[i];
+                count[i] -= 1;
+                permuteString(str, count, result, index + 1, resultList);
+                count[i] += 1;
+            }
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         String input = "AABC";
         StringPermutation obj = new StringPermutation();
-        for (String str : obj.permute(input.toCharArray()))
-            System.out.print(str + " ");
+        List<String> result = obj.permute(input.toCharArray());
+        result.stream().map(str -> str + " ").forEach(System.out::print);
     }
-
 }

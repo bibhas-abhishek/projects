@@ -10,19 +10,18 @@ public class SortedLLToBalancedBST {
 
     private static class ListNode {
 
-        int val;
+        int      val;
         ListNode next;
 
         public ListNode(int val) {
             this.val = val;
             this.next = null;
         }
-
     }
 
     private static class TreeNode {
 
-        int val;
+        int      val;
         TreeNode left;
         TreeNode right;
 
@@ -30,37 +29,20 @@ public class SortedLLToBalancedBST {
             val = x;
             left = right = null;
         }
-
     }
 
-    private static ListNode headNode = null;
+    private ListNode headNode = null;
 
-
-    public static void main(String[] args) {
-        ListNode head = null;
-        head = insert(head, 1);
-        head = insert(head, 2);
-        head = insert(head, 3);
-        head = insert(head, 4);
-        head = insert(head, 5);
-        head = insert(head, 6);
-        head = insert(head, 7);
-        printList(head);
-        System.out.println();
-        TreeNode root = sortedListToBST(head);
-        inorderDFS(root);
-    }
-
-    private static void inorderDFS(TreeNode root) {
-        if (root == null)
+    private void inorderDFS(TreeNode root) {
+        if (root == null) {
             return;
-
+        }
         inorderDFS(root.left);
         System.out.print(root.val + " ");
         inorderDFS(root.right);
     }
 
-    private static void printList(ListNode head) {
+    private void printList(ListNode head) {
         ListNode temp = head;
         while (temp != null) {
             System.out.print(temp.val + (temp.next != null ? "->" : ""));
@@ -69,43 +51,61 @@ public class SortedLLToBalancedBST {
         System.out.println();
     }
 
-
-    private static ListNode insert(ListNode head, int data) {
-        if (head == null)
+    // add nodes to tail
+    private ListNode insert(ListNode head, int data) {
+        if (head == null) {
             head = new ListNode(data);
+        }
         else {
             ListNode temp = head;
-            while (temp.next != null)
+            while (temp.next != null) {
                 temp = temp.next;
+            }
             temp.next = new ListNode(data);
         }
         return head;
     }
 
-    private static int getLength(ListNode head) {
+    private int getLength(ListNode head) {
         int count = 0;
         while (head != null) {
-            count = count + 1;
+            count += 1;
             head = head.next;
         }
         return count;
     }
 
-    private static TreeNode sortedListToBST(ListNode head) {
-        headNode = head;
-        return sortedListToBSTUtil(getLength(head));
-    }
-
-    private static TreeNode sortedListToBSTUtil(int length) {
-        if (length <= 0)
+    private TreeNode sortedListToBSTUtil(int length) {
+        if (length <= 0) {
             return null;
+        }
 
         TreeNode tLeft = sortedListToBSTUtil(length / 2);
         TreeNode root = new TreeNode(headNode.val);
         root.left = tLeft;
         headNode = headNode.next;
-        root.right = sortedListToBSTUtil(length - length / 2 - 1);  // length - left tree nodes - root
+        root.right = sortedListToBSTUtil(length - length / 2 - 1); // length - left tree nodes - root
         return root;
     }
 
+    public TreeNode sortedListToBST(ListNode head) {
+        headNode = head;
+        return sortedListToBSTUtil(getLength(head));
+    }
+
+    public static void main(String[] args) {
+        SortedLLToBalancedBST obj = new SortedLLToBalancedBST();
+        ListNode head = null;
+        head = obj.insert(head, 1);
+        head = obj.insert(head, 2);
+        head = obj.insert(head, 3);
+        head = obj.insert(head, 4);
+        head = obj.insert(head, 5);
+        head = obj.insert(head, 6);
+        head = obj.insert(head, 7);
+        obj.printList(head);
+        System.out.println();
+        TreeNode root = obj.sortedListToBST(head);
+        obj.inorderDFS(root);
+    }
 }
