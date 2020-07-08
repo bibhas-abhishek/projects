@@ -41,13 +41,14 @@ public class InorderSuccessorBST {
 
         Node ptr = root;
         Node successor = null;
-        while (ptr != current) { // find the deepest node for which the target node is in the left subtree
+        while (ptr != current) { // find the last node for which the target node is in the left subtree
             if (val < ptr.data) {
                 successor = ptr;
                 ptr = ptr.left;
             }
-            else
+            else {
                 ptr = ptr.right;
+            }
         }
         return successor;
     }

@@ -1,5 +1,7 @@
 /**
- * Bibhas Abhishek bibhas_01@hotmail.com 14 Apr 2018
+ * Bibhas Abhishek
+ * bibhas_01@hotmail.com
+ * 14 Apr 2018
  * https://github.com/bibhas-abhishek/projects/tree/master/BSTfromPreorder
  **/
 
