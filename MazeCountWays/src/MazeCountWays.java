@@ -3,7 +3,6 @@
  * bibhas_01@hotmail.com
  * 07 Sep 2018
  * https://www.geeksforgeeks.org/count-number-ways-reach-destination-maze/
- * https://github.com/bibhas-abhishek/projects/tree/master/MazeCountWays
  */
 
 public class MazeCountWays {

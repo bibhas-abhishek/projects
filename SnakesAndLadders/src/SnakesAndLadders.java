@@ -1,9 +1,17 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-// https://leetcode.com/problems/snakes-and-ladders/
+/*https://leetcode.com/problems/snakes-and-ladders/*/
 
 public class SnakesAndLadders {
+
+    private int getBoardValue(int[][] board, int num) {
+        int n = board.length;
+        int r = (num - 1) / n;
+        int x = n - 1 - r;
+        int y = r % 2 == 0 ? num - 1 - r * n : n + r * n - num;
+        return board[x][y];
+    }
 
     public int snakesAndLadders(int[][] board) {
         int n = board.length;
@@ -31,14 +39,6 @@ public class SnakesAndLadders {
             }
         }
         return -1;
-    }
-
-    private int getBoardValue(int[][] board, int num) {
-        int n = board.length;
-        int r = (num - 1) / n;
-        int x = n - 1 - r;
-        int y = r % 2 == 0 ? num - 1 - r * n : n + r * n - num;
-        return board[x][y];
     }
 
     public static void main(String[] args) {

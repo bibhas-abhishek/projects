@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-// https://www.geeksforgeeks.org/detect-cycle-in-a-graph
+/*https://www.geeksforgeeks.org/detect-cycle-in-a-graph*/
 
 public class DetectCycleDirectedGraph {
 

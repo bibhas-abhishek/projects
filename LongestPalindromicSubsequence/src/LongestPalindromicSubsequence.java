@@ -1,22 +1,13 @@
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 28 Apr 2018
- * https://leetcode.com/problems/longest-palindromic-subsequence/submissions/
- * https://www.geeksforgeeks.org/longest-palindromic-subsequence-dp-12/
- * https://github.com/bibhas-abhishek/projects/tree/master/LongestPalindromicSubsequence
- **/
-
 public class LongestPalindromicSubsequence {
 
-    public int longestPalindromicSubsequenceOptimisedMemo(char[] str) {
-        return longestPalindromicSubsequenceOptimisedMemo(str, 0, str.length - 1, new HashMap<>());
+    public int longestPalindromicSubsequenceDPMemo(char[] str) {
+        return longestPalindromicSubsequenceDPMemo(str, 0, str.length - 1, new HashMap<>());
     }
 
-    private int longestPalindromicSubsequenceOptimisedMemo(char[] str, int start, int end, Map<String, Integer> memo) {
+    private int longestPalindromicSubsequenceDPMemo(char[] str, int start, int end, Map<String, Integer> memo) {
         if (start > end) {
             return 0;
         }
@@ -32,18 +23,18 @@ public class LongestPalindromicSubsequence {
 
         int res;
         if (str[start] == str[end]) {
-            res = 2 + longestPalindromicSubsequenceOptimisedMemo(str, start + 1, end - 1, memo);
+            res = 2 + longestPalindromicSubsequenceDPMemo(str, start + 1, end - 1, memo);
         }
         else {
             res = Math.max(
-                    longestPalindromicSubsequenceOptimisedMemo(str, start + 1, end, memo),
-                    longestPalindromicSubsequenceOptimisedMemo(str, start, end - 1, memo));
+                    longestPalindromicSubsequenceDPMemo(str, start + 1, end, memo),
+                    longestPalindromicSubsequenceDPMemo(str, start, end - 1, memo));
         }
         memo.put(key, res);
         return res;
     }
 
-    public int longestPalindromicSubsequenceOptimised(char[] str) {
+    public int longestPalindromicSubsequenceDPTab(char[] str) {
         int n = str.length;
         int[][] dp = new int[n][n];
         for (int i = 0; i < n; i++) {
@@ -66,9 +57,9 @@ public class LongestPalindromicSubsequence {
 
     public static void main(String[] args) {
         LongestPalindromicSubsequence obj = new LongestPalindromicSubsequence();
-        //noinspection SpellCheckingInspection
+        // noinspection SpellCheckingInspection
         String s = "agbdba";
-        System.out.println(obj.longestPalindromicSubsequenceOptimisedMemo(s.toCharArray()));
-        System.out.println(obj.longestPalindromicSubsequenceOptimised(s.toCharArray()));
+        System.out.println(obj.longestPalindromicSubsequenceDPMemo(s.toCharArray()));
+        System.out.println(obj.longestPalindromicSubsequenceDPTab(s.toCharArray()));
     }
 }

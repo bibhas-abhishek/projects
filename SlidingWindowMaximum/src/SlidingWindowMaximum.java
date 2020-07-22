@@ -2,13 +2,7 @@ import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 04 Sep 2018
- * https://leetcode.com/problems/sliding-window-maximum/description/
- * https://github.com/bibhas-abhishek/projects/tree/master/SlidingWindowMaximum
- */
+/*https://leetcode.com/problems/sliding-window-maximum/description/*/
 
 public class SlidingWindowMaximum {
 

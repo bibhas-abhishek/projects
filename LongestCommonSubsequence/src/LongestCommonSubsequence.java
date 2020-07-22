@@ -1,13 +1,4 @@
-import java.util.Scanner;
 import java.util.Stack;
-
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 03 Oct 2017
- * https://github.com/bibhas-abhishek/projects/tree/master/LongestCommonSubsequence
- * https://www.hackerrank.com/challenges/common-child/problem
- */
 
 public class LongestCommonSubsequence {
 
@@ -16,10 +7,12 @@ public class LongestCommonSubsequence {
         int row = 0, col = 0;
         for (row = 1; row <= s1.length(); row++) {
             for (col = 1; col <= s2.length(); col++) {
-                if (s1.charAt(row - 1) == s2.charAt(col - 1))
+                if (s1.charAt(row - 1) == s2.charAt(col - 1)) {
                     lcs[row][col] = lcs[row - 1][col - 1] + 1;
-                else
+                }
+                else {
                     lcs[row][col] = Math.max(lcs[row - 1][col], lcs[row][col - 1]);
+                }
             }
         }
         printLCSMatrix(lcs);
@@ -36,31 +29,32 @@ public class LongestCommonSubsequence {
                 stack.push(s1.charAt(row - 1));
                 row--;
                 col--;
-            } else if (lcs[row][col] == lcs[row][col - 1]) {
+            }
+            else if (lcs[row][col] == lcs[row][col - 1]) {
                 col--;
-            } else if (lcs[row][col] == lcs[row - 1][col]) {
+            }
+            else if (lcs[row][col] == lcs[row - 1][col]) {
                 row--;
             }
         }
 
-        while (!stack.isEmpty())
+        while (!stack.isEmpty()) {
             System.out.print(stack.pop() + " ");
-
+        }
         System.out.println();
     }
 
     private static void printLCSMatrix(int[][] lcs) {
         for (int i = 0; i < lcs.length; i++) {
-            for (int j = 0; j < lcs[0].length; j++)
+            for (int j = 0; j < lcs[0].length; j++) {
                 System.out.print(lcs[i][j] + " ");
+            }
             System.out.println();
         }
     }
 
     public static void main(String[] args) {
-        int result = new LongestCommonSubsequence().
-                longestCommonSubsequence("ABDCGHCD", "ABGD");
+        int result = new LongestCommonSubsequence().longestCommonSubsequence("ABDCGHCD", "ABGD");
         System.out.println(result);
     }
-
 }

@@ -8,7 +8,7 @@
 
 public class ConnectedIslands {
 
-    private boolean isSafe(int x, int y, int[][] water, boolean[][] visited) {
+    private boolean isValidMove(int x, int y, int[][] water, boolean[][] visited) {
         int row = water.length;
         int col = water[0].length;
         return x >= 0 && x < row && y >= 0 && y < col && water[x][y] == 1 && !visited[x][y];
@@ -20,8 +20,9 @@ public class ConnectedIslands {
             for (int col = -1; col <= 1; col++) {
                 int nextX = x + row;
                 int nextY = y + col;
-                if (isSafe(nextX, nextY, water, visited))
+                if (isValidMove(nextX, nextY, water, visited)) {
                     dfs(nextX, nextY, water, visited);
+                }
             }
         }
     }
@@ -33,7 +34,7 @@ public class ConnectedIslands {
         int count = 0;
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
-                if (isSafe(i, j, water, visited)) {
+                if (isValidMove(i, j, water, visited)) {
                     dfs(i, j, water, visited);
                     count += 1;
                 }

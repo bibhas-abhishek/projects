@@ -3,7 +3,6 @@
  * bibhas_01@hotmail.com
  * 27 Apr 2018
  * https://leetcode.com/problems/longest-palindromic-substring/description/
- * https://github.com/bibhas-abhishek/projects/tree/master/LongestPalindromicSubstring
  **/
 
 public class LongestPalindromicSubstring {
@@ -12,8 +11,9 @@ public class LongestPalindromicSubstring {
         int n = str.length();
         boolean[][] dp = new boolean[n][n];
         int start = 0;
-        for (int i = 0; i < n; i++)
-            dp[i][i] = true; // -> substring[i...j] of length 1 is a palindrome
+        for (int i = 0; i < n; i++) {
+            dp[i][i] = true;
+        }
 
         int maxLength = 1;
         for (int k = 2; k <= n; k++) { // k -> result
@@ -33,8 +33,7 @@ public class LongestPalindromicSubstring {
     }
 
     public static void main(String[] args) {
-        System.out.println(new LongestPalindromicSubstring().
-                longestPalindromicSubstring("forgeeksskeegfor"));
+        //noinspection SpellCheckingInspection
+        System.out.println(new LongestPalindromicSubstring().longestPalindromicSubstring("forgeeksskeegfor"));
     }
-
 }

@@ -3,23 +3,25 @@
  * bibhas_01@hotmail.com
  * 17 Sep 2018
  * https://www.geeksforgeeks.org/optimal-strategy-for-a-game-dp-31/
- * https://github.com/bibhas-abhishek/projects/tree/master/OptimalStrategyForGame
  */
 
 public class OptimalStrategyForGame {
 
-    public int optimalStrategy(int[] game, int i, int j) {
-        if (game.length == 0)
+    public int optimalStrategyNaive(int[] game, int i, int j) {
+        if (game.length == 0) {
             return 0;
+        }
 
-        if (i == j)
+        if (i == j) {
             return game[i];
+        }
 
-        if (j == i + 1)
+        if (j == i + 1) {
             return Math.max(game[i], game[j]);
-
-        return Math.max(game[i] + Math.min(optimalStrategy(game, i + 2, j), optimalStrategy(game, i + 1, j - 1)), // choose Vi
-                game[j] + Math.min(optimalStrategy(game, i + 1, j - 1), optimalStrategy(game, i, j - 2))); // choose Vj
+        }
+        return Math.max(
+                game[i] + Math.min(optimalStrategyNaive(game, i + 2, j), optimalStrategyNaive(game, i + 1, j - 1)), // choose Vi
+                game[j] + Math.min(optimalStrategyNaive(game, i + 1, j - 1), optimalStrategyNaive(game, i, j - 2))); // choose Vj
     }
 
     public int optimalStrategyDP(int[] game, int n) {
@@ -38,9 +40,8 @@ public class OptimalStrategyForGame {
 
     public static void main(String[] args) {
         OptimalStrategyForGame obj = new OptimalStrategyForGame();
-        int[] game = {8, 15, 3, 7};
-        System.out.println(obj.optimalStrategy(game, 0, game.length - 1));
+        int[] game = { 8, 15, 3, 7 };
+        System.out.println(obj.optimalStrategyNaive(game, 0, game.length - 1));
         System.out.println(obj.optimalStrategyDP(game, game.length));
     }
-
 }

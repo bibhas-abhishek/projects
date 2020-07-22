@@ -1,18 +1,4 @@
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 13 Apr 2018
- * https://github.com/bibhas-abhishek/projects/tree/master/FenwickTree
- **/
-
-/**
- * A Fenwick tree or binary indexed tree is a data structure providing efficient methods
- * for calculation and manipulation of the prefix sums of a table of values.
- * Space complexity: O(n)
- * Time complexity to create: O(nlogn)
- * Time complexity to update: O(logn)
- * Time complexity to get prefix sum: O(logn)
- */
+/*https://www.geeksforgeeks.org/binary-indexed-tree-or-fenwick-tree-2/*/
 
 public class FenwickTree {
 
@@ -25,9 +11,9 @@ public class FenwickTree {
     }
 
     public int[] createBinaryIndexedTree(int[] input) {
-        int[] binaryIndexedTree = new int[input.length + 1]; //  index 0 in tree is a dummy
-        for (int i = 1; i <= input.length; i++) { // BIT is 1 shifted to the right
-            createBinaryIndexedTreeUtil(binaryIndexedTree, input[i - 1], i); // i is the index in BIT
+        int[] binaryIndexedTree = new int[input.length + 1]; // index 0 in tree is a dummy
+        for (int i = 1; i <= input.length; i++) {
+            createBinaryIndexedTreeUtil(binaryIndexedTree, input[i - 1], i);
         }
         return binaryIndexedTree;
     }
@@ -51,9 +37,8 @@ public class FenwickTree {
 
     public static void main(String[] args) {
         FenwickTree obj = new FenwickTree();
-        int input[] = {1, 2, 3, 4, 5, 6, 7};
+        int[] input = { 1, 2, 3, 4, 5, 6, 7 };
         int[] binaryIndexedTree = obj.createBinaryIndexedTree(input);
         System.out.println(obj.getSum(binaryIndexedTree, 2));
     }
-
 }

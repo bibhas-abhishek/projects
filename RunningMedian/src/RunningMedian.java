@@ -3,18 +3,18 @@ import java.util.Queue;
 import java.util.Random;
 
 /**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 02 Apr 2018
- * https://www.hackerrank.com/challenges/find-the-running-median/problem
  * https://leetcode.com/problems/find-median-from-data-stream/description/
- * https://github.com/bibhas-abhishek/projects/tree/master/RunningMedian
  **/
 
 public class RunningMedian {
 
-    private Queue<Integer> minHeap = new PriorityQueue<>();
-    private Queue<Integer> maxHeap = new PriorityQueue<>((o1, o2) -> o2 - o1);
+    private Queue<Integer> minHeap;
+    private Queue<Integer> maxHeap;
+
+    public RunningMedian() {
+        minHeap = new PriorityQueue<>();
+        maxHeap = new PriorityQueue<>((o1, o2) -> o2 - o1);
+    }
 
     private int getRandomNumberInRange(int min, int max) {
         Random r = new Random();

@@ -1,15 +1,8 @@
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 12 Apr 2018
- * https://github.com/bibhas-abhishek/projects/tree/master/LargestBSTInABinaryTree
- **/
+public class LargestBSTInBinaryTree {
 
-public class LargestBSTInABinaryTree {
+    private static class TreeNode {
 
-    private class TreeNode {
-
-        int val;
+        int      val;
         TreeNode left;
         TreeNode right;
 
@@ -17,14 +10,13 @@ public class LargestBSTInABinaryTree {
             this.val = val;
             left = right = null;
         }
-
     }
 
-    private class Wrapper {
+    private static class Wrapper {
 
-        int min;
-        int max;
-        int size;
+        int     min;
+        int     max;
+        int     size;
         boolean isBST;
 
         Wrapper() {
@@ -33,16 +25,15 @@ public class LargestBSTInABinaryTree {
             size = 0;
             isBST = true;
         }
-
     }
 
     private Wrapper getMaxBST(TreeNode root) {
-        if (root == null)
+        if (root == null) {
             return new Wrapper();
+        }
 
         Wrapper leftWrapper = getMaxBST(root.left);
         Wrapper rightWrapper = getMaxBST(root.right);
-
         Wrapper wrapper = new Wrapper();
         if (!leftWrapper.isBST || !rightWrapper.isBST || root.val < leftWrapper.max || root.val >= rightWrapper.min) {
             wrapper.isBST = false;
@@ -57,7 +48,7 @@ public class LargestBSTInABinaryTree {
         return wrapper;
     }
 
-    private TreeNode buildTree() {
+    TreeNode buildTree() {
         TreeNode root = new TreeNode(25);
         root.left = new TreeNode(18);
         root.right = new TreeNode(50);
@@ -77,9 +68,8 @@ public class LargestBSTInABinaryTree {
     }
 
     public static void main(String[] args) {
-        LargestBSTInABinaryTree obj = new LargestBSTInABinaryTree();
+        LargestBSTInBinaryTree obj = new LargestBSTInBinaryTree();
         TreeNode root = obj.buildTree();
         System.out.println(obj.getMaxBST(root).size);
     }
-
 }
