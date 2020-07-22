@@ -5,7 +5,7 @@ public class EggDropping {
 
     private static Map<String, Integer> map = new HashMap<>();
 
-    private static int eggDropDPMemo(int eggs, int floors) {
+    public int eggDropDPMemo(int eggs, int floors) {
         if (floors == 0 || floors == 1) {
             return floors;
         }
@@ -28,12 +28,13 @@ public class EggDropping {
         return result;
     }
 
-    private static int eggDropDPTab(int eggs, int floors) {
+    public int eggDropDPTab(int eggs, int floors) {
         if (floors == 0 || floors == 1) {
             return floors;
         }
 
         int[][] dp = new int[eggs + 1][floors + 1];
+        // 1 egg base case
         for (int i = 0; i <= floors; i++) {
             dp[1][i] = i;
         }
@@ -42,7 +43,7 @@ public class EggDropping {
         for (int i = 2; i <= eggs; i++) {
             for (int j = 1; j <= floors; j++) {
                 dp[i][j] = Integer.MAX_VALUE;
-                for (int k = 1; k <= j; k++) { // k -> current floor
+                for (int k = 1; k <= j; k++) {
                     drops = 1 + Math.max(dp[i - 1][k - 1], dp[i][j - k]);
                     dp[i][j] = Math.min(drops, dp[i][j]);
                 }
@@ -52,7 +53,8 @@ public class EggDropping {
     }
 
     public static void main(String[] args) {
-        System.out.println(eggDropDPMemo(2, 100));
-        System.out.println(eggDropDPTab(2, 100));
+        EggDropping eggDropping = new EggDropping();
+        System.out.println(eggDropping.eggDropDPMemo(2, 100));
+        System.out.println(eggDropping.eggDropDPTab(2, 100));
     }
 }

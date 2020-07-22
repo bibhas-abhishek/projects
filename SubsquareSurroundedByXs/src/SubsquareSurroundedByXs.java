@@ -6,7 +6,7 @@ public class SubsquareSurroundedByXs {
         private int hr;
     }
 
-    private static int findSubsquare(char[][] input) {
+    public int findSubsquare(char[][] input) {
         int n = input.length;
         int m = input[0].length;
         Cell[][] dp = new Cell[n][m];
@@ -74,6 +74,6 @@ public class SubsquareSurroundedByXs {
                 { 'O', 'X', 'O', 'X', 'O', 'X' },
                 { 'O', 'X', 'X', 'X', 'X', 'X' },
                 { 'O', 'O', 'O', 'O', 'O', 'O' }, };
-        System.out.println(findSubsquare(input));
+        System.out.println(new SubsquareSurroundedByXs().findSubsquare(input));
     }
 }

@@ -54,10 +54,10 @@ public class RabinKarp {
     }
 
     public static void main(String[] args) {
-        RabinKarp obj = new RabinKarp();
+        RabinKarp rabinKarp = new RabinKarp();
         // noinspection SpellCheckingInspection
         String text = "ABCDEFXYZ";
         String pattern = "CDE";
-        System.out.println(obj.contains(text.toCharArray(), pattern.toCharArray()));
+        System.out.println(rabinKarp.contains(text.toCharArray(), pattern.toCharArray()));
     }
 }

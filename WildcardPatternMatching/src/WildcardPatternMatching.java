@@ -4,7 +4,7 @@ public class WildcardPatternMatching {
      * ‘?’ – matches any single character ‘*’ – matches any sequence of characters
      * (including the empty sequence)
      */
-    private static boolean match(String text, String pattern) {
+    public boolean match(String text, String pattern) {
         int n = text.length();
         int m = pattern.length();
         boolean[][] dp = new boolean[n + 1][m + 1];
@@ -36,6 +36,6 @@ public class WildcardPatternMatching {
         // noinspection SpellCheckingInspection
         String text = "baaabab";
         String pattern = "*****ba*****ab";
-        System.out.println(match(text, pattern));
+        System.out.println(new WildcardPatternMatching().match(text, pattern));
     }
 }
