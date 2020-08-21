@@ -19,7 +19,7 @@ public class NQueen {
             List<String> result = new ArrayList<>();
             for (Position p : positions) {
                 StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < n; i++) { // evaluate every row -> column by column
+                for (int i = 0; i < n; i++) {
                     if (p.col == i) {
                         builder.append("Q");
                     }

@@ -1,106 +1,44 @@
-/**
- * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
- * 25 Mar 2018
- * https://leetcode.com/problems/add-two-numbers/description/
- * https://github.com/bibhas-abhishek/projects/tree/master/AddLinkedLists1
- **/
 public class AddLinkedLists1 {
 
-    private static class Node {
-
-        int data;
-        Node next;
-
-        Node() {
-        }
-
-        Node(int data) {
-            this.data = data;
-            this.next = null;
-        }
-
-        void setData(int data) {
-            this.data = data;
-        }
-
-        void setNext(Node next) {
-            this.next = next;
-        }
-
-    }
-
-    public static void main(String[] args) {
-        Node head1 = null;
-        head1 = insertAtTail(head1, 5);
-        head1 = insertAtTail(head1, 4);
-        head1 = insertAtTail(head1, 3);
-        printList(head1);
-
-        Node head2 = null;
-        head2 = insertAtTail(head2, 5);
-        head2 = insertAtTail(head2, 6);
-        head2 = insertAtTail(head2, 4);
-        printList(head2);
-
-        Node head3 = addTwoNumbers(head1, head2);
-        printList(head3);
-    }
-
-    private static void printList(Node head) {
-        Node temp = head;
-        while (temp != null) {
-            System.out.print(temp.data + (temp.next != null ? "->" : ""));
-            temp = temp.next;
-        }
-        System.out.println();
-    }
-
-    private static Node insertAtTail(Node head, int data) {
-        if (head == null)
-            head = new Node(data);
-        else {
-            Node temp = head;
-            while (temp.next != null)
-                temp = temp.next;
-            temp.next = new Node(data);
-        }
-
-        return head;
-    }
-
-    private static Node insertAtHead(Node head, int data) {
-        Node temp = new Node(data);
-        if (head == null)
-            head = temp;
-        else {
-            temp.next = head;
-            head = temp;
-        }
-
-        return head;
-    }
-
-    private static Node addTwoNumbers(Node l1, Node l2) {
+    public LinkedList.Node addTwoNumbers(LinkedList.Node l1, LinkedList.Node l2) {
         return addTwoLists(l1, l2, 0);
     }
 
-    private static Node addTwoLists(Node l1, Node l2, int carry) {
-        if (l1 == null && l2 == null && carry == 0)
+    private LinkedList.Node addTwoLists(LinkedList.Node l1, LinkedList.Node l2, int carry) {
+        if (l1 == null && l2 == null && carry == 0) {
             return null;
+        }
 
-        Node n = new Node();
+        LinkedList.Node n = new LinkedList.Node();
         int val = carry;
-        if (l1 != null)
+        if (l1 != null) {
             val += l1.data;
+        }
 
-        if (l2 != null)
+        if (l2 != null) {
             val += l2.data;
+        }
 
-        n.setData(val % 10);
-        Node list = addTwoLists(l1 == null ? null : l1.next, l2 == null ? null : l2.next, val >= 10 ? 1 : 0);
-        n.setNext(list);
+        n.data = val % 10;
+        n.next = addTwoLists(l1 == null ? null : l1.next, l2 == null ? null : l2.next, val >= 10 ? 1 : 0);
         return n;
     }
 
+    public static void main(String[] args) {
+        AddLinkedLists1 driver = new AddLinkedLists1();
+        LinkedList list1 = new LinkedList();
+        list1.insertAtHead(3);
+        list1.insertAtHead(4);
+        list1.insertAtHead(5);
+        list1.prettyPrintList();
+
+        LinkedList list2 = new LinkedList();
+        list2.insertAtHead(4);
+        list2.insertAtHead(6);
+        list2.insertAtHead(5);
+        list2.prettyPrintList();
+
+        LinkedList.Node head = driver.addTwoNumbers(list1.head, list2.head);
+        LinkedList.Node.prettyPrintList(head);
+    }
 }

@@ -1,12 +1,5 @@
 import java.util.*;
 
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 08 Nov 2018
- * https://github.com/bibhas-abhishek/projects/tree/master/DijkstraAdjList
- */
-
 public class DijkstraAdjList {
 
     private static class Edge {
@@ -20,7 +13,6 @@ public class DijkstraAdjList {
             this.dest = dest;
             this.weight = weight;
         }
-
     }
 
     private static class Node {
@@ -32,17 +24,17 @@ public class DijkstraAdjList {
             this.index = index;
             this.dist = dist;
         }
-
     }
 
-    private int V;
+    private int                V;
     private LinkedList<Edge>[] adjList;
 
     public DijkstraAdjList(int v) {
         this.V = v;
         adjList = new LinkedList[V];
-        for (int i = 0; i < V; i++)
+        for (int i = 0; i < V; i++) {
             adjList[i] = new LinkedList<>();
+        }
     }
 
     public void addEdge(int src, int dest, int weight) {
@@ -51,8 +43,9 @@ public class DijkstraAdjList {
     }
 
     public void printSpanningTree(Node[] heapNodes) {
-        for (Node node : heapNodes)
+        for (Node node : heapNodes) {
             System.out.println(node.index + " -> " + node.dist);
+        }
     }
 
     public void solveDijkstra(int src) {
@@ -102,5 +95,4 @@ public class DijkstraAdjList {
         graph.addEdge(7, 8, 7);
         graph.solveDijkstra(0);
     }
-
 }

@@ -16,6 +16,7 @@ public class BinaryTreeInorderPreorder {
 
     private int index;
 
+    /*
     public void inorderDFS(TreeNode root) {
         if (root == null) {
             return;
@@ -24,6 +25,7 @@ public class BinaryTreeInorderPreorder {
         System.out.print(root.val + " ");
         inorderDFS(root.right);
     }
+     */
 
     private TreeNode solveUtil(int[] preorder, int[] inorder, int start, int end, List<Integer> postorder) {
         if (start > end) {
@@ -49,8 +51,7 @@ public class BinaryTreeInorderPreorder {
         index = 0;
         List<Integer> postorder = new ArrayList<>();
         TreeNode root = solveUtil(preorder, inorder, 0, inorder.length - 1, postorder);
-        System.out.print("Postorder: ");
-        postorder.stream().mapToInt(i -> i).mapToObj(i -> i + " ").forEach(System.out::print);
+        System.out.print("Postorder: " + postorder);
         return root;
     }
 
@@ -58,8 +59,6 @@ public class BinaryTreeInorderPreorder {
         BinaryTreeInorderPreorder object = new BinaryTreeInorderPreorder();
         int[] inorder = { 4, 2, 5, 1, 3, 6 };
         int[] preorder = { 1, 2, 4, 5, 3, 6 };
-        TreeNode root = object.solve(preorder, inorder);
-        System.out.print("\nInorder: ");
-        object.inorderDFS(root);
+        object.solve(preorder, inorder);
     }
 }

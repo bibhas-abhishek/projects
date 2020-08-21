@@ -3,8 +3,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/*https://leetcode.com/problems/clone-graph/description/*/
-
 public class CloneGraph {
 
     private static class UndirectedGraphNode {

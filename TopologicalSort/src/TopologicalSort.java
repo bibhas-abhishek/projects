@@ -2,13 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 23 Apr 2018
- * https://github.com/bibhas-abhishek/projects/tree/master/TopologicalSort
- **/
-
 public class TopologicalSort {
 
     private static class Graph {
@@ -19,8 +12,9 @@ public class TopologicalSort {
         Graph(int v) {
             this.v = v;
             adjList = new ArrayList[v];
-            for (int i = 0; i < v; i++)
+            for (int i = 0; i < v; i++) {
                 adjList[i] = new ArrayList<>();
+            }
         }
 
         private void addEdge(int u, int v) {
@@ -42,8 +36,9 @@ public class TopologicalSort {
         Stack<Integer> stack = new Stack<>();
         boolean[] visited = new boolean[V];
         for (int i = 0; i < V; i++) {
-            if (!visited[i])
+            if (!visited[i]) {
                 topologicalSortUtil(i, stack, visited, g);
+            }
         }
 
         while (!stack.isEmpty()) {
@@ -54,8 +49,9 @@ public class TopologicalSort {
     private void topologicalSortUtil(int i, Stack<Integer> stack, boolean[] visited, Graph g) {
         visited[i] = true;
         for (int node : g.adjList[i]) {
-            if (!visited[node])
+            if (!visited[node]) {
                 topologicalSortUtil(node, stack, visited, g);
+            }
         }
         stack.push(i);
     }

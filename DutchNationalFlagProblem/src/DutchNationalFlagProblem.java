@@ -19,8 +19,9 @@ public class DutchNationalFlagProblem {
                 mid += 1;
                 low += 1;
             }
-            else if (array[mid] == 1)
+            else if (array[mid] == 1) {
                 mid += 1;
+            }
             else if (array[mid] == 2) {
                 swap(array, mid, high);
                 high -= 1;

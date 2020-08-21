@@ -1,12 +1,3 @@
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 18 Apr 2018
- * https://leetcode.com/problems/kth-largest-element-in-an-array/description/
- * https://github.com/bibhas-abhishek/projects/tree/master/KthLargestElementArray
- * Quick Select Algorithm
- **/
-
 public class KthLargestElementArray {
 
     public int findKthLargest(int[] arr, int k) {
@@ -14,8 +5,9 @@ public class KthLargestElementArray {
     }
 
     private int findKthSmallestUtil(int[] arr, int start, int end, int k) {
-        if (start > end)
+        if (start > end) {
             return -1;
+        }
 
         int pivot = arr[end];
         int pIndex = start;
@@ -27,12 +19,15 @@ public class KthLargestElementArray {
         }
 
         swap(arr, pIndex, end);
-        if (pIndex == k)
+        if (pIndex == k) {
             return arr[pIndex];
-        else if (k > pIndex)
-            return findKthSmallestUtil(arr, pIndex + 1, end, k);
-        else
-            return findKthSmallestUtil(arr, start, pIndex - 1, k);
+        }
+        else if (k > pIndex) {
+            return findKthSmallestUtil(arr, pIndex + 1, end, k);    // search right
+        }
+        else {
+            return findKthSmallestUtil(arr, start, pIndex - 1, k);  // search left
+        }
     }
 
     private void swap(int[] A, int a0, int a1) {
@@ -43,7 +38,7 @@ public class KthLargestElementArray {
 
     public static void main(String[] args) {
         int[] arr = { 3, 2, 1, 5, 6, 4 };
-        KthLargestElementArray obj = new KthLargestElementArray();
-        System.out.println(obj.findKthLargest(arr, 2));
+        KthLargestElementArray driver = new KthLargestElementArray();
+        System.out.println(driver.findKthLargest(arr, 2));
     }
 }
