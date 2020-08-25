@@ -1,31 +1,6 @@
 public class EggDropping {
 
-    private static Map<String, Integer> map = new HashMap<>();
-
-    public int eggDropDPMemo(int eggs, int floors) {
-        if (floors == 0 || floors == 1) {
-            return floors;
-        }
-
-        if (eggs == 1) {
-            return floors;
-        }
-
-        String key = eggs + "-" + floors;
-        if (map.containsKey(key)) {
-            return map.get(key);
-        }
-
-        int result = Integer.MAX_VALUE;
-        for (int k = 1; k <= floors; k++) {
-            int drops = 1 + Math.max(eggDropDPMemo(eggs - 1, k - 1), eggDropDPMemo(eggs, floors - k));
-            result = Math.min(result, drops);
-        }
-        map.put(key, result);
-        return result;
-    }
-
-    public int eggDropDPTab(int eggs, int floors) {
+    public int eggDropping(int eggs, int floors) {
         if (floors == 0 || floors == 1) {
             return floors;
         }
