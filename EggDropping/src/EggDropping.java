@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 public class EggDropping {
 
     private static Map<String, Integer> map = new HashMap<>();
@@ -53,8 +50,7 @@ public class EggDropping {
     }
 
     public static void main(String[] args) {
-        EggDropping eggDropping = new EggDropping();
-        System.out.println(eggDropping.eggDropDPMemo(2, 100));
-        System.out.println(eggDropping.eggDropDPTab(2, 100));
+        EggDropping driver = new EggDropping();
+        System.out.println(driver.eggDropping(2, 100));
     }
 }

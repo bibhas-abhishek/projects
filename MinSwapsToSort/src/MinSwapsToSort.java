@@ -3,7 +3,9 @@ import java.util.Arrays;
 
 import javafx.util.Pair;
 
-// https://www.geeksforgeeks.org/minimum-number-swaps-required-sort-array/
+/*
+https://www.geeksforgeeks.org/minimum-number-swaps-required-sort-array/
+*/
 
 public class MinSwapsToSort {
 
@@ -40,6 +42,7 @@ public class MinSwapsToSort {
 
     public static void main(String[] args) {
         int[] array = { 1, 5, 4, 3, 2 };
-        System.out.println(new MinSwapsToSort().minSwaps(array));
+        MinSwapsToSort driver = new MinSwapsToSort();
+        System.out.println(driver.minSwaps(array));
     }
 }

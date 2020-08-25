@@ -1,12 +1,5 @@
 import java.util.Arrays;
 
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 05 Apr 2018
- * https://github.com/bibhas-abhishek/projects/tree/master/MaximumSubarraySum
- **/
-
 public class MaximumSubarraySum {
 
     public int maximumSubarraySum(int[] array) {
@@ -26,6 +19,7 @@ public class MaximumSubarraySum {
 
     public static void main(String[] args) {
         int[] array = { -2, -3, 4, -1, -2, 1, 5, -3 };
-        System.out.println(new MaximumSubarraySum().maximumSubarraySum(array));
+        MaximumSubarraySum driver  = new MaximumSubarraySum();
+        System.out.println(driver.maximumSubarraySum(array));
     }
 }

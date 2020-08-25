@@ -2,8 +2,6 @@ import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 
-/*https://leetcode.com/problems/sliding-window-maximum/description/*/
-
 public class SlidingWindowMaximum {
 
     public int[] maxSlidingWindow(int[] arr, int k) {
@@ -42,7 +40,8 @@ public class SlidingWindowMaximum {
     public static void main(String[] args) {
         int[] arr = { 12, 1, 78, 90, 57, 89, 56 };
         int k = 3;
-        int[] result = new SlidingWindowMaximum().maxSlidingWindow(arr, k);
-        Arrays.stream(result).mapToObj(x -> x + " ").forEach(System.out::print);
+        SlidingWindowMaximum driver = new SlidingWindowMaximum();
+        int[] result = driver.maxSlidingWindow(arr, k);
+        System.out.println(Arrays.toString(result));
     }
 }

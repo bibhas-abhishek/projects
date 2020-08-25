@@ -1,10 +1,3 @@
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 02 Apr 2018
- * https://github.com/bibhas-abhishek/projects/tree/master/InorderSuccessorBST
- **/
-
 public class InorderSuccessorBST {
 
     private static class Node {
@@ -21,23 +14,38 @@ public class InorderSuccessorBST {
     }
 
     public void inorderDFS(Node root) {
-        if (root == null)
+        if (root == null) {
             return;
+        }
         inorderDFS(root.left);
         System.out.print(root.data + " ");
         inorderDFS(root.right);
     }
 
-    public Node getInorderSuccessor(Node root, int val) {
-        if (root == null)
+    private Node findNode(Node root, int val) {
+        if (root == null) {
             return null;
+        }
+
+        if (root.data == val) {
+            return root;
+        }
+        return val <= root.data ? findNode(root.left, val) : findNode(root.right, val);
+    }
+
+    public Node getInorderSuccessor(Node root, int val) {
+        if (root == null) {
+            return null;
+        }
 
         Node current = findNode(root, val);
-        if (current == null)
+        if (current == null) {
             return null;
+        }
 
-        if (current.right != null) // right subtree exists
+        if (current.right != null) { // right subtree exists
             return findMin(current.right); // find min in right subtree
+        }
 
         Node ptr = root;
         Node successor = null;
@@ -53,18 +61,10 @@ public class InorderSuccessorBST {
         return successor;
     }
 
-    private Node findNode(Node root, int val) {
-        if (root == null)
-            return null;
-
-        if (root.data == val)
-            return root;
-        return val <= root.data ? findNode(root.left, val) : findNode(root.right, val);
-    }
-
     private Node findMin(Node root) {
-        while (root.left != null)
+        while (root.left != null) {
             root = root.left;
+        }
         return root;
     }
 
@@ -79,12 +79,11 @@ public class InorderSuccessorBST {
         root.right.left.right = new Node(12);
         root.right.right.right = new Node(16);
 
-        InorderSuccessorBST obj = new InorderSuccessorBST();
+        InorderSuccessorBST driver = new InorderSuccessorBST();
         System.out.print("Inorder Traversal: ");
-        obj.inorderDFS(root);
+        driver.inorderDFS(root);
         System.out.println();
-
         System.out.print("Inorder successor of 11: ");
-        System.out.println(obj.getInorderSuccessor(root, 11).data);
+        System.out.println(driver.getInorderSuccessor(root, 11).data);
     }
 }

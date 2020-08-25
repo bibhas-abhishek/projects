@@ -1,24 +1,8 @@
 /*
 https://www.geeksforgeeks.org/subset-sum-problem-dp-25/
-https://leetcode.com/problems/partition-equal-subset-sum/
 */
 
 public class SubsetSum {
-
-    public boolean isSubsetSumNaive(int[] set, int n, int sum) {
-        if (sum == 0) {
-            return true;
-        }
-
-        if (n == 0 && sum != 0) {
-            return false;
-        }
-
-        if (sum < set[n - 1]) {
-            return isSubsetSumNaive(set, n - 1, sum);
-        }
-        return isSubsetSumNaive(set, n - 1, sum) || isSubsetSumNaive(set, n - 1, sum - set[n - 1]);
-    }
 
     public boolean isSubsetSumDP(int[] input, int total) {
         int n = input.length;
@@ -43,11 +27,9 @@ public class SubsetSum {
     }
 
     public static void main(String[] args) {
-        SubsetSum obj = new SubsetSum();
+        SubsetSum driver = new SubsetSum();
         int[] set = { 2, 3, 7, 8 };
         int sum = 10;
-        int n = set.length;
-        // System.out.println(obj.isSubsetSumNaive(set, n, sum));
-        System.out.println(obj.isSubsetSumDP(set, sum));
+        System.out.println(driver.isSubsetSumDP(set, sum));
     }
 }
