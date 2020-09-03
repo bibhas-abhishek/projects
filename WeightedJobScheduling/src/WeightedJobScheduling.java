@@ -17,17 +17,17 @@ public class WeightedJobScheduling {
 
     public int maximumProfit(Job[] job) {
         Arrays.sort(job, (o1, o2) -> o1.end - o2.end);
-        int[] memo = new int[job.length];
-        memo[0] = job[0].profit;
+        int[] dp = new int[job.length];
+        dp[0] = job[0].profit;
         int maximumProfit = Integer.MIN_VALUE;
         for (int i = 1; i < job.length; i++) {
-            memo[i] = job[i].profit;
+            dp[i] = job[i].profit;
             for (int j = 0; j < i; j++) {
                 if (job[i].start >= job[j].end) {
-                    memo[i] = Math.max(memo[i], memo[j] + job[i].profit);
+                    dp[i] = Math.max(dp[i], dp[j] + job[i].profit);
                 }
             }
-            maximumProfit = Math.max(maximumProfit, memo[i]);
+            maximumProfit = Math.max(maximumProfit, dp[i]);
         }
         return maximumProfit;
     }
