@@ -45,7 +45,12 @@ public class ConnectedIslands {
 
     public static void main(String[] args) {
         int[][] water =
-                { { 1, 1, 0, 0, 0 }, { 0, 1, 0, 0, 1 }, { 1, 0, 0, 1, 1 }, { 0, 0, 0, 0, 0 }, { 1, 0, 1, 0, 1 } };
+                {
+                        { 1, 1, 0, 0, 0 },
+                        { 0, 1, 0, 0, 1 },
+                        { 1, 0, 0, 1, 1 },
+                        { 0, 0, 0, 0, 0 },
+                        { 1, 0, 1, 0, 1 } };
         ConnectedIslands obj = new ConnectedIslands();
         System.out.println(obj.countIslands(water));
     }
