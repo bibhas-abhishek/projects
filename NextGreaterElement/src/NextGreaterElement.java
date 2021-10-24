@@ -21,12 +21,13 @@ public class NextGreaterElement {
             }
             stack.push(current); // push the current scanned array element
         }
-        while (!stack.isEmpty())
+        while (!stack.isEmpty()) {
             System.out.println(stack.pop() + "->" + "-1");
+        }
     }
 
     public static void main(String[] args) {
-        int[] array = { 4, 5, 7, 2, 1, 9, 25 };
+        int[] array = { 4, 0, 5, 7, 2, 1, 9, 25 };
         nextGreaterElement(array);
     }
 }

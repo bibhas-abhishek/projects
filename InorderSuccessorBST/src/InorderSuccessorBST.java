@@ -11,6 +11,11 @@ public class InorderSuccessorBST {
             this.left = null;
             this.right = null;
         }
+
+        @Override
+        public String toString() {
+            return data + "";
+        }
     }
 
     public void inorderDFS(Node root) {
@@ -33,23 +38,30 @@ public class InorderSuccessorBST {
         return val <= root.data ? findNode(root.left, val) : findNode(root.right, val);
     }
 
+    private Node findMin(Node root) {
+        while (root.left != null) {
+            root = root.left;
+        }
+        return root;
+    }
+
     public Node getInorderSuccessor(Node root, int val) {
         if (root == null) {
             return null;
         }
 
-        Node current = findNode(root, val);
-        if (current == null) {
+        Node node = findNode(root, val);
+        if (node == null) {
             return null;
         }
 
-        if (current.right != null) { // right subtree exists
-            return findMin(current.right); // find min in right subtree
+        if (node.right != null) { // right subtree exists
+            return findMin(node.right); // find min in right subtree
         }
 
         Node ptr = root;
         Node successor = null;
-        while (ptr != current) { // find the last node for which the target node is in the left subtree
+        while (ptr != node) { // find the last node for which the target node is in the left subtree
             if (val < ptr.data) {
                 successor = ptr;
                 ptr = ptr.left;
@@ -59,13 +71,6 @@ public class InorderSuccessorBST {
             }
         }
         return successor;
-    }
-
-    private Node findMin(Node root) {
-        while (root.left != null) {
-            root = root.left;
-        }
-        return root;
     }
 
     public static void main(String[] args) {
@@ -83,7 +88,7 @@ public class InorderSuccessorBST {
         System.out.print("Inorder Traversal: ");
         driver.inorderDFS(root);
         System.out.println();
-        System.out.print("Inorder successor of 11: ");
-        System.out.println(driver.getInorderSuccessor(root, 11).data);
+        System.out.print("Inorder successor of 6: ");
+        System.out.println(driver.getInorderSuccessor(root, 6));
     }
 }
