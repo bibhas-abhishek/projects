@@ -1,7 +1,6 @@
 public class LeastCommonAncestor {
 
     private static class TreeNode {
-
         int      val;
         TreeNode left;
         TreeNode right;
@@ -11,39 +10,14 @@ public class LeastCommonAncestor {
             this.left = null;
             this.right = null;
         }
-    }
 
-    private boolean isContains(TreeNode root, int data) {
-        if (root == null) {
-            return false;
-        }
-
-        if (root.val == data) {
-            return true;
-        }
-        return isContains(root.left, data) || isContains(root.right, data);
-    }
-
-    public TreeNode leastCommonAncestor(TreeNode root, int v1, int v2) {
-        if (!isContains(root, v1) || !isContains(root, v2)) {
-            return null;
-        }
-
-        if (root == null || root.val == v1 || root.val == v2) {
-            return root;
-        }
-
-        boolean isV1Left = isContains(root.left, v1);
-        boolean isV2left = isContains(root.left, v2);
-        if (isV1Left ^ isV2left) {
-            return root;
-        }
-        else {
-            return isV1Left ? leastCommonAncestor(root.left, v1, v2) : leastCommonAncestor(root.right, v1, v2);
+        @Override
+        public String toString() {
+            return String.valueOf(val);
         }
     }
 
-    public TreeNode leastCommonAncestor(TreeNode root, TreeNode n1, TreeNode n2) {
+    private TreeNode leastCommonAncestor(TreeNode root, TreeNode n1, TreeNode n2) {
         if (root == null || root == n1 || root == n2) {
             return root;
         }
@@ -58,7 +32,7 @@ public class LeastCommonAncestor {
     }
 
     public static void main(String[] args) {
-        LeastCommonAncestor obj = new LeastCommonAncestor();
+        LeastCommonAncestor driver = new LeastCommonAncestor();
         TreeNode root = new TreeNode(10);
         root.left = new TreeNode(2);
         root.right = new TreeNode(3);
@@ -69,6 +43,6 @@ public class LeastCommonAncestor {
 
         TreeNode n1 = root.right.right;
         TreeNode n2 = root.right.left;
-        System.out.println(obj.leastCommonAncestor(root, n1, n2).val);
+        System.out.println(driver.leastCommonAncestor(root, n1, n2));
     }
 }
