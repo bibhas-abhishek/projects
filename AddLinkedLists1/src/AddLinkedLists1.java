@@ -20,7 +20,8 @@ public class AddLinkedLists1 {
         }
 
         n.data = val % 10;
-        n.next = addTwoLists(l1 == null ? null : l1.next, l2 == null ? null : l2.next, val >= 10 ? 1 : 0);
+        n.next = addTwoLists(l1 == null ? null : l1.next, l2 == null ? null : l2.next,
+            val >= 10 ? 1 : 0);
         return n;
     }
 

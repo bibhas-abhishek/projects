@@ -1,12 +1,14 @@
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: PowerSets
+*- 06 Nov 2021 12:52 AM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+-------------------------------------------*/
+
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 09 Oct 2017
- * https://github.com/bibhas-abhishek/projects/tree/master/PowerSets
- */
 
 public class PowerSets {
 

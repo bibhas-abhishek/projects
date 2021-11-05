@@ -3,13 +3,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 12 Apr 2018
- * https://github.com/bibhas-abhishek/projects/tree/master/StringPermutation
- **/
-
 public class StringPermutation {
 
     public List<String> permute(char[] input) {
@@ -31,14 +24,14 @@ public class StringPermutation {
             count[index] = entry.getValue();
             index += 1;
         }
-
         List<String> resultList = new ArrayList<>();
         char[] result = new char[input.length];
         permuteString(str, count, result, 0, resultList);
         return resultList;
     }
 
-    private void permuteString(char[] str, int[] count, char[] result, int index, List<String> resultList) {
+    private void permuteString(char[] str, int[] count, char[] result, int index,
+                               List<String> resultList) {
         if (index == result.length) {
             resultList.add(new String(result));
             return;
@@ -56,8 +49,7 @@ public class StringPermutation {
 
     public static void main(String[] args) {
         String input = "AABC";
-        StringPermutation obj = new StringPermutation();
-        List<String> result = obj.permute(input.toCharArray());
-        result.stream().map(str -> str + " ").forEach(System.out::print);
+        StringPermutation driver = new StringPermutation();
+        System.out.println(driver.permute(input.toCharArray()));
     }
 }

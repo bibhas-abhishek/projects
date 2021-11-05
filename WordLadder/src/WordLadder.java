@@ -17,6 +17,7 @@ public class WordLadder {
         Queue<String> queue = new LinkedList<>();
         queue.offer(beginWord);
         while (!queue.isEmpty()) {
+            wordLength += 1;
             int size = queue.size();
             while (size > 0) {
                 char[] word = queue.poll().toCharArray();
@@ -32,14 +33,11 @@ public class WordLadder {
                         if (!dict.contains(transform)) {
                             continue;
                         }
-
                         queue.offer(transform);
                         dict.remove(transform);
                     }
                     word[i] = savedPos;
                 }
-                size -= 1;
-                wordLength += 1;
             }
         }
         return 0;
@@ -47,9 +45,9 @@ public class WordLadder {
 
     public static void main(String[] args) {
         String beginWord = "a";
-        String endWord = "c";
-        List<String> wordList = Arrays.asList("a", "b", "c");
-        WordLadder wordLadder = new WordLadder();
-        System.out.println(wordLadder.ladderLength(beginWord, endWord, wordList));
+        String endWord = "d";
+        List<String> wordList = Arrays.asList("a", "b", "c", "d");
+        WordLadder driver = new WordLadder();
+        System.out.println(driver.ladderLength(beginWord, endWord, wordList));
     }
 }

@@ -1,34 +1,36 @@
-import com.sun.tools.javah.Gen;
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: GenerateParentheses
+*- 06 Nov 2021 1:01 AM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+-------------------------------------------*/
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-/**
- * https://leetcode.com/problems/generate-parentheses/description/
- **/
 
 public class GenerateParentheses {
 
     public List<String> generateParenthesis(int n) {
         List<String> result = new ArrayList<>();
-        generateParenthesisUtil(result, "", 0, 0, n);
+        generateParenthesis(result, "", 0, 0, n);
         return result;
     }
 
-    private void generateParenthesisUtil(List<String> result, String str, int open, int closed, int count) {
+    private void generateParenthesis(List<String> result, String str, int open, int closed,
+                                     int count) {
         if (str.length() == 2 * count) {
             result.add(str);
             return;
         }
 
         if (open < count) {
-            generateParenthesisUtil(result, str + "(", open + 1, closed, count);
+            generateParenthesis(result, str + "(", open + 1, closed, count);
         }
 
         if (closed < open) {
-            generateParenthesisUtil(result, str + ")", open, closed + 1, count);
+            generateParenthesis(result, str + ")", open, closed + 1, count);
         }
     }
 

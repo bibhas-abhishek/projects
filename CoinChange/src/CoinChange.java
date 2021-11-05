@@ -1,61 +1,70 @@
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: CoinChange
+*- 06 Nov 2021 12:49 AM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+* https://www.geeksforgeeks.org/coin-change-dp-7/
+-------------------------------------------*/
+
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 06 Apr 2018
- * https://www.hackerrank.com/challenges/coin-change/problem
- * https://leetcode.com/problems/coin-change/description/
- * https://github.com/bibhas-abhishek/projects/tree/master/CoinChange
- **/
-
 public class CoinChange {
 
-    private static long coinChangeDP(int[] coins, int amount) {
-        return coinChangeDP(coins, amount, 0, new HashMap<>());
+    public int coinChangeMEM(int[] coins, int amount) {
+        return coinChangeMEM(coins, amount, 0, new HashMap<>());
     }
 
-    private static long coinChangeDP(int[] coins, int amount, int index, Map<String, Long> memo) {
-        if (amount == 0)
-            return 1; // don't choose a coin
-
-        if (index >= coins.length)
-            return 0;
-
-        String key = amount + "-" + index;
-        if (memo.containsKey(key))
-            return memo.get(key);
-
-        int coinValue = coins[index]; // index tracks the type of coins. coinValue is the value of that coinType.
-        long ways = 0;
-        for (int i = 0; i * coinValue <= amount; i++) {
-            int remainingAmount = amount - i * coinValue; // i tracks the number of coins of a particular type
-            ways += coinChangeDP(coins, remainingAmount, index + 1, memo);
+    private int coinChangeMEM(int[] coins, int remAmt, int index, Map<String, Integer> memo) {
+        if (remAmt == 0) {
+            return 1;
         }
+
+        if (index >= coins.length) {
+            return 0;
+        }
+
+        String key = remAmt + "-" + index;
+        if (memo.containsKey(key)) {
+            return memo.get(key);
+        }
+
+        int include = 0;
+        if (coins[index] <= remAmt) {
+            include = coinChangeMEM(coins, remAmt - coins[index], index, memo);
+        }
+
+        int exclude = coinChangeMEM(coins, remAmt, index + 1, memo);
+        int ways = include + exclude;
         memo.put(key, ways);
         return ways;
     }
 
-    private static int coinChangeRecursive(int[] coins, int amount, int index) {
-        if (amount == 0)
-            return 1;
-
-        if (index >= coins.length)
-            return 0;
-
-        int coinAmount = coins[index];
-        int ways = 0;
-        for (int i = 0; i * coinAmount <= amount; i++) {
-            int remainingAmount = amount - i * coinAmount;
-            ways += coinChangeRecursive(coins, remainingAmount, index + 1);
+    public int coinChangeTAB(int[] denominations, int total) {
+        int n = denominations.length;
+        int[][] dp = new int[n][total + 1];
+        for (int i = 0; i < n; i++) {
+            dp[i][0] = 1;
         }
-        return ways;
+
+        for (int i = 0; i < n; i++) {
+            for (int t = 1; t <= total; t++) {
+                if (i > 0) {
+                    dp[i][t] = dp[i - 1][t];
+                }
+                if (t >= denominations[i]) {
+                    dp[i][t] += dp[i][t - denominations[i]];
+                }
+            }
+        }
+        return dp[n - 1][total];
     }
 
     public static void main(String[] args) {
         int[] coins = new int[] { 1, 2, 3 };
-        System.out.println(coinChangeRecursive(coins, 4, 0));
-        System.out.println(coinChangeDP(coins, 4));
+        CoinChange driver = new CoinChange();
+        System.out.println(driver.coinChangeMEM(coins, 5));
     }
 }

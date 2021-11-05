@@ -1,10 +1,3 @@
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 30 Oct 2018
- * https://github.com/bibhas-abhishek/projects/tree/master/ChildSum
- */
-
 public class IsChildSum {
 
     private static class TreeNode {
@@ -20,26 +13,17 @@ public class IsChildSum {
         }
     }
 
-    public boolean isChildSum(TreeNode root) {
-        if (root == null || (root.left == null && root.right == null)) {
-            return true;
-        }
-        int left = root.left != null ? root.left.val : 0;
-        int right = root.right != null ? root.right.val : 0;
-        return isChildSum(root.left) && isChildSum(root.right) && (left + right == root.val);
-    }
-
-    public int isChildSumBottomUp(TreeNode root) {
+    public int isChildSum(TreeNode root) {
         if (root.left == null && root.right == null) {
             return root.val;
         }
 
-        int leftSum = isChildSumBottomUp(root.left);
+        int leftSum = isChildSum(root.left);
         if (leftSum == Integer.MAX_VALUE) {
             return leftSum;
         }
 
-        int rightSum = isChildSumBottomUp(root.right);
+        int rightSum = isChildSum(root.right);
         if (rightSum == Integer.MAX_VALUE) {
             return rightSum;
         }
@@ -58,7 +42,6 @@ public class IsChildSum {
         root.right.left = new TreeNode(4);
         root.left.left = new TreeNode(2);
         root.left.right = new TreeNode(1);
-        System.out.println(new IsChildSum().isChildSum(root));
-        System.out.print(new IsChildSum().isChildSumBottomUp(root) != Integer.MAX_VALUE);
+        System.out.print(new IsChildSum().isChildSum(root) != Integer.MAX_VALUE);
     }
 }

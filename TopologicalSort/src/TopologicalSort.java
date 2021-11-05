@@ -37,23 +37,22 @@ public class TopologicalSort {
         boolean[] visited = new boolean[V];
         for (int i = 0; i < V; i++) {
             if (!visited[i]) {
-                topologicalSortUtil(i, stack, visited, g);
+                topologicalSort(i, stack, visited, g);
             }
         }
-
         while (!stack.isEmpty()) {
             System.out.print(stack.pop() + " ");
         }
     }
 
-    private void topologicalSortUtil(int i, Stack<Integer> stack, boolean[] visited, Graph g) {
+    private void topologicalSort(int i, Stack<Integer> stack, boolean[] visited, Graph g) {
         visited[i] = true;
         for (int node : g.adjList[i]) {
             if (!visited[node]) {
-                topologicalSortUtil(node, stack, visited, g);
+                topologicalSort(node, stack, visited, g);
             }
         }
-        stack.push(i);
+        stack.push(i); // add to stack when we the reach the end of dfs chain; found most dependent node
     }
 
     public static void main(String[] args) {
