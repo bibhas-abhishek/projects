@@ -39,7 +39,7 @@ public class PowerSets {
         set.add("a1");
         set.add("a2");
         set.add("a3");
-        ArrayList<ArrayList<String>> subsets = new PowerSets().getSubsets(set);
-        System.out.print(subsets.toString());
+        PowerSets driver = new PowerSets();
+        System.out.print(driver.getSubsets(set));
     }
 }

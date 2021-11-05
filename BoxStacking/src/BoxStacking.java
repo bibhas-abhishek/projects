@@ -1,11 +1,14 @@
-import java.util.Arrays;
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: BoxStacking
+*- 06 Nov 2021 1:14 AM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+* https://www.geeksforgeeks.org/box-stacking-problem-dp-22/
+-------------------------------------------*/
 
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 23 Sep 2018
- * https://github.com/bibhas-abhishek/projects/tree/master/BoxStacking
- */
+import java.util.Arrays;
 
 public class BoxStacking {
 
@@ -20,14 +23,16 @@ public class BoxStacking {
             this.l = l;
             this.w = w;
         }
-
     }
 
     private void createBoxPermutations(Box[] input, Box[] boxPerm) {
         for (int i = 0; i < input.length; i++) {
-            boxPerm[3 * i] = new Box(input[i].h, Math.max(input[i].w, input[i].l), Math.min(input[i].w, input[i].l));
-            boxPerm[3 * i + 1] = new Box(input[i].l, Math.max(input[i].h, input[i].w), Math.min(input[i].h, input[i].w));
-            boxPerm[3 * i + 2] = new Box(input[i].w, Math.max(input[i].l, input[i].h), Math.min(input[i].l, input[i].h));
+            boxPerm[3 * i] = new Box(input[i].h, Math.max(input[i].w, input[i].l),
+                Math.min(input[i].w, input[i].l));
+            boxPerm[3 * i + 1] = new Box(input[i].l, Math.max(input[i].h, input[i].w),
+                Math.min(input[i].h, input[i].w));
+            boxPerm[3 * i + 2] = new Box(input[i].w, Math.max(input[i].l, input[i].h),
+                Math.min(input[i].l, input[i].h));
         }
     }
 
@@ -51,9 +56,8 @@ public class BoxStacking {
     }
 
     public static void main(String[] args) {
-        Box input[] = {new Box(4, 6, 7), new Box(1, 2, 3), new Box(4, 5, 6),
-                new Box(10, 12, 32)};
-        System.out.println(new BoxStacking().maxHeight(input));
+        Box[] input = { new Box(4, 6, 7), new Box(1, 2, 3), new Box(4, 5, 6), new Box(10, 12, 32) };
+        BoxStacking driver = new BoxStacking();
+        System.out.println(driver.maxHeight(input));
     }
-
 }
