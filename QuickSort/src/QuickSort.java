@@ -1,11 +1,12 @@
-import java.util.Arrays;
-
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 04 Apr 2018
- * https://github.com/bibhas-abhishek/projects/tree/master/QuickSort
- **/
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: QuickSort
+*- 08 Nov 2021 6:49 PM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+* https://leetcode.com/problems/sort-an-array/submissions/
+-------------------------------------------*/
 
 public class QuickSort {
 
@@ -38,8 +39,10 @@ public class QuickSort {
 
     public static void main(String[] args) {
         int[] arr = { 7, 4, 5, 8, 1, 2, 0, 9 };
-        QuickSort obj = new QuickSort();
-        obj.quickSort(arr, 0, arr.length - 1);
-        Arrays.stream(arr).mapToObj(e -> e + " ").forEach(System.out::print);
+        QuickSort driver = new QuickSort();
+        driver.quickSort(arr, 0, arr.length - 1);
+        for (int c : arr) {
+            System.out.print(c + " ");
+        }
     }
 }

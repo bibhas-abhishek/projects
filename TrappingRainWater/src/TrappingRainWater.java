@@ -1,17 +1,20 @@
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 17 Sep 2018
- * https://leetcode.com/problems/trapping-rain-water/description/
- * https://github.com/bibhas-abhishek/projects/tree/master/TrappingRainWater
- */
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: Test
+*- 08 Nov 2021 8:46 PM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+* https://leetcode.com/problems/trapping-rain-water
+-------------------------------------------*/
 
 public class TrappingRainWater {
 
     public int trap(int[] height) {
         int n = height.length;
-        if (n <= 1)
+        if (n <= 1) {
             return 0;
+        }
 
         int[] leftMaxes = new int[n];
         int[] rightMaxes = new int[n];
@@ -27,16 +30,16 @@ public class TrappingRainWater {
             rightMax = Math.max(rightMax, height[i]);
             rightMaxes[i] = rightMax;
             int minLeftRightDiff = Math.min(leftMaxes[i], rightMaxes[i]);
-            if (minLeftRightDiff > height[i])
+            if (minLeftRightDiff > height[i]) {
                 result += minLeftRightDiff - height[i];
+            }
         }
         return result;
     }
 
-
     public static void main(String[] args) {
-        int[] arr = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
-        System.out.println(new TrappingRainWater().trap(arr));
+        int[] arr = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
+        TrappingRainWater driver = new TrappingRainWater();
+        System.out.println(driver.trap(arr));
     }
-
 }

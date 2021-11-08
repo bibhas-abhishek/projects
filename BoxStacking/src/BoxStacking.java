@@ -6,6 +6,7 @@
 ---Details-----------------------------------
 *- Links:
 * https://www.geeksforgeeks.org/box-stacking-problem-dp-22/
+* https://leetcode.com/problems/maximum-height-by-stacking-cuboids/
 -------------------------------------------*/
 
 import java.util.Arrays;
@@ -53,6 +54,32 @@ public class BoxStacking {
             }
         }
         return maxHeight;
+    }
+
+    public int maxHeightLC(int[][] A) {
+        for (int[] a : A) {
+            Arrays.sort(a);
+        }
+
+        Arrays.sort(A, (o1, o2) -> {
+            if (o1[0] != o2[0]) {
+                return o2[0] - o1[0];
+            } else if (o1[1] != o2[1]) {
+                return o2[1] - o1[1];
+            } else
+                return o2[2] - o1[2];
+        });
+        int n = A.length, res = Integer.MIN_VALUE, dp[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            dp[i] = A[i][2];
+            for (int j = 0; j < i; j++) { // i index len <= j index len since A is non increasing
+                if (A[i][0] <= A[j][0] && A[i][1] <= A[j][1] && A[i][2] <= A[j][2]) {
+                    dp[i] = Math.max(dp[i], dp[j] + A[i][2]);
+                }
+            }
+            res = Math.max(res, dp[i]);
+        }
+        return res;
     }
 
     public static void main(String[] args) {

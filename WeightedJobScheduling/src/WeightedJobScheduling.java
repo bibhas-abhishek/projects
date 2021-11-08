@@ -1,3 +1,12 @@
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: WeightedJobScheduling
+*- 08 Nov 2021 9:05 PM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+-------------------------------------------*/
+
 import java.util.Arrays;
 
 public class WeightedJobScheduling {

@@ -1,17 +1,22 @@
-import java.util.Arrays;
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: LongestCommonPrefix
+*- 08 Nov 2021 9:40 PM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+* https://leetcode.com/problems/longest-common-prefix
+-------------------------------------------*/
+
 import java.util.HashMap;
 import java.util.Map;
-
-/**
- * https://leetcode.com/problems/longest-common-prefix/description/
- **/
 
 public class LongestCommonPrefix {
 
     private static class TrieNode {
 
         Map<Character, TrieNode> childMap;
-        boolean endOfWord;
+        boolean                  endOfWord;
 
         public TrieNode() {
             childMap = new HashMap<>();
@@ -85,24 +90,24 @@ public class LongestCommonPrefix {
         while (i < s1.length() && j < s2.length()) {
             if (s1.charAt(i) == s2.charAt(j)) {
                 stringBuilder.append(s1.charAt(i));
-            }
-            else {
+            } else {
                 break;
             }
-            i++;
-            j++;
+            i += 1;
+            j += 1;
         }
         return stringBuilder.toString();
     }
 
     public static void main(String[] args) {
-        LongestCommonPrefix obj = new LongestCommonPrefix();
-        //noinspection SpellCheckingInspection
-        String[] array = {"geeksforgeeks", "geeks", "geek", "geezer", "gee"};
-        System.out.println(obj.solveDivideNConquer(array, 0, array.length - 1));
+        LongestCommonPrefix driver = new LongestCommonPrefix();
+        String[] array = { "geeksforgeeks", "geeks", "geek", "geezer", "gee" };
+        System.out.println(driver.solveDivideNConquer(array, 0, array.length - 1));
         // --------------------
-        Arrays.stream(array).forEach(obj::insertWord);
-        System.out.println(obj.solveTrie(root, new StringBuilder()));
+        for (String s : array) {
+            driver.insertWord(s);
+        }
+        System.out.println(driver.solveTrie(root, new StringBuilder()));
 
     }
 }
