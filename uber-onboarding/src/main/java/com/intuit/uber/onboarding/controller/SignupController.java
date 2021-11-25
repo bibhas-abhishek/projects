@@ -12,6 +12,7 @@ package com.intuit.uber.onboarding.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +53,7 @@ public class SignupController {
     }
 
     @GetMapping("/getUser/{id}")
+    @Cacheable(value = "user", key = "#id")
     public CustomResponseEntity getCustomer(@PathVariable Long id) {
         Optional<User> user = userRepository.findById(id);
         if (user.isPresent()) {
