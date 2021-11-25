@@ -1,21 +1,19 @@
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: AddLinkedLists1
+*- 23 Nov 2021 7:14 PM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+* https://leetcode.com/problems/longest-substring-without-repeating-characters
+-------------------------------------------*/
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Bibhas Abhishek
- * [bibhas_01@hotmail.com]
- * 04 Apr 2018
- * https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
- * https://github.com/bibhas-abhishek/projects/tree/master/LongestSubstringWORepeat
- **/
-
 public class LongestSubstringWORepeat {
-
-    public static void main(String[] args) {
-        System.out.print(lengthOfLongestSubstringOptimised("abccabdef"));
-    }
 
     private static int lengthOfLongestSubstring(String s) {
         int n = s.length();
@@ -24,8 +22,9 @@ public class LongestSubstringWORepeat {
         int maxLength = 1;
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                if (isUniqueString(s, i, j))
+                if (isUniqueString(s, i, j)) {
                     maxLength = Math.max(maxLength, j - i + 1);
+                }
             }
         }
         return maxLength;
@@ -34,8 +33,9 @@ public class LongestSubstringWORepeat {
     private static boolean isUniqueString(String s, int i, int j) {
         Set<Character> set = new HashSet<>();
         for (int k = i; k <= j; k++) {
-            if (set.contains(s.charAt(k)))
+            if (set.contains(s.charAt(k))) {
                 return false;
+            }
             set.add(s.charAt(k));
         }
         return true;
@@ -48,8 +48,7 @@ public class LongestSubstringWORepeat {
         Map<Character, Integer> map = new HashMap<>();
         for (i = 0, j = 0; i < n; i++) {
             if (map.containsKey(s.charAt(i))) {
-                j = Math.max(j, map.get(s.charAt(i)) + 1); // j = max(j, last know index of repeated character + 1)
-                                                           // j remains at last repeated character at cc'a'
+                j = Math.max(j, map.get(s.charAt(i)) + 1);
             }
             map.put(s.charAt(i), i);
             maxLength = Math.max(maxLength, i - j + 1);
@@ -57,4 +56,7 @@ public class LongestSubstringWORepeat {
         return maxLength;
     }
 
+    public static void main(String[] args) {
+        System.out.print(lengthOfLongestSubstringOptimised("abccabdef"));
+    }
 }

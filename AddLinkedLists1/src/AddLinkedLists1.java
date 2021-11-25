@@ -1,3 +1,12 @@
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: AddLinkedLists1
+*- 23 Nov 2021 7:14 PM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+-------------------------------------------*/
+
 public class AddLinkedLists1 {
 
     public LinkedList.Node addTwoNumbers(LinkedList.Node l1, LinkedList.Node l2) {

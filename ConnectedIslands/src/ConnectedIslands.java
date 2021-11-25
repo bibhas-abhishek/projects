@@ -1,10 +1,12 @@
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 04 Oct 2018
- * https://leetcode.com/problems/surrounded-regions/description/
- * https://github.com/bibhas-abhishek/projects/tree/master/ConnectedIslands
- */
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: ConnectedIslands
+*- 23 Nov 2021 7:14 PM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+* https://leetcode.com/problems/surrounded-regions
+-------------------------------------------*/
 
 public class ConnectedIslands {
 

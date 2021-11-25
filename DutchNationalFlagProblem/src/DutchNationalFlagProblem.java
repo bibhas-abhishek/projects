@@ -1,13 +1,13 @@
-import java.util.Arrays;
-
-/**
- * Bibhas Abhishek
- * bibhas_01@hotmail.com
- * 09 Apr 2018
- * https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/
- * https://leetcode.com/problems/sort-colors/description/
- * https://github.com/bibhas-abhishek/projects/tree/master/DutchNationalFlagProblem
- **/
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: DutchNationalFlagProblem
+*- 16 Nov 2021 12:54 PM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+* https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/
+* https://leetcode.com/problems/sort-colors/description/
+-------------------------------------------*/
 
 public class DutchNationalFlagProblem {
 
@@ -18,11 +18,9 @@ public class DutchNationalFlagProblem {
                 swap(array, low, mid);
                 mid += 1;
                 low += 1;
-            }
-            else if (array[mid] == 1) {
+            } else if (array[mid] == 1) {
                 mid += 1;
-            }
-            else if (array[mid] == 2) {
+            } else if (array[mid] == 2) {
                 swap(array, mid, high);
                 high -= 1;
             }
@@ -42,6 +40,8 @@ public class DutchNationalFlagProblem {
         DutchNationalFlagProblem obj = new DutchNationalFlagProblem();
         int[] array = { 0, 1, 2, 0, 2, 1, 2, 1, 2, 1, 0 };
         array = obj.dutchNationalFlagSort(array);
-        Arrays.stream(array).mapToObj(i -> i + " ").forEach(System.out::print);
+        for (int i : array) {
+            System.out.print(i + " ");
+        }
     }
 }

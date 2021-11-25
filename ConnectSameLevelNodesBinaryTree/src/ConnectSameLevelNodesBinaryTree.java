@@ -1,3 +1,12 @@
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: ConnectSameLevelNodesBinaryTree
+*- 16 Nov 2021 12:54 PM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+-------------------------------------------*/
+
 import java.util.LinkedList;
 import java.util.Queue;
 

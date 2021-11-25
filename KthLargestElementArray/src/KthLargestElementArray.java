@@ -1,3 +1,12 @@
+/*-Author------------------------------------
+*- bibhas.abhishek@gmail.com
+*- projects: KthLargestElementArray
+*- 18 Nov 2021 1:55 AM
+---Made with <3 in Delhi,India---------------
+---Details-----------------------------------
+*- Links:
+-------------------------------------------*/
+
 public class KthLargestElementArray {
 
     public int findKthLargest(int[] arr, int k) {
@@ -21,12 +30,10 @@ public class KthLargestElementArray {
         swap(arr, pIndex, end);
         if (pIndex == k) {
             return arr[pIndex];
-        }
-        else if (k > pIndex) {
-            return findKthSmallestUtil(arr, pIndex + 1, end, k);    // search right
-        }
-        else {
-            return findKthSmallestUtil(arr, start, pIndex - 1, k);  // search left
+        } else if (k > pIndex) {
+            return findKthSmallestUtil(arr, pIndex + 1, end, k); // search right
+        } else {
+            return findKthSmallestUtil(arr, start, pIndex - 1, k); // search left
         }
     }
 
