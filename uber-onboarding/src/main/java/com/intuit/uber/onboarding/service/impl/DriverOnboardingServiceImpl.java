@@ -20,12 +20,13 @@ import com.intuit.uber.onboarding.model.entity.User;
 import com.intuit.uber.onboarding.model.enums.ProcessState;
 import com.intuit.uber.onboarding.repository.DriverOnboardingRepository;
 import com.intuit.uber.onboarding.service.DriverOnboardingService;
+import com.intuit.uber.onboarding.service.UserService;
 
 @Service
 public class DriverOnboardingServiceImpl implements DriverOnboardingService {
 
     @Autowired
-    private SignupServiceImpl          signupService;
+    private UserService                userService;
 
     @Autowired
     private DriverOnboardingRepository driverOnboardingRepository;
@@ -40,7 +41,7 @@ public class DriverOnboardingServiceImpl implements DriverOnboardingService {
     @Override
     public DriverOnboardingDetails updateOnboarding(Long id,
                                                     DriverOnboardingDetails details) throws CustomException {
-        Optional<User> userOptional = signupService.findUser(id);
+        Optional<User> userOptional = userService.findUser(id);
         if (userOptional.isPresent()) {
             DriverOnboardingDetails dbDetails = driverOnboardingRepository
                 .findByUser(userOptional.get());

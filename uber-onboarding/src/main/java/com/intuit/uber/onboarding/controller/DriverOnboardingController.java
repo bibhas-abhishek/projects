@@ -9,6 +9,7 @@
 
 package com.intuit.uber.onboarding.controller;
 
+import com.intuit.uber.onboarding.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,14 +22,11 @@ import com.intuit.uber.onboarding.exception.CustomException;
 import com.intuit.uber.onboarding.model.entity.CustomResponseEntity;
 import com.intuit.uber.onboarding.model.entity.DriverOnboardingDetails;
 import com.intuit.uber.onboarding.service.DriverOnboardingService;
-import com.intuit.uber.onboarding.service.impl.SignupServiceImpl;
+import com.intuit.uber.onboarding.service.impl.UserServiceImpl;
 
 @RestController
 @RequestMapping("/api/onboarding")
 public class DriverOnboardingController {
-
-    @Autowired
-    private SignupServiceImpl       signupService;
 
     @Autowired
     private DriverOnboardingService driverOnboardingService;

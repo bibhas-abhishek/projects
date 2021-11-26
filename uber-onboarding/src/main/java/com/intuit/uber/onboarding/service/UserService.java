@@ -17,7 +17,7 @@ import com.intuit.uber.onboarding.model.entity.User;
 import java.util.Optional;
 
 @Component
-public interface SignService {
+public interface UserService {
 
     User userSignupService(User user) throws CustomException;
 

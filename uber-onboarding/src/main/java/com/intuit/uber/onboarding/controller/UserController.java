@@ -26,14 +26,14 @@ import com.intuit.uber.onboarding.model.entity.CustomResponseEntity;
 import com.intuit.uber.onboarding.model.entity.DriverOnboardingDetails;
 import com.intuit.uber.onboarding.model.entity.User;
 import com.intuit.uber.onboarding.service.DriverOnboardingService;
-import com.intuit.uber.onboarding.service.impl.SignupServiceImpl;
+import com.intuit.uber.onboarding.service.UserService;
 
 @RestController
 @RequestMapping("/api")
-public class SignupController {
+public class UserController {
 
     @Autowired
-    private SignupServiceImpl       signupService;
+    private UserService             userService;
 
     @Autowired
     private DriverOnboardingService driverOnboardingService;
@@ -41,8 +41,8 @@ public class SignupController {
     @PostMapping("/user")
     public CustomResponseEntity signupUser(@RequestBody User user) {
         try {
-            User dbUser = signupService.userSignupService(user);
-            DriverOnboardingDetails dbDetails = driverOnboardingService.initOnboarding(user);
+            User dbUser = userService.userSignupService(user);
+            DriverOnboardingDetails dbDetails = driverOnboardingService.initOnboarding(dbUser);
             return new CustomResponseEntity(HttpStatus.CREATED, dbDetails,
                 HttpStatus.CREATED.getReasonPhrase());
         } catch (CustomException customException) {
@@ -57,7 +57,7 @@ public class SignupController {
     @GetMapping("/user/{id}")
     @Cacheable(value = "user", key = "#id")
     public CustomResponseEntity getCustomer(@PathVariable Long id) {
-        Optional<User> user = signupService.findUser(id);
+        Optional<User> user = userService.findUser(id);
         if (user.isPresent()) {
             return new CustomResponseEntity(HttpStatus.OK, user, HttpStatus.OK.getReasonPhrase());
         }

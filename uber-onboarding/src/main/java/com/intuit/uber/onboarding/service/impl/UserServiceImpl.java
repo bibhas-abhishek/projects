@@ -20,10 +20,10 @@ import com.intuit.uber.onboarding.model.entity.User;
 import com.intuit.uber.onboarding.model.enums.IdentityType;
 import com.intuit.uber.onboarding.model.enums.UserType;
 import com.intuit.uber.onboarding.repository.UserRepository;
-import com.intuit.uber.onboarding.service.SignService;
+import com.intuit.uber.onboarding.service.UserService;
 
 @Service
-public class SignupServiceImpl implements SignService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
