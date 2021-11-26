@@ -11,6 +11,7 @@ package com.intuit.uber.onboarding;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,30 +31,47 @@ public class IntegrationTests {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
     void successSignup() throws Exception {
-        this.mockMvc.perform(post("/api/signupUser").contentType(MediaType.APPLICATION_JSON)
+        this.mockMvc.perform(post("/api/user").contentType(MediaType.APPLICATION_JSON)
             .content(
-                "{\"userType\":\"DRIVER\",\"name\":\"test_name\",\"age\":32,\"address\":\"test_address\",\"identityType\":\"DRIVING_LICENCE\","
-                     + "\"identityNumber\":\"123456\"}"))
+                "{\"userType\":\"DRIVER\",\"name\":\"test_name\",\"contact\":\"8860549720\",\"password\":\"test@123\",\"age\":32,"
+                     + "\"address\":\"test_address\",\"identityType\":\"DRIVING_LICENCE\",\"identityNumber\":\"123456\"}"))
             .andDo(print()).andExpect(status().isOk())
             .andExpect(jsonPath("$.message").value(HttpStatus.CREATED.getReasonPhrase()));
     }
 
     @Test
+    void successOnboardingUpdate() throws Exception {
+        successSignup();
+        this.mockMvc.perform(
+            put("/api/onboarding/update/{id}", "1").contentType(MediaType.APPLICATION_JSON).content(
+                "{\"documentCollection\":\"IN_PROGRESS\",\"backgroundCheck\":\"COMPLETED\",\"trackingDevice\":\"COMPLETED\"}"))
+            .andDo(print()).andExpect(status().isOk())
+            .andExpect(jsonPath("$.message").value(HttpStatus.OK.getReasonPhrase()));
+    }
+
+    @Test
     void successSignupVerify() throws Exception {
-        this.mockMvc.perform(get("/api/getUser/{id}", "1")).andDo(print())
-            .andExpect(status().isOk())
+        this.mockMvc.perform(get("/api/user/{id}", "1")).andDo(print()).andExpect(status().isOk())
             .andExpect(jsonPath("$.message").value(HttpStatus.OK.getReasonPhrase()));
     }
 
     @Test
     void failedSignupValidate() throws Exception {
-        this.mockMvc.perform(post("/api/signupUser").contentType(MediaType.APPLICATION_JSON)
+        this.mockMvc.perform(post("/api/user").contentType(MediaType.APPLICATION_JSON)
             .content(
-                "{\"userType\":\"DRIVER\",\"name\":\"test_name\",\"age\":32,\"address\":\"test_address\",\"identityType\":\"AADHAR\","
-                     + "\"identityNumber\":\"123456\"}"))
+                "{\"userType\":\"DRIVER\",\"name\":\"test_name\",\"contact\":\"8860549720\",\"password\":\"test@123\",\"age\":32,"
+                     + "\"address\":\"test_address\",\"identityType\":\"AADHAR\",\"identityNumber\":\"123456\"}"))
             .andDo(print())
             .andExpect(jsonPath("$.message").value("Driver needs a driving licence as id proof"));
+    }
+
+    @Test
+    void failedOnboardingUpdate() throws Exception {
+        this.mockMvc.perform(
+            put("/api/onboarding/update/{id}", "2").contentType(MediaType.APPLICATION_JSON).content(
+                "{\"documentCollection\":\"IN_PROGRESS\",\"backgroundCheck\":\"COMPLETED\",\"trackingDevice\":\"COMPLETED\"}"))
+            .andDo(print()).andExpect(status().isOk())
+            .andExpect(jsonPath("$.message").value("User details not found"));
     }
 }

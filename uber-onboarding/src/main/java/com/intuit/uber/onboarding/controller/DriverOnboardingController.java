@@ -9,14 +9,10 @@
 
 package com.intuit.uber.onboarding.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,13 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.intuit.uber.onboarding.exception.CustomException;
 import com.intuit.uber.onboarding.model.entity.CustomResponseEntity;
 import com.intuit.uber.onboarding.model.entity.DriverOnboardingDetails;
-import com.intuit.uber.onboarding.model.entity.User;
 import com.intuit.uber.onboarding.service.DriverOnboardingService;
 import com.intuit.uber.onboarding.service.impl.SignupServiceImpl;
 
 @RestController
-@RequestMapping("/api")
-public class SignupController {
+@RequestMapping("/api/onboarding")
+public class DriverOnboardingController {
 
     @Autowired
     private SignupServiceImpl       signupService;
@@ -38,13 +33,14 @@ public class SignupController {
     @Autowired
     private DriverOnboardingService driverOnboardingService;
 
-    @PostMapping("/user")
-    public CustomResponseEntity signupUser(@RequestBody User user) {
+    @PutMapping("/update/{id}")
+    public CustomResponseEntity updateOnboardingDetails(@PathVariable Long id,
+                                                        @RequestBody DriverOnboardingDetails details) {
         try {
-            User dbUser = signupService.userSignupService(user);
-            DriverOnboardingDetails dbDetails = driverOnboardingService.initOnboarding(user);
-            return new CustomResponseEntity(HttpStatus.CREATED, dbDetails,
-                HttpStatus.CREATED.getReasonPhrase());
+            DriverOnboardingDetails dbDetails = driverOnboardingService.updateOnboarding(id,
+                details);
+            return new CustomResponseEntity(HttpStatus.OK, dbDetails,
+                HttpStatus.OK.getReasonPhrase());
         } catch (CustomException customException) {
             return new CustomResponseEntity(HttpStatus.BAD_REQUEST, null,
                 customException.getMessage());
@@ -52,16 +48,5 @@ public class SignupController {
             return new CustomResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR,
                 exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
         }
-    }
-
-    @GetMapping("/user/{id}")
-    @Cacheable(value = "user", key = "#id")
-    public CustomResponseEntity getCustomer(@PathVariable Long id) {
-        Optional<User> user = signupService.findUser(id);
-        if (user.isPresent()) {
-            return new CustomResponseEntity(HttpStatus.OK, user, HttpStatus.OK.getReasonPhrase());
-        }
-        return new CustomResponseEntity(HttpStatus.NOT_FOUND, null,
-            HttpStatus.NOT_FOUND.getReasonPhrase());
     }
 }
