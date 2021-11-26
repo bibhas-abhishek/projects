@@ -69,8 +69,27 @@ public class IntegrationTests {
     @Test
     void failedOnboardingUpdate() throws Exception {
         this.mockMvc.perform(
-            put("/api/onboarding/update/{id}", "2").contentType(MediaType.APPLICATION_JSON).content(
+            put("/api/onboarding/update/{id}", "0").contentType(MediaType.APPLICATION_JSON).content(
                 "{\"documentCollection\":\"IN_PROGRESS\",\"backgroundCheck\":\"COMPLETED\",\"trackingDevice\":\"COMPLETED\"}"))
+            .andDo(print()).andExpect(status().isOk())
+            .andExpect(jsonPath("$.message").value("User details not found"));
+    }
+
+    @Test
+    void successAccountUpdate() throws Exception {
+        successSignup();
+        this.mockMvc
+            .perform(put("/api/account/update/{id}", "1").contentType(MediaType.APPLICATION_JSON)
+                .content("{\"isOnline\":true}"))
+            .andDo(print()).andExpect(status().isOk())
+            .andExpect(jsonPath("$.message").value(HttpStatus.OK.getReasonPhrase()));
+    }
+
+    @Test
+    void failedAccountUpdate() throws Exception {
+        this.mockMvc
+            .perform(put("/api/account/update/{id}", "0").contentType(MediaType.APPLICATION_JSON)
+                .content("{\"isOnline\":true}"))
             .andDo(print()).andExpect(status().isOk())
             .andExpect(jsonPath("$.message").value("User details not found"));
     }

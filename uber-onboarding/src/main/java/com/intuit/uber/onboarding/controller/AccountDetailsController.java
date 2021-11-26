@@ -18,23 +18,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.intuit.uber.onboarding.exception.CustomException;
+import com.intuit.uber.onboarding.model.entity.AccountDetails;
 import com.intuit.uber.onboarding.model.entity.CustomResponseEntity;
-import com.intuit.uber.onboarding.model.entity.DriverOnboardingDetails;
-import com.intuit.uber.onboarding.service.DriverOnboardingService;
+import com.intuit.uber.onboarding.service.AccountDetailsService;
 
 @RestController
-@RequestMapping("/api/onboarding")
-public class DriverOnboardingController {
+@RequestMapping("/api/account")
+public class AccountDetailsController {
 
     @Autowired
-    private DriverOnboardingService driverOnboardingService;
+    private AccountDetailsService accountDetailsService;
 
     @PutMapping("/update/{id}")
     public CustomResponseEntity updateOnboardingDetails(@PathVariable Long id,
-                                                        @RequestBody DriverOnboardingDetails details) {
+                                                        @RequestBody AccountDetails details) {
         try {
-            DriverOnboardingDetails dbDetails = driverOnboardingService.updateOnboarding(id,
-                details);
+            AccountDetails dbDetails = accountDetailsService.updateAccountDetails(id, details);
             return new CustomResponseEntity(HttpStatus.OK, dbDetails,
                 HttpStatus.OK.getReasonPhrase());
         } catch (CustomException customException) {

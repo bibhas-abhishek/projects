@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.intuit.uber.onboarding.exception.CustomException;
 import com.intuit.uber.onboarding.model.entity.CustomResponseEntity;
-import com.intuit.uber.onboarding.model.entity.DriverOnboardingDetails;
 import com.intuit.uber.onboarding.model.entity.User;
+import com.intuit.uber.onboarding.service.AccountDetailsService;
 import com.intuit.uber.onboarding.service.DriverOnboardingService;
 import com.intuit.uber.onboarding.service.UserService;
 
@@ -38,12 +38,16 @@ public class UserController {
     @Autowired
     private DriverOnboardingService driverOnboardingService;
 
+    @Autowired
+    private AccountDetailsService   accountDetailsService;
+
     @PostMapping("/user")
     public CustomResponseEntity signupUser(@RequestBody User user) {
         try {
             User dbUser = userService.userSignupService(user);
-            DriverOnboardingDetails dbDetails = driverOnboardingService.initOnboarding(dbUser);
-            return new CustomResponseEntity(HttpStatus.CREATED, dbDetails,
+            driverOnboardingService.initOnboarding(dbUser);
+            accountDetailsService.initAccountDetails(dbUser);
+            return new CustomResponseEntity(HttpStatus.CREATED, dbUser,
                 HttpStatus.CREATED.getReasonPhrase());
         } catch (CustomException customException) {
             return new CustomResponseEntity(HttpStatus.BAD_REQUEST, null,

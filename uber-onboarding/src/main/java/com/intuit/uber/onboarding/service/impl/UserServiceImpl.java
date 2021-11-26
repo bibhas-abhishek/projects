@@ -11,6 +11,8 @@ package com.intuit.uber.onboarding.service.impl;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ import com.intuit.uber.onboarding.repository.UserRepository;
 import com.intuit.uber.onboarding.service.UserService;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired

@@ -1,7 +1,7 @@
 /*-Author------------------------------------
 *- bibhas.abhishek@gmail.com
-*- uber-onboarding: DriverOnboardingDetails
-*- 26 Nov 2021 8:51 PM
+*- uber-onboarding: User
+*- 25 Nov 2021 11:37 PM
 ---Made with <3 in Delhi,India---------------
 ---Details-----------------------------------
 *- Links:
@@ -22,41 +22,31 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.intuit.uber.onboarding.model.enums.ProcessState;
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "driver_onboarding_details")
+@Table(name = "account_details")
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
-@AllArgsConstructor
-public class DriverOnboardingDetails {
+public class AccountDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long         id;
+    private Long    id;
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    private User         user;
+    private User    user;
 
-    @Column(name = "document_collection")
-    private ProcessState documentCollection;
-
-    @Column(name = "background_check")
-    private ProcessState backgroundCheck;
-
-    @Column(name = "tracking_device")
-    private ProcessState trackingDevice;
+    @Column(name = "is_online", nullable = false)
+    private Boolean isOnline;
 
     @UpdateTimestamp
     @Column(name = "updated_at")
-    private Date         updatedAt;
+    private Date    updatedAt;
 }

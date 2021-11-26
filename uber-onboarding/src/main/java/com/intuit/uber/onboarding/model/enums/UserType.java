@@ -20,7 +20,9 @@ public enum UserType {
 
                       RIDER(1, "rider"),
 
-                      DRIVER(2, "driver");
+                      DRIVER(2, "driver"),
+
+                      ADMIN(3, "admin");
 
     private final int    id;
 

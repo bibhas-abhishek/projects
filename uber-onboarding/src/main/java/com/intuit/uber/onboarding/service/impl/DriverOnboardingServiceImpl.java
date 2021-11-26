@@ -11,6 +11,8 @@ package com.intuit.uber.onboarding.service.impl;
 
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,7 @@ import com.intuit.uber.onboarding.service.DriverOnboardingService;
 import com.intuit.uber.onboarding.service.UserService;
 
 @Service
+@Transactional
 public class DriverOnboardingServiceImpl implements DriverOnboardingService {
 
     @Autowired
@@ -32,10 +35,13 @@ public class DriverOnboardingServiceImpl implements DriverOnboardingService {
     private DriverOnboardingRepository driverOnboardingRepository;
 
     @Override
-    public DriverOnboardingDetails initOnboarding(User user) {
-        DriverOnboardingDetails details = new DriverOnboardingDetails(null, user,
-            ProcessState.INITIATED, ProcessState.INITIATED, ProcessState.INITIATED);
-        return driverOnboardingRepository.save(details);
+    public void initOnboarding(User user) {
+        DriverOnboardingDetails details = new DriverOnboardingDetails();
+        details.setUser(user);
+        details.setBackgroundCheck(ProcessState.INITIATED);
+        details.setDocumentCollection(ProcessState.INITIATED);
+        details.setTrackingDevice(ProcessState.INITIATED);
+        driverOnboardingRepository.save(details);
     }
 
     @Override
