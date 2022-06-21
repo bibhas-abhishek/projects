@@ -18,7 +18,7 @@
         <spring-security-config.version>5.0.7.RELEASE</spring-security-config.version>
         <jstl.version>1.2</jstl.version>
         <spring-security-taglibs.version>5.0.7.RELEASE</spring-security-taglibs.version>
-        <mysql.connector.java.version>8.0.11</mysql.connector.java.version>
+        <mysql.connector.java.version>8.0.28</mysql.connector.java.version>
         <c3p0.version>0.9.5.2</c3p0.version>
     </properties>
 
