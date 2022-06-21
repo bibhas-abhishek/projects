@@ -21,7 +21,7 @@
         <spring.version>5.0.6.RELEASE</spring.version>
         <hibernate.validator.version>6.0.8.Final</hibernate.validator.version>
         <hibernate.core.version>5.2.8.Final</hibernate.core.version>
-        <mysql.connector.java.version>8.0.11</mysql.connector.java.version>
+        <mysql.connector.java.version>8.0.28</mysql.connector.java.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <c3p0.version>0.9.5.2</c3p0.version>
         <spring-orm.version>5.0.7.RELEASE</spring-orm.version>
